@@ -115,7 +115,7 @@ python market_flipper.py --workers 8 --quick
 
 | Column | Description |
 |---|---|
-| `Item` | Item name (fetched from xivapi.com for candidates) |
+| `Item` | Item name — resolved via xivapi.com v1 batch first, then v2.xivapi.com fallback for any missing entries |
 | `ID` | Universalis item ID |
 | `Buy` | Cheapest price anywhere in the region (excl. Balmung) |
 | `Balmung` | Cheapest price on Balmung (your sell price) |
@@ -125,6 +125,12 @@ python market_flipper.py --workers 8 --quick
 | `Est GP/d` | `NetProfit × DC Vel/d` — estimated daily revenue |
 | `Last Sale` | Most recent sale: age + price |
 | `Avg Sale` | 4-day rolling average sale price on the DC |
+
+## Name Resolution
+
+Item names are looked up **only for final candidates** (not all 16K items).
+1. **xivapi.com v1** — batch endpoint (`/item?ids=1,2,3,...`) — fast, resolves ~85-90% of IDs.
+2. **v2.xivapi.com** — single-item sheet endpoint (`/api/sheet/Item/{id}?fields=Name`) — fallback for IDs v1 misses. Runs in parallel to keep it fast.
 
 ## CSV Fields
 

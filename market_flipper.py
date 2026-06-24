@@ -80,16 +80,15 @@ def fetch_dc_worlds(dc: str) -> list[int]:
 
 def fetch_item_names(item_ids: list[int], workers: int = 5) -> dict[int, str]:
     """
-    Fetch item names from xivapi.com in batches of 100.
+    Fetch item names from xivapi.com (v1 batch, then v2 fallback for unresolved).
     Returns {item_id: name}.
     """
-    base = "https://xivapi.com/item"
     batches = [item_ids[i:i + 100] for i in range(0, len(item_ids), 100)]
     result: dict[int, str] = {}
 
-    def _get_names(batch):
+    def _get_v1(batch):
         ids = ",".join(str(i) for i in batch)
-        url = f"{base}?ids={ids}"
+        url = f"https://xivapi.com/item?ids={ids}"
         for attempt in range(3):
             try:
                 r = requests.get(url, timeout=15)
@@ -113,10 +112,47 @@ def fetch_item_names(item_ids: list[int], workers: int = 5) -> dict[int, str]:
         return {}
 
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        futures = {ex.submit(_get_names, b): b for b in batches}
+        futures = {ex.submit(_get_v1, b): b for b in batches}
         for fut in as_completed(futures):
             result.update(fut.result())
+
+    unresolved = [iid for iid in item_ids if not result.get(iid)]
+    if unresolved:
+        unresolved_names = _get_v2_batch(unresolved)
+        result.update(unresolved_names)
+
     return result
+
+
+def _get_v2_batch(item_ids: list[int], workers: int = 5) -> dict[int, str]:
+    """
+    Fallback: resolve unresolved IDs via v2.xivapi.com in parallel.
+    """
+    out: dict[int, str] = {}
+
+    def _fetch_one(iid):
+        url = f"https://v2.xivapi.com/api/sheet/Item/{iid}?fields=Name"
+        for attempt in range(2):
+            try:
+                r = requests.get(url, timeout=10)
+                if r.status_code == 429:
+                    time.sleep(1)
+                    continue
+                r.raise_for_status()
+                data = r.json()
+                name = data.get("fields", {}).get("Name", "")
+                return iid, name if name else None
+            except requests.exceptions.RequestException:
+                time.sleep(0.5)
+        return iid, None
+
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futures = {ex.submit(_fetch_one, iid): iid for iid in item_ids}
+        for fut in as_completed(futures):
+            iid, name = fut.result()
+            if name:
+                out[iid] = name
+    return out
 
 
 def fetch_history_batch(batch: list[int], target_world: str, entries: int = 5) -> dict[int, dict]:
