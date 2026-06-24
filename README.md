@@ -115,7 +115,8 @@ python market_flipper.py --workers 8 --quick
 
 | Column | Description |
 |---|---|
-| `Item ID` | Universalis item ID (lookup on xivapi.com) |
+| `Item` | Item name (fetched from xivapi.com for candidates) |
+| `ID` | Universalis item ID |
 | `Buy` | Cheapest price anywhere in the region (excl. Balmung) |
 | `Balmung` | Cheapest price on Balmung (your sell price) |
 | `NetProfit` | `(Balmung − 13% fees) − Buy` per unit |
@@ -127,7 +128,7 @@ python market_flipper.py --workers 8 --quick
 
 ## CSV Fields
 
-`id`, `buy`, `dc_min`, `balmung`, `fees`, `gross`, `margin`, `avg_sp`,
+`id`, `name`, `buy`, `dc_min`, `balmung`, `fees`, `gross`, `margin`, `avg_sp`,
 `dc_vel`, `est_gp_d`, `last_sale_age_h`, `last_sale_price`, `last_sale_qty`
 
 ## Tips

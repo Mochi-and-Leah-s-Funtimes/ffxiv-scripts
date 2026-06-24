@@ -78,6 +78,47 @@ def fetch_dc_worlds(dc: str) -> list[int]:
     sys.exit(f"ERROR: datacenter '{dc}' not found.")
 
 
+def fetch_item_names(item_ids: list[int], workers: int = 5) -> dict[int, str]:
+    """
+    Fetch item names from xivapi.com in batches of 100.
+    Returns {item_id: name}.
+    """
+    base = "https://xivapi.com/item"
+    batches = [item_ids[i:i + 100] for i in range(0, len(item_ids), 100)]
+    result: dict[int, str] = {}
+
+    def _get_names(batch):
+        ids = ",".join(str(i) for i in batch)
+        url = f"{base}?ids={ids}"
+        for attempt in range(3):
+            try:
+                r = requests.get(url, timeout=15)
+                if r.status_code == 429:
+                    time.sleep(2 ** attempt)
+                    continue
+                r.raise_for_status()
+                data = r.json()
+                if not isinstance(data, dict):
+                    return {}
+                results_list = data.get("Results") or []
+                if not isinstance(results_list, list):
+                    return {}
+                out: dict[int, str] = {}
+                for item in results_list:
+                    if isinstance(item, dict):
+                        out[item.get("ID", 0)] = item.get("Name", "")
+                return out
+            except requests.exceptions.RequestException:
+                time.sleep(1)
+        return {}
+
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futures = {ex.submit(_get_names, b): b for b in batches}
+        for fut in as_completed(futures):
+            result.update(fut.result())
+    return result
+
+
 def fetch_history_batch(batch: list[int], target_world: str, entries: int = 5) -> dict[int, dict]:
     """
     Fetch sale history for a batch of items.
@@ -287,6 +328,16 @@ def run_scan(item_ids: list[int],
         print(f"    Filtered out {filtered_by_age:,} items last sold > {max_sale_age_h:.0f}h ago")
         all_cand = [c for c in all_cand if not c.get("_filtered_age")]
 
+    # ── Item-name enrichment ────────────────────────────────────────────────
+    if all_cand:
+        cand_ids = [c["id"] for c in all_cand]
+        print(f"    Fetching item names for {len(cand_ids):,} candidates…")
+        t2 = time.time()
+        name_map = fetch_item_names(cand_ids, workers=workers)
+        print(f"    Names fetched in {time.time()-t2:.1f}s")
+        for c in all_cand:
+            c["name"] = name_map.get(c["id"], f"Item {c['id']}")
+
     print(f"    Final candidates: {len(all_cand):,}\n")
     return all_cand
 
@@ -308,7 +359,7 @@ def _show(results: list[dict], n: int = 50, sort_by: str = "gross") -> None:
 
     sep  = "─" * 118
     print(sep)
-    print(f" {'Item ID':>9}  {'Buy':>9}  {'Balmung':>9}"
+    print(f" {'Item':<26}  {'ID':>9}  {'Buy':>9}  {'Balmung':>9}"
           f"  {'NetProfit':>9}  {'Margin':>6}  {'DC Vel/d':>8}"
           f"  {'Est GP/d':>10}  {'Last Sale':>20}  {'Avg Sale':>10}")
     print(sep)
@@ -327,7 +378,8 @@ def _show(results: list[dict], n: int = 50, sort_by: str = "gross") -> None:
         else:
             last_str = f"{age_h/24:,.0f}d ago @ {int(r['last_sale_price']):,}g"
 
-        print(f" {r['id']:>9}  {r['buy']:>9,} gil  {r['balmung']:>9,} gil"
+        name = r.get("name", f"Item {r['id']}")
+        print(f" {name:<26} {r['id']:>9}  {r['buy']:>9,} gil  {r['balmung']:>9,} gil"
               f"  {r['gross']:>9,} gil  {r['margin']:>5.1f}%"
               f"  {r['dc_vel']:>8.1f}  {r['est_gp_d']:>10,} gil  "
               f"{last_str:>20}  {avg:>10}")
@@ -344,7 +396,7 @@ def _show_velocity(results: list[dict], n: int = 30) -> None:
     print("═" * 86)
     print(f"  {'HIGHEST VELOCITY FLIPS':^84}")
     print("═" * 86)
-    print(f"  {'Item ID':>9}  {'Buy':>9}  {'Vel/d':>8}  {'Profit':>9}  {'Marg.':>6}  {'Last Sale':>20}")
+    print(f"  {'Item':<26}  {'ID':>9}  {'Buy':>9}  {'Vel/d':>8}  {'Profit':>9}  {'Marg.':>6}")
     print("  " + "─" * 78)
     for r in ordered:
         age_h = r.get("last_sale_age_h", 1e9)
@@ -356,21 +408,25 @@ def _show_velocity(results: list[dict], n: int = 30) -> None:
             last_str = f"{age_h:,.0f}h @ {int(r['last_sale_price']):,}g"
         else:
             last_str = f"{age_h/24:,.1f}d @ {int(r['last_sale_price']):,}g"
-        print(f"  {r['id']:>9}  {r['buy']:>9,} gil"
+        name = r.get("name", f"Item {r['id']}")
+        print(f"  {name:<26} {r['id']:>9}  {r['buy']:>9,} gil"
               f"  {r['dc_vel']:>8.1f}  {r['gross']:>9,} gil  {r['margin']:>5.1f}%  {last_str:>20}")
     print("═" * 86 + "\n")
 
 
 def _save_csv(results: list[dict], path: str) -> None:
-    fields = ["id","buy","dc_min","balmung","fees","gross",
+    fields = ["id","name","buy","dc_min","balmung","fees","gross",
               "margin","avg_sp","dc_vel","est_gp_d",
               "last_sale_age_h","last_sale_price","last_sale_qty"]
     with open(path, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
         for r in sorted(results, key=lambda r: r["gross"], reverse=True):
-            row = {k: r[k] for k in fields}
-            row["last_sale_age_h"] = f"{r['last_sale_age_h']:.1f}" if r.get("last_sale_age_h", 1e9) < 1e8 else ""
+            row = {k: r.get(k, "") for k in fields}
+            row["last_sale_age_h"] = (
+                f"{r['last_sale_age_h']:.1f}"
+                if r.get("last_sale_age_h", 1e9) < 1e8 else ""
+            )
             w.writerow(row)
     print(f"CSV → {path}\n")
 
