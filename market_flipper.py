@@ -257,7 +257,7 @@ def _process_batch(batch: list[int],
             "id":        iid,
             "buy":       buy_price,
             "dc_min":    dc_p,
-            "balmung":   world_p,
+            "home":   world_p,
             "fees":      fees,
             "gross":     gross,
             "margin":    margin,
@@ -389,7 +389,7 @@ def _show(results: list[dict], n: int = 50, sort_by: str = "gross") -> None:
 
     sep  = "─" * 118
     print(sep)
-    print(f" {'Item':<26}  {'ID':>9}  {'Buy':>9}  {'Balmung':>9}"
+    print(f" {'Item':<26}  {'ID':>9}  {'Buy':>9}  {'Home':>9}"
           f"  {'NetProfit':>9}  {'Margin':>6}  {'DC Vel/d':>8}"
           f"  {'Est GP/d':>10}  {'Last Sale':>20}  {'Avg Sale':>10}")
     print(sep)
@@ -409,7 +409,7 @@ def _show(results: list[dict], n: int = 50, sort_by: str = "gross") -> None:
             last_str = f"{age_h/24:,.0f}d ago @ {int(r['last_sale_price']):,}g"
 
         name = r.get("name", f"Item {r['id']}")
-        print(f" {name:<26} {r['id']:>9}  {r['buy']:>9,} gil  {r['balmung']:>9,} gil"
+        print(f" {name:<26} {r['id']:>9}  {r['buy']:>9,} gil  {r['home']:>9,} gil"
               f"  {r['gross']:>9,} gil  {r['margin']:>5.1f}%"
               f"  {r['dc_vel']:>8.1f}  {r['est_gp_d']:>10,} gil  "
               f"{last_str:>20}  {avg:>10}")
@@ -445,7 +445,7 @@ def _show_velocity(results: list[dict], n: int = 30) -> None:
 
 
 def _save_csv(results: list[dict], path: str) -> None:
-    fields = ["id","name","buy","dc_min","balmung","fees","gross",
+    fields = ["id","name","buy","dc_min","home","fees","gross",
               "margin","avg_sp","dc_vel","est_gp_d",
               "last_sale_age_h","last_sale_price","last_sale_qty"]
     with open(path, "w", newline="") as fh:
@@ -464,7 +464,7 @@ def _save_csv(results: list[dict], path: str) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="FFXIV Market Board Cross-World Flipper  (Crystal → Balmung)",
+        description="FFXIV Market Board Cross-World Flipper",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__)
     ap.add_argument("--min-velocity",    type=float, default=5.0,
