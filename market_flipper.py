@@ -2,24 +2,9 @@
 """
 FFXIV Market Board Cross-World Flipper
 =======================================
-Identifies items you can buy cheaply outside Balmung and relist on Balmung.
+Identifies items to buy cheap and relist for profit on a chosen sell world.
 
-Strategy:  cheapest cheapest cheapest cheapest cheapest cheapest v
-             on Crystal DC ────────────────────────────────►
-
-API : Universalis v2  (https://docs.universalis.app)
-DC  : Crystal (North America)
-Sell world: Balmung
-
-Fee model baked into net-sell estimate:
-    3%  undercut fee  +  ≤5% city GC tax  +  5% retainer fee  ≈ 13%
-
-Usage examples:
-    python market_flipper.py                           # sensible defaults
-    python market_flipper.py --quick                   # unfiltered full scan
-    python market_flipper.py --min-velocity 10 --min-profit 500
-    python market_flipper.py --sort-by gpday --csv flips.csv
-    python market_flipper.py --show-velocity --min-velocity 1
+Requires: pip install requests
 """
 
 from __future__ import annotations
@@ -192,7 +177,9 @@ def fetch_history_batch(batch: list[int], target_world: str, entries: int = 5) -
 # ── per-batch processing ────────────────────────────────────────────────────────
 
 def _process_batch(batch: list[int],
+                   query_world: str,
                    sell_world_id: int,
+                   scope: str,
                    min_vel: float,
                    min_profit: int,
                    min_pct: float,
@@ -203,7 +190,7 @@ def _process_batch(batch: list[int],
     Returns (candidates, items_with_no_market_data).
     """
     ids    = ",".join(str(i) for i in batch)
-    url    = f"{API_BASE}/aggregated/{SELL_WORLD}/{ids}"  # query Balmung → gets Balmung price + DC/region data
+    url    = f"{API_BASE}/aggregated/{query_world}/{ids}"
     raw    = _get(url)
     if not raw:
         return [], 0
@@ -234,17 +221,22 @@ def _process_batch(batch: list[int],
 
         if eff_vel < min_vel:
             continue
-        if not (world_p and dc_p and region_p):
+        if not world_p:
             continue
 
-        # skip if cheapest source or DC-cheapest world is Balmung itself
-        if ml.get("region", {}).get("worldId")  == sell_world_id:
-            continue
-        if ml.get("dc",     {}).get("worldId")  == sell_world_id:
-            continue
+        # Determine buy price from scope
+        if scope == "dc":
+            buy_price = dc_p
+            # Skip if sell world is already cheapest on the DC
+            if ml.get("dc", {}).get("worldId") == sell_world_id:
+                continue
+        else:
+            buy_price = region_p
+            if ml.get("region", {}).get("worldId") == sell_world_id:
+                continue
 
-        # buy from cheapest anywhere (other than Balmung — already filtered above)
-        buy_price   = region_p
+        if not buy_price:
+            continue
         if buy_price < price_floor:
             continue
         if max_price_floor is not None and world_p > max_price_floor:
@@ -280,7 +272,9 @@ def _process_batch(batch: list[int],
 # ── main scan ──────────────────────────────────────────────────────────────────
 
 def run_scan(item_ids: list[int],
+             query_world: str,
              sell_world_id: int,
+             scope: str,
              min_vel: float,
              min_profit: int,
              min_pct: float,
@@ -301,7 +295,7 @@ def run_scan(item_ids: list[int],
 
     with ThreadPoolExecutor(max_workers=workers) as ex:
         futures = {
-            ex.submit(_process_batch, b, sell_world_id,
+            ex.submit(_process_batch, b, query_world, sell_world_id, scope,
                       min_vel, min_profit, min_pct,
                       price_floor, max_price_floor): b
             for b in batches
@@ -336,7 +330,7 @@ def run_scan(item_ids: list[int],
     history_map: dict[int, dict] = {}
     with ThreadPoolExecutor(max_workers=workers) as ex:
         h_futures = {
-            ex.submit(fetch_history_batch, hb, SELL_WORLD, history_entries): hb
+             ex.submit(fetch_history_batch, hb, query_world, history_entries): hb
             for hb in hist_batches
         }
         for hf in as_completed(h_futures):
@@ -496,6 +490,10 @@ def main() -> None:
     ap.add_argument("--csv",             metavar="FILE")
     ap.add_argument("--quick",           action="store_true",
                     help="Relax all filters (scan full list)")
+    ap.add_argument("--sell-world",      default="Balmung",
+                    help="World to sell on (default: Balmung)")
+    ap.add_argument("--scope",           choices=["region", "dc"], default="region",
+                    help="Buy-price scope: region=cross-world (default), dc=single datacenter only")
     args = ap.parse_args()
 
     if args.quick:
@@ -506,21 +504,33 @@ def main() -> None:
         args.max_price_floor = None
         args.max_sale_age_hours = None
 
+    # ── Resolve targets ────────────────────────────────────────────────────
     world_map = fetch_world_map()
-    dc_worlds = fetch_dc_worlds(DC_NAME)
-    sell_id   = world_map.get(SELL_WORLD.lower())
-    if not sell_id:
-        sys.exit(f"ERROR: '{SELL_WORLD}' not found in world list.")
+    dc_list   = fetch_dc_worlds(DC_NAME)
 
-    print(f"\n🎯  Sell on   : {SELL_WORLD} (ID {sell_id})")
-    print(f"🌐  Datacenter: {DC_NAME}  worlds: {', '.join(map(str, dc_worlds))}")
+    sell_id   = world_map.get(args.sell_world.lower())
+    if not sell_id:
+        sys.exit(f"ERROR: Sell world '{args.sell_world}' not found.")
+
+    # Resolve which DC the sell world belongs to (for display / scope logic)
+    sell_world_dc: str | None = None
+    for entry in (_get(f"{API_BASE}/data-centers") or []):
+        if sell_id in entry.get("worlds", []):
+            sell_world_dc = entry["name"]
+            break
+
+    print(f"\n🎯  Sell on   : {args.sell_world} (ID {sell_id})  [DC: {sell_world_dc or '?'}]")
+    print(f"🌐  Buy scope : {args.scope}")
+    print(f"📊  Datacenter: {DC_NAME}  worlds: {', '.join(map(str, dc_list))}")
 
     item_list = fetch_marketable()
     print(f"📦  Marketable items: {len(item_list):,}\n")
 
     results = run_scan(
         item_ids           = item_list,
+        query_world        = args.sell_world,
         sell_world_id      = sell_id,
+        scope              = args.scope,
         min_vel            = args.min_velocity,
         min_profit         = args.min_profit,
         min_pct            = args.min_margin_pct,

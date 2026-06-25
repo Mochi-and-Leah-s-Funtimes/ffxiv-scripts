@@ -11,12 +11,28 @@ python market_flipper.py --help
 
 ## Strategy
 
-The script queries `aggregated/Balmung/{ids}` to get three prices in one call:
-- **`region`** — cheapest anywhere in North America (your buy price)
-- **`dc`** — cheapest on the Crystal DC
-- **`world`** — cheapest on Balmung (your sell price)
+The script queries `aggregated/{sellWorld}/{ids}` to get three prices in one call:
+- **`world`** — cheapest on your sell world (your sell price)
+- **`dc`** — cheapest on the same datacenter as your sell world
+- **`region`** — cheapest anywhere in North America
 
-A candidate must satisfy: **Balmung price > buy price + 13% fees**, and Balmung cannot already be the cheapest source.
+A candidate must satisfy: **sell-world price > buy price + 13% fees**, and the sell world cannot already be the cheapest source on the chosen scope.
+
+### Scope
+
+| Scope | Buy-price source | Best for |
+|---|---|---|
+| `region` (default) | Cheapest in all of North America | Maximum profit, requires DC travel |
+| `dc` | Cheapest on the same datacenter as sell world | Minimise travel, intra-DC flips |
+
+Use `--scope dc` to restrict flips to items you can source without leaving the datacenter.
+
+### Target Selection
+
+| Flag | Type | Default | Description |
+|---|---|---|---|
+| `--sell-world` | str | `Balmung` | World to sell on |
+| `--scope` | choice | `region` | `region` = any world in North America (cross-world), `dc` = only the same datacenter as the sell world |
 
 ## Fees (baked into every profit calc)
 
@@ -109,6 +125,21 @@ python market_flipper.py \
 ### High-volume, fast scan
 ```bash
 python market_flipper.py --workers 8 --quick
+```
+
+### Sell on a different world (cross-world)
+```bash
+python market_flipper.py --sell-world Mateus --scope region --quick
+```
+
+### Sell on Seraph, intra-datacenter only (no DC travel)
+```bash
+python market_flipper.py --sell-world Seraph --scope dc --min-profit 500
+```
+
+### Sell on Faerie, DC-scoped, recent sales only
+```bash
+python market_flipper.py --sell-world Faerie --scope dc --max-sale-age-hours 72
 ```
 
 ## Output Columns
