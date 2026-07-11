@@ -28,6 +28,14 @@ SELL_WORLD = "Balmung"
 FEE_RATE   = 0.13          # 13 % — undercut + tax + retainer
 BATCH      = 100           # Universalis max IDs per call
 
+# ── verbosity ────────────────────────────────────────────────────────────────
+VERBOSE = False
+
+def vprint(*args, **kwargs) -> None:
+    """Print only when --verbose is enabled; the final table is always shown."""
+    if VERBOSE:
+        print(*args, **kwargs)
+
 # ── HTTP ──────────────────────────────────────────────────────────────────────
 
 def _get(url: str, retries: int = 4, timeout: int = 20) -> Any | None:
@@ -286,7 +294,7 @@ def run_scan(item_ids: list[int],
     batches = [item_ids[i:i + BATCH]
                for i in range(0, len(item_ids), BATCH)]
     total   = len(batches)
-    print(f"    Batches    : {total}  ({len(item_ids):,} items @ {BATCH}/batch)\n")
+    vprint(f"    Batches    : {total}  ({len(item_ids):,} items @ {BATCH}/batch)\n")
 
     all_cand: list[dict] = []
     no_data  = 0
@@ -306,16 +314,16 @@ def run_scan(item_ids: list[int],
             no_data  += nd
             done     += 1
             if done % 25 == 0 or done == len(batches):
-                print(f"\r    [{done:>4}/{len(batches)} batch"
-                      f"{'es' if len(batches)!=1 else ''}]  "
-                      f"{time.time()-t0:5.1f}s  "
-                      f"{len(all_cand):,} candidates",
-                      end="", flush=True)
+                vprint(f"\r    [{done:>4}/{len(batches)} batch"
+                       f"{'es' if len(batches)!=1 else ''}]  "
+                       f"{time.time()-t0:5.1f}s  "
+                       f"{len(all_cand):,} candidates",
+                       end="", flush=True)
 
     elapsed = time.time() - t0
-    print(f"\n\n✅  {len(batches)} batches in {elapsed:.1f}s"
-          f"  |  {len(all_cand):,} flip candidates"
-          f"  |  {no_data:,} items with no listings")
+    vprint(f"\n\n✅  {len(batches)} batches in {elapsed:.1f}s"
+           f"  |  {len(all_cand):,} flip candidates"
+           f"  |  {no_data:,} items with no listings")
 
     # ── History enrichment ───────────────────────────────────────────────────
     if not all_cand:
@@ -324,7 +332,7 @@ def run_scan(item_ids: list[int],
     cand_ids = [c["id"] for c in all_cand]
     hist_batches = [cand_ids[i:i + BATCH]
                     for i in range(0, len(cand_ids), BATCH)]
-    print(f"    Fetching history for {len(cand_ids):,} candidates "
+    vprint(f"    Fetching history for {len(cand_ids):,} candidates "
           f"({len(hist_batches)} batch{'es' if len(hist_batches)!=1 else ''})…")
     t1 = time.time()
     history_map: dict[int, dict] = {}
@@ -336,7 +344,7 @@ def run_scan(item_ids: list[int],
         for hf in as_completed(h_futures):
             history_map.update(hf.result())
 
-    print(f"    History fetched in {time.time()-t1:.1f}s")
+    vprint(f"    History fetched in {time.time()-t1:.1f}s")
 
     # Merge history into candidates
     filtered_by_age = 0
@@ -355,20 +363,20 @@ def run_scan(item_ids: list[int],
             c["_filtered_age"] = False
 
     if filtered_by_age:
-        print(f"    Filtered out {filtered_by_age:,} items last sold > {max_sale_age_h:.0f}h ago")
+        vprint(f"    Filtered out {filtered_by_age:,} items last sold > {max_sale_age_h:.0f}h ago")
         all_cand = [c for c in all_cand if not c.get("_filtered_age")]
 
     # ── Item-name enrichment ────────────────────────────────────────────────
     if all_cand:
         cand_ids = [c["id"] for c in all_cand]
-        print(f"    Fetching item names for {len(cand_ids):,} candidates…")
+        vprint(f"    Fetching item names for {len(cand_ids):,} candidates…")
         t2 = time.time()
         name_map = fetch_item_names(cand_ids, workers=workers)
-        print(f"    Names fetched in {time.time()-t2:.1f}s")
+        vprint(f"    Names fetched in {time.time()-t2:.1f}s")
         for c in all_cand:
             c["name"] = name_map.get(c["id"], f"Item {c['id']}")
 
-    print(f"    Final candidates: {len(all_cand):,}\n")
+    vprint(f"    Final candidates: {len(all_cand):,}\n")
     return all_cand
 
 # ── display ────────────────────────────────────────────────────────────────────
@@ -494,7 +502,12 @@ def main() -> None:
                     help="World to sell on (default: Balmung)")
     ap.add_argument("--scope",           choices=["region", "dc"], default="region",
                     help="Buy-price scope: region=cross-world (default), dc=single datacenter only")
+    ap.add_argument("-v", "--verbose",   action="store_true",
+                    help="Show batch count, scan progress, and source worlds/datacenters")
     args = ap.parse_args()
+
+    global VERBOSE
+    VERBOSE = args.verbose
 
     if args.quick:
         args.min_velocity    = 0
@@ -519,12 +532,12 @@ def main() -> None:
             sell_world_dc = entry["name"]
             break
 
-    print(f"\n🎯  Sell on   : {args.sell_world} (ID {sell_id})  [DC: {sell_world_dc or '?'}]")
-    print(f"🌐  Buy scope : {args.scope}")
-    print(f"📊  Datacenter: {DC_NAME}  worlds: {', '.join(map(str, dc_list))}")
+    vprint(f"\n🎯  Sell on   : {args.sell_world} (ID {sell_id})  [DC: {sell_world_dc or '?'}]")
+    vprint(f"🌐  Buy scope : {args.scope}")
+    vprint(f"📊  Datacenter: {DC_NAME}  worlds: {', '.join(map(str, dc_list))}")
 
     item_list = fetch_marketable()
-    print(f"📦  Marketable items: {len(item_list):,}\n")
+    vprint(f"📦  Marketable items: {len(item_list):,}\n")
 
     results = run_scan(
         item_ids           = item_list,
