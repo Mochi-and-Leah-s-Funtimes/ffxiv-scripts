@@ -44,14 +44,14 @@ def _get(url: str, retries: int = 4, timeout: int = 20) -> Any | None:
             r = requests.get(url, timeout=timeout)
             if r.status_code == 429:
                 wait = 2 ** attempt
-                print(f"\n  ⏳ 429 — backing off {wait}s", flush=True)
+                vprint(f"\n  ⏳ 429 — backing off {wait}s", flush=True)
                 time.sleep(wait)
                 continue
             r.raise_for_status()
             return r.json()
         except requests.exceptions.RequestException as exc:
             if attempt == retries:
-                print(f"\n  ✗ fetch failed: {url}\n    {exc}", flush=True)
+                vprint(f"\n  ✗ fetch failed: {url}\n    {exc}", flush=True)
                 return None
             time.sleep(1)
     return None
