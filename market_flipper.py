@@ -366,6 +366,16 @@ def run_scan(item_ids: list[int],
         vprint(f"    Filtered out {filtered_by_age:,} items last sold > {max_sale_age_h:.0f}h ago")
         all_cand = [c for c in all_cand if not c.get("_filtered_age")]
 
+    for c in all_cand:
+        target = c.get("home")
+        last = c.get("last_sale_price", 0)
+        if target and target > 0:
+            confidence = min(1.0, last / target)
+        else:
+            confidence = 0.0
+        c["confidence"] = confidence
+        c["score"] = c["gross"] * c["dc_vel"] * confidence
+
     # ── Item-name enrichment ────────────────────────────────────────────────
     if all_cand:
         cand_ids = [c["id"] for c in all_cand]
@@ -391,15 +401,17 @@ def _show(results: list[dict], n: int = 50, sort_by: str = "gross") -> None:
         "margin":  lambda r: r["margin"],
         "velocity": lambda r: r["dc_vel"],
         "gpday":   lambda r: r["est_gp_d"],
+        "score":   lambda r: r["score"],
     }.get(sort_by, lambda r: r["gross"])
 
     ordered = sorted(results, key=key, reverse=True)
 
-    sep  = "─" * 118
+    sep  = "─" * 140
     print(sep)
     print(f" {'Item':<26}  {'ID':>9}  {'Buy':>9}  {'Home':>9}"
           f"  {'NetProfit':>9}  {'Margin':>6}  {'DC Vel/d':>8}"
-          f"  {'Est GP/d':>10}  {'Last Sale':>20}  {'Avg Sale':>10}")
+          f"  {'Est GP/d':>10}  {'Conf':>6}  {'Score':>12}"
+          f"  {'Last Sale':>20}  {'Avg Sale':>10}")
     print(sep)
 
     for r in ordered[:n]:
@@ -420,6 +432,7 @@ def _show(results: list[dict], n: int = 50, sort_by: str = "gross") -> None:
         print(f" {name:<26} {r['id']:>9}  {r['buy']:>9,} gil  {r['home']:>9,} gil"
               f"  {r['gross']:>9,} gil  {r['margin']:>5.1f}%"
               f"  {r['dc_vel']:>8.1f}  {r['est_gp_d']:>10,} gil  "
+              f"{r['confidence']:>5.1%}  {int(r['score']):>12,} gil  "
               f"{last_str:>20}  {avg:>10}")
 
     print(sep)
@@ -455,6 +468,7 @@ def _show_velocity(results: list[dict], n: int = 30) -> None:
 def _save_csv(results: list[dict], path: str) -> None:
     fields = ["id","name","buy","dc_min","home","fees","gross",
               "margin","avg_sp","dc_vel","est_gp_d",
+              "confidence","score",
               "last_sale_age_h","last_sale_price","last_sale_qty"]
     with open(path, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
@@ -491,7 +505,7 @@ def main() -> None:
                     help="History depth to fetch per item (default: 5)")
     ap.add_argument("--workers",         type=int,   default=5,
                     help="Parallel API workers         (default: 5)")
-    ap.add_argument("--sort-by",         choices=["profit","margin","velocity","gpday"],
+    ap.add_argument("--sort-by",         choices=["profit","margin","velocity","gpday","score"],
                     default="profit")
     ap.add_argument("--top-n",           type=int,   default=50)
     ap.add_argument("--show-velocity",   action="store_true")
