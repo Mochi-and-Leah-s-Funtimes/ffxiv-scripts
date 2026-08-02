@@ -1,0 +1,13 @@
+{
+  "name": "ffxiv-scripts",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "FFXIV Market Board Cross-World Flipper — CLI + Web scanner",
+  "bin": {
+    "ffxiv-flip": "src/cli.js"
+  },
+  "keywords": ["ffxiv", "market", "flipping", "gaming", "universalis"],
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "files": ["src/", "web/", "static/"]
+}

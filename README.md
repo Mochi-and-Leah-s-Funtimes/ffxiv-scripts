@@ -2,176 +2,135 @@
 
 Find items to buy cheap and relist for profit on any world. Uses [Universalis](https://universalis.app) crowd-sourced market data and [xivapi.com](https://xivapi.com) for item names.
 
+Now rewritten in **JavaScript** with zero runtime dependencies — one shared engine powers the CLI, a full web scanner, and a targeted static scan page.
+
 ---
 
-## Setup
+## Three ways to run
+
+### 1. CLI (Node.js)
 
 ```bash
-pip install requests
-python market_flipper.py --help
+node src/cli.js --help
 ```
 
----
-
-## All Flags at a Glance
+Zero dependencies — uses the native `fetch` built into Node 20+.
 
 | Flag | Type | Default | What it does |
 |---|---|---|---|
 | `--sell-world` | str | `Balmung` | World to sell on |
 | `--scope` | choice | `region` | Price scope: `region` (all NA) or `dc` (same datacenter only) |
-| `--sort-by` | choice | `profit` | Sort results: `profit`, `margin`, `velocity`, `gpday` |
+| `--sort-by` | choice | `profit` | Sort results: `profit`, `margin`, `velocity`, `gpday`, `score` |
 | `--top-n` | int | `50` | Rows to display |
 | `--csv` | path | — | Export results to CSV |
 | `--show-velocity` | flag | — | Print a separate table sorted by sales velocity |
 | `--quick` | flag | — | Disable all filters, scan everything |
 | `--min-price-floor` | int | `100` | Ignore items below this price |
-| `--max-price-floor` | int | — | Ignore items above this price (filters troll listings) |
+| `--max-price-floor` | int | — | Ignore items above this price (troll filter) |
 | `--min-velocity` | float | `5.0` | Min daily units sold on the DC |
 | `--min-profit` | int | `200` | Min net profit per unit (gil) |
 | `--min-margin-pct` | float | `5.0` | Min profit margin (%) |
-| `--max-sale-age-hours` | float | — | Skip items not sold in the last N hours |
-| `--history-entries` | int | `5` | History rows to fetch per item (for recency display) |
+| `--max-sale-age-hours` | float | — | Skip items last sold more than N hours ago |
+| `--history-entries` | int | `5` | History rows per item |
 | `--workers` | int | `5` | Parallel API requests |
+| `-v, --verbose` | flag | — | Show batch count, scan progress |
 
----
+#### Examples
 
-## Where to Buy and Sell
+```bash
+node src/cli.js                                           # default scan
+node src/cli.js --quick                                   # scan everything
+node src/cli.js --sell-world Mateus --scope dc            # intra- datacenter, no DC travel
+node src/cli.js --min-price-floor 500 --max-price-floor 500000  # mid-tier only
+node src/cli.js --sort-by gpday --csv flips.csv --top-n 200     # daily revenue + CSV
+node src/cli.js --quick --sort-by velocity --show-velocity -v   # fast scan w/ velocity
+```
 
-The script queries one price snapshot per batch and extracts three prices:
+### 2. Web Scanner
 
-| Field | Meaning |
-|---|---|
-| `world` | Cheapest on your sell world |
-| `dc` | Cheapest on the same datacenter |
-| `region` | Cheapest anywhere in North America |
+A full-featured browser scanner with all the same filters, live progress, and a styled results table.
 
-A flip is profitable when the sell-world price exceeds the buy price plus fees (~13% for undercut + tax + retainer).
+Open `web/index.html` in your browser (must be served over HTTP, not `file://`):
 
-### `--scope region` vs `--scope dc`
+```bash
+npx --yes http-server .     # then visit http://localhost:8080/web/
+# or
+python3 -m http.server 8080  # then visit http://localhost:8080/web/
+```
 
-| Scope | Buy price from | Travel required |
+**Features:**
+- All filter controls from the CLI in a clean Tailwind UI
+- ⚡ Quick Scan preset button
+- Live progress bar and scan log
+- Color-coded results table (green = good profit, red = low margin)
+- CSV export directly from the browser
+
+### 3. Static Targeted Scans
+
+A pre-configured page that runs four targeted scans with strategy-specific settings, ideal for quickly surveying the market.
+
+Open `static/index.html` in your browser (served over HTTP):
+
+```
+http://localhost:8080/static/
+```
+
+**Predefined scans:**
+
+| Scan | Strategy | Key filters |
 |---|---|---|
-| `region` | Anywhere in NA | Maybe — different datacenter |
-| `dc` | Same datacenter as sell world | No — just world-hopping |
+| 💰 High Profit | Premium items, large absolute profit | min-profit 1000, min-margin 10% |
+| 📈 High Margin | Deeply underpriced, high % return | min-margin 25%, dc-scoped |
+| ⚡ High Velocity | Fastest turnover, items that sell daily | min-velocity 10, min-profit 50 |
+| 🏆 Daily Revenue | Best profit × velocity | min-profit 300, gpday sort |
 
-Use `--scope dc` when you want to minimize travel and only flip within one datacenter.
-
----
-
-## Filtering
-
-### Price and velocity
-
-These control which items make it into the results:
-
-- **`--min-price-floor`** — drop junk items like Fire Shards (1 gil). Start at 100.
-- **`--max-price-floor`** — kill absurd listings like someone pricing a sword at 50M. `500000` covers most legit gear.
-- **`--min-velocity`** — only items that actually sell. 5/day is a solid default. Lower to 1 to see more.
-- **`--min-profit`** — net profit floor after fees. 200 gil is minimum useful.
-- **`--min-margin-pct`** — percentage floor. 5% avoids tiny-margin flips that get undercut instantly.
-
-### Recency and history
-
-- **`--max-sale-age-hours`** — reject items last sold more than N hours ago. `168` = one week. Stale markets have stale prices.
-- **`--history-entries`** — how many history rows to pull (default: 5, only the most recent is displayed). Lower = faster.
+Click **"Run All Scans"** to execute all four in sequence, or run them individually.
 
 ---
 
-## Sorting
+## Architecture
 
-`--sort-by` changes the primary order of the results table:
+```
+src/
+  engine.js   ← Pure JS core: API calls, filtering, scoring (ES module)
+  cli.js      ← Node CLI wrapper (imports engine, no deps)
 
-| Key | Best for |
-|---|---|
-| `profit` | Highest net profit per unit (default) |
-| `margin` | Wildly underpriced items, regardless of price |
-| `velocity` | Items that actually turn over — fastest flips |
-| `gpday` | Estimated daily revenue (profit × velocity) — best for active market makers |
+web/
+  index.html  ← Full scanner UI (Tailwind via CDN)
+  app.js      ← Web UI logic (imports ../src/engine.js)
+
+static/
+  index.html  ← Targeted scan cards (Tailwind via CDN)
+  app.js      ← Predefined scan runner (imports ../src/engine.js)
+```
+
+The **engine** (`src/engine.js`) contains all market-data logic and is shared by all three entry points:
+- Uses native `fetch` (no `axios`/`node-fetch`)
+- Uses `Promise`-based concurrency pool (no `p-limit` or worker pools)
+- Exposes `runScan()`, `fetchMarketable()`, `fetchWorldMap()`, `fetchDcWorlds()`, `fetchItemNames()`, `processBatch()`
+
+**Zero npm packages required.**
+
+## How it works
+
+1. Fetch all marketable item IDs from Universalis
+2. Query `/aggregated/{world}/{ids}` in batches of 100 to get min-listing + velocity data
+3. Apply filters: velocity threshold, price floor/ceiling, profit margin, recency
+4. Fetch sale history to enrich candidates with last-sale info and compute confidence
+5. Resolve item names via xivapi (v1 batch → v2 fallback)
+6. Score = gross profit × DC velocity × confidence
+
+## Deploy
+
+All three modes are static — just serve the directory:
+
+```bash
+npx --yes http-server .    # CLI users: npm i -g or use npx
+python3 -m http.server 8080
+```
+
+GitHub Pages works out of the box — no build step, no npm install.
 
 ---
 
-## Output
-
-### Table columns
-
-| Column | Meaning |
-|---|---|
-| `Item` | Item name (xivapi v1 batch + v2 fallback) |
-| `ID` | Universalis item ID |
-| `Buy` | Cheapest buy price on your chosen scope |
-| `Balmung`/ Mateus etc | Cheapest on your sell world |
-| `NetProfit` | `(Sell − 13% fees) − Buy` per unit |
-| `Margin` | Net profit as a percentage of buy price |
-| `DC Vel/d` | Units sold per day across the DC |
-| `Est GP/d` | `NetProfit × DC Vel/d` — estimated daily revenue |
-| `Last Sale` | Most recent sale: how long ago + price |
-| `Avg Sale` | 4-day rolling average sale price on the DC |
-
-### CSV fields
-
-`id`, `name`, `buy`, `dc_min`, `balmung`, `fees`, `gross`, `margin`, `avg_sp`, `dc_vel`, `est_gp_d`, `last_sale_age_h`, `last_sale_price`, `last_sale_qty`
-
----
-
-## Examples
-
-### Default scan
-Sensible filters, Balmung, cross-world NA.
-```bash
-python market_flipper.py
-```
-
-### Everything, nothing filtered
-```bash
-python market_flipper.py --quick
-```
-
-### Intra-datacenter flips to Mateus (no DC travel)
-```bash
-python market_flipper.py --sell-world Mateus --scope dc
-```
-
-### Mid-tier only (no 1-gil trash, no 50M troll listings)
-```bash
-python market_flipper.py \
-  --min-price-floor 500 \
-  --max-price-floor 500000
-```
-
-### Recently active, cross-world to Balmung
-```bash
-python market_flinger.py \
-  --max-sale-age-hours 168 \
-  --min-velocity 3 \
-  --min-profit 500
-```
-
-### Sort by daily revenue, export to CSV
-```bash
-python market_flipper.py --sort-by gpday --csv flips.csv --top-n 200
-```
-
-### Fast scan with velocity ranking
-```bash
-python market_flinger.py --quick --sort-by velocity --show-velocity --workers 8
-```
-
-### Sell on Seraph, DC-scoped
-```bash
-python market_flipper.py --sell-world Seraph --scope dc --min-profit 500
-```
-
-### Sell on Faerie, only items that traded this week
-```bash
-python market_flipper.py --sell-world Faerie --scope dc --max-sale-age-hours 72
-```
-
----
-
-## Tips
-
-- **Start with `--quick --sort-by gpday --show-velocity`** to see what's actually moving.
-- **Use `--max-price-floor 500000`** to kill obvious troll listings.
-- **Use `--max-sale-age-hours 168`** to skip dead markets — if nothing sold in a week, the price is probably wrong.
-- **History depth vs speed**: `--history-entries 1` is fastest. More entries only matters for accuracy of the "last sale" display.
-- **Rate limits**: The script backs off exponentially on 429s. Keep `--workers` ≤ 8 to stay friendly to Universalis.
+*Original Python implementation (`market_flipper.py`) is preserved for reference.*

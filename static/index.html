@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FFXIV Targeted Flip Scanner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ffxiv-blue': '#1a237e',
+            'ffxiv-gold': '#ffeb3b',
+            'gil-green': '#4caf50',
+            'gil-red': '#f44336',
+            'scan-1': '#3b82f6',
+            'scan-2': '#8b5cf6',
+            'scan-3': '#ef4444',
+            'scan-4': '#f59e0b',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffeb3b'%3E%3Cpath d='M12 1l3 8h8l-6 5 2 8-7-5-7 5 2-8z'/%3E%3C/svg%3E" />
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-100 min-h-screen font-sans">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-ffxiv-blue to-indigo-900 shadow-xl border-b-2 border-ffxiv-gold">
+    <div class="container mx-auto px-6 py-6 text-center">
+      <h1 class="text-3xl font-extrabold text-white mb-1">
+        ⚔️ FFXIV Targeted Flip Scanner
+      </h1>
+      <p class="text-gray-300 text-lg">
+        Preset scans for common flipping strategies
+      </p>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-7xl">
+
+    <!-- ── Controls ── -->
+    <section class="bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-6 border border-gray-700">
+      <div class="flex items-center gap-4 mb-3">
+        <label class="text-sm font-medium text-gray-300">Sell World:</label>
+        <input type="text" id="sellWorld" list="worlds" value="Balmung"
+               class="px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold focus:border-transparent" />
+        <datalist id="worlds">
+          <option>Balmung</option><option>Mateus</option><option>Crystal</option>
+          <option>Seraph</option><option>Faerie</option><option>Leviathan</option>
+          <option>Aether</option><option>Cactuar</option><option>Gilgamesh</option>
+          <option>Jenova</option><option>Midgardsormr</option><option>Diabolos</option>
+        </datalist>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <button id="runAllBtn"
+                class="px-6 py-3 bg-gradient-to-r from-ffxiv-gold to-yellow-400 hover:from-ffxiv-gold/90 hover:to-yellow-300 text-gray-900 font-bold rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
+          🚀 Run All Scans
+        </button>
+        <span class="text-sm text-gray-500 self-center">or run individually below:</span>
+      </div>
+    </section>
+
+    <!-- ── Scan 1: High Profit ── -->
+    <section class="mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-1 h-6 bg-scan-1 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">High Profit Flips</h2>
+        <span class="text-sm text-gray-400">Max profit per unit — premium items</span>
+      </div>
+      <div id="scan1" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
+        <div class="p-4 border-b border-gray-700 flex items-center justify-between">
+          <span class="text-sm text-gray-400">Looking for big-profit opportunities…</span>
+          <button onclick="runScanById('scan1')" class="px-4 py-2 bg-scan-1 hover:bg-scan-1/80 text-white font-semibold rounded-lg transition-colors">Run</button>
+        </div>
+        <div class="p-4">
+          <div id="scan1-results" class="text-gray-400">Click "Run" to start.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Scan 2: High Margin ── -->
+    <section class="mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-1 h-6 bg-scan-2 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">High Margin Flips</h2>
+        <span class="text-sm text-gray-400">Wildly underpriced items — high % returns</span>
+      </div>
+      <div id="scan2" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
+        <div class="p-4 border-b border-gray-700 flex items-center justify-between">
+          <span class="text-sm text-gray-400">Finding deep undervalued listings…</span>
+          <button onclick="runScanById('scan2')" class="px-4 py-2 bg-scan-2 hover:bg-scan-2/80 text-white font-semibold rounded-lg transition-colors">Run</button>
+        </div>
+        <div class="p-4">
+          <div id="scan2-results" class="text-gray-400">Click "Run" to start.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Scan 3: High Velocity ── -->
+    <section class="mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-1 h-6 bg-scan-3 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">High Velocity Flips</h2>
+        <span class="text-sm text-gray-400">Fastest turnover — items that actually sell daily</span>
+      </div>
+      <div id="scan3" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
+        <div class="p-4 border-b border-gray-700 flex items-center justify-between">
+          <span class="text-sm text-gray-400">Finding high-turnover opportunities…</span>
+          <button onclick="runScanById('scan3')" class="px-4 py-2 bg-scan-3 hover:bg-scan-3/80 text-white font-semibold rounded-lg transition-colors">Run</button>
+        </div>
+        <div class="p-4">
+          <div id="scan3-results" class="text-gray-400">Click "Run" to start.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Scan 4: Daily Revenue ── -->
+    <section class="mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-1 h-6 bg-scan-4 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">Daily Revenue Leaders</h2>
+        <span class="text-sm text-gray-400">Best profit × velocity — active market maker picks</span>
+      </div>
+      <div id="scan4" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
+        <div class="p-4 border-b border-gray-700 flex items-center justify-between">
+          <span class="text-sm text-gray-400">Finding top daily revenue opportunities…</span>
+          <button onclick="runScanById('scan4')" class="px-4 py-2 bg-scan-4 hover:bg-scan-4/80 text-white font-semibold rounded-lg transition-colors">Run</button>
+        </div>
+        <div class="p-4">
+          <div id="scan4-results" class="text-gray-400">Click "Run" to start.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Live Log ── -->
+    <section id="logSection" class="hidden bg-gray-900/50 rounded-xl border border-gray-700 p-4">
+      <h3 class="text-sm font-medium text-gray-300 mb-2 flex items-center gap-2">
+        <span class="w-2 h-2 bg-ffxiv-gold rounded-full animate-pulse"></span>
+        Live Scan Log
+      </h3>
+      <div id="logArea" class="space-y-0.5 text-xs text-gray-500 font-mono max-h-80 overflow-y-auto"></div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-gray-700 py-4 text-center text-sm text-gray-500">
+    <p>Powered by <a href="https://universalis.app" target="_blank" class="text-ffxiv-gold hover:text-white">Universalis</a> & <a href="https://xivapi.com" target="_blank" class="text-ffxiv-gold hover:text-white">xivapi</a></p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
