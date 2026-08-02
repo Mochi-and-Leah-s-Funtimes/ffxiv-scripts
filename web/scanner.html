@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,17 +20,34 @@
       },
     };
   </script>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffeb3b'%3E%3Cpath d='M12 1l3 8h8l-6 5 2 8-7-5-7 5 2-8z'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffeb3b'%3E%3Cpath d='M12 1l3 8h8l-6 5 2 8-7-5-7 5 2-8z'/%3E%3C/svg%3E" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Licorice&family=Limelight&family=Pacifico&display=swap');
+
+    .font-fira {
+      font-family: "Fira Sans", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .headline-font {
+      font-family: "Limelight", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-100 min-h-screen font-sans">
+
+<body class="bg-gradient-to-b from-zinc-900 to-zinc-950 text-zinc-100 min-h-screen font-fira">
 
   <!-- Header -->
-  <header class="bg-gradient-to-r from-ffxiv-blue to-indigo-900 shadow-xl border-b-2 border-ffxiv-gold">
+  <header class="bg-gradient-to-r from-zinc-800 to-zinc-900 shadow-xl border-b-2 border-zinc-400">
     <div class="container mx-auto px-6 py-6 text-center">
-      <h1 class="text-4xl font-extrabold text-white mb-1">
-        ⚔️ FFXIV Market Board Flipper
+      <h1 class="text-5xl font-extrabold text-white mb-1 headline-font">
+        Market Scanner
       </h1>
-      <p class="text-gray-300 text-lg">
+      <p class="text-zinc-300 text-lg">
         Find profitable cross-world flips using Universalis market data
       </p>
     </div>
@@ -38,7 +56,7 @@
   <main class="container mx-auto px-4 py-8 max-w-7xl">
 
     <!-- ── Config Panel ── -->
-    <section class="bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-6 border border-gray-700">
+    <section class="bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-6 border border-zinc-700">
       <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
         <span class="w-2 h-2 bg-ffxiv-gold rounded-full"></span>
         Scan Configuration
@@ -46,30 +64,127 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Sell World</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Sell World</label>
           <input type="text" id="sellWorld" list="worlds" value="Balmung"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold focus:border-transparent" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold focus:border-transparent" />
           <datalist id="worlds">
-            <option>Balmung</option><option>Mateus</option><option>Crystal</option>
-            <option>Seraph</option><option>Faerie</option><option>Leviathan</option>
-            <option>Aether</option><option>Cactuar</option><option>Gilgamesh</option>
-            <option>Jenova</option><option>Midgardsormr</option><option>Diabolos</option>
+            <!-- Regions -->
+            <option>Adamantoise</option>
+            <option>Aegis</option>
+            <option>Aether</option>
+            <option>Alexander</option>
+            <option>Alpha</option>
+            <option>Anima</option>
+            <option>Asura</option>
+            <option>Atomos</option>
+            <option>Bahamut</option>
+            <option>Balmung</option>
+            <option>Behemoth</option>
+            <option>Belias</option>
+            <option>Bismarck</option>
+            <option>Brynhildr</option>
+            <option>Cactuar</option>
+            <option>Carbuncle</option>
+            <option>Cerberus</option>
+            <option>Chaos</option>
+            <option>Chocobo</option>
+            <option>Coeurl</option>
+            <option>Crystal</option>
+            <option>Cuchulainn</option>
+            <option>Diabolos</option>
+            <option>Durandal</option>
+            <option>Dynamis</option>
+            <option>Elemental</option>
+            <option>Europe</option>
+            <option>Excalibur</option>
+            <option>Exodus</option>
+            <option>Faerie</option>
+            <option>Famfrit</option>
+            <option>Fenrir</option>
+            <option>Gaia</option>
+            <option>Garuda</option>
+            <option>Gilgamesh</option>
+            <option>Goblin</option>
+            <option>Golem</option>
+            <option>Gungnir</option>
+            <option>Hades</option>
+            <option>Halicarnassus</option>
+            <option>Hyperion</option>
+            <option>Ifrit</option>
+            <option>Ixion</option>
+            <option>Japan</option>
+            <option>Jenova</option>
+            <option>Kraken</option>
+            <option>Kujata</option>
+            <option>Lamia</option>
+            <option>Leviathan</option>
+            <option>Lich</option>
+            <option>Light</option>
+            <option>Louisoix</option>
+            <option>Maduin</option>
+            <option>Malboro</option>
+            <option>Mana</option>
+            <option>Mandragora</option>
+            <option>Marilith</option>
+            <option>Masamune</option>
+            <option>Mateus</option>
+            <option>Materia</option>
+            <option>Meteor</option>
+            <option>Midgardsormr</option>
+            <option>Moogle</option>
+            <option>North-America</option>
+            <option>Oceania</option>
+            <option>Odin</option>
+            <option>Omega</option>
+            <option>Pandaemonium</option>
+            <option>Phantom</option>
+            <option>Phoenix</option>
+            <option>Primal</option>
+            <option>Rafflesia</option>
+            <option>Ragnarok</option>
+            <option>Raiden</option>
+            <option>Ramuh</option>
+            <option>Ravana</option>
+            <option>Ridill</option>
+            <option>Sagittarius</option>
+            <option>Sargatanas</option>
+            <option>Sephirot</option>
+            <option>Seraph</option>
+            <option>Shinryu</option>
+            <option>Shiva</option>
+            <option>Siren</option>
+            <option>Sophia</option>
+            <option>Spriggan</option>
+            <option>Tiamat</option>
+            <option>Titan</option>
+            <option>Tonberry</option>
+            <option>Twintania</option>
+            <option>Typhon</option>
+            <option>Ultima</option>
+            <option>Ultros</option>
+            <option>Unicorn</option>
+            <option>Valefor</option>
+            <option>Yojimbo</option>
+            <option>Zalera</option>
+            <option>Zeromus</option>
+            <option>Zodiark</option>
+            <option>Zurvan</option>
           </datalist>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Buy Scope</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Buy Scope</label>
           <select id="scope"
-                  class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold">
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold">
             <option value="region">Region (cross-datacenter, NA)</option>
             <option value="dc">Datacenter only (no DC travel)</option>
           </select>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Sort By</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Sort By</label>
           <select id="sortBy"
-                  class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold">
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold">
             <option value="profit">Net Profit</option>
             <option value="margin">Margin %</option>
             <option value="velocity">Sales Velocity</option>
@@ -81,91 +196,96 @@
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Min Profit (gil)</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Min Profit (gil)</label>
           <input type="number" id="minProfit" value="200" min="0"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Min Velocity</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Min Velocity</label>
           <input type="number" id="minVel" value="5" step="0.1" min="0"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Min Margin (%)</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Min Margin (%)</label>
           <input type="number" id="minMargin" value="5" step="0.1" min="0"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Max Price Floor</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Max Price Floor</label>
           <input type="number" id="maxPriceFloor" value="500000" min="0"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold"
-                 placeholder="500000" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold"
+            placeholder="500000" />
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Min Price Floor (gil)</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Min Price Floor (gil)</label>
           <input type="number" id="priceFloor" value="100" min="0"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Max Sale Age (hours)</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Max Sale Age (hours)</label>
           <input type="number" id="maxSaleAge" value="" placeholder="No limit"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Workers</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Workers</label>
           <input type="number" id="workers" value="5" min="1" max="10"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-1">Top N</label>
+          <label class="block text-sm font-medium text-zinc-300 mb-1">Top N</label>
           <input type="number" id="topN" value="50" min="1"
-                 class="w-full px-3 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
+            class="w-full px-3 py-2 bg-zinc-900 border border-zinc-600 rounded-lg text-white focus:ring-2 focus:ring-ffxiv-gold" />
         </div>
       </div>
 
       <div class="flex gap-3">
         <button id="scanBtn"
-                class="flex-1 bg-gradient-to-r from-gil-green to-emerald-600 hover:from-gil-green/90 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
-          🔍 Run Flip Scan
+          class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-500/90 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
+          Full Scan
         </button>
         <button id="quickBtn"
-                class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors">
-          ⚡ Quick Scan
+          class="px-6 py-3 bg-zinc-700 hover:bg-zinc-600 text-white font-semibold rounded-lg transition-colors">
+          Quick Scan
         </button>
         <button id="exportCsv"
-                class="px-6 py-3 bg-gradient-to-r from-ffxiv-gold to-yellow-500 hover:from-ffxiv-gold/90 hover:to-yellow-600 text-gray-900 font-bold rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
-          📥 Export CSV
+          class="px-6 py-3 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-400/90 hover:to-yellow-600 text-zinc-900 font-bold rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
+          Export CSV
         </button>
       </div>
     </section>
 
     <!-- ── Progress ── -->
-    <section id="progressSection" class="hidden bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg p-4 mb-6 border border-gray-700">
+    <section id="progressSection"
+      class="hidden bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-4 mb-6 border border-zinc-700">
       <div class="flex items-center gap-4 mb-3">
-        <div class="flex-1 bg-gray-700 rounded-full h-2.5 overflow-hidden">
-          <div id="progressBar" class="h-full bg-gradient-to-r from-ffxiv-gold to-yellow-400 rounded-full transition-all duration-300"></div>
+        <div class="flex-1 bg-zinc-700 rounded-full h-2.5 overflow-hidden">
+          <div id="progressBar"
+            class="h-full bg-gradient-to-r from-ffxiv-gold to-yellow-400 rounded-full transition-all duration-300">
+          </div>
         </div>
-        <span id="progressText" class="text-sm text-gray-400 w-32 text-right">Starting...</span>
+        <span id="progressText" class="text-sm text-zinc-400 w-32 text-right">Starting...</span>
       </div>
-      <div id="logArea" class="bg-gray-900 rounded-lg p-3 text-xs text-gray-400 font-mono max-h-48 overflow-y-auto space-y-0.5"></div>
+      <div id="logArea"
+        class="bg-zinc-900 rounded-lg p-3 text-xs text-zinc-400 font-mono max-h-48 overflow-y-auto space-y-0.5"></div>
     </section>
 
     <!-- ── Results ── -->
-    <section id="resultsSection" class="bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-gray-700">
+    <section id="resultsSection"
+      class="bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-zinc-700">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-xl font-semibold text-white flex items-center gap-2">
           <span class="w-2 h-2 bg-ffxiv-gold rounded-full"></span>
           Flip Candidates
         </h2>
-        <div id="resultsCount" class="text-sm text-gray-400">0 candidates</div>
+        <div id="resultsCount" class="text-sm text-zinc-400">0 candidates</div>
       </div>
 
       <div id="resultsTable" class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-300">
-          <thead class="bg-gray-900/50 text-xs text-gray-400 uppercase">
+        <table class="w-full text-sm text-left text-zinc-300">
+          <thead class="bg-zinc-900/50 text-xs text-zinc-400 uppercase">
             <tr>
               <th class="px-3 py-2 sticky top-0">Item</th>
               <th class="px-3 py-2 text-right sticky top-0">ID</th>
@@ -179,9 +299,10 @@
               <th class="px-3 py-2 text-right sticky top-0">Avg Sale</th>
             </tr>
           </thead>
-          <tbody id="resultsBody" class="divide-y divide-gray-700/50">
+          <tbody id="resultsBody" class="divide-y divide-zinc-700/50">
             <tr>
-              <td colspan="10" class="text-center py-8 text-gray-500">No results yet. Run a scan to see flip candidates.</td>
+              <td colspan="10" class="text-center py-8 text-zinc-500">No results yet. Run a scan to see flip candidates.
+              </td>
             </tr>
           </tbody>
         </table>
@@ -190,10 +311,13 @@
 
   </main>
 
-  <footer class="border-t border-gray-700 py-4 text-center text-sm text-gray-500">
-    <p>Powered by <a href="https://universalis.app" target="_blank" class="text-ffxiv-gold hover:text-white">Universalis</a> & <a href="https://xivapi.com" target="_blank" class="text-ffxiv-gold hover:text-white">xivapi</a></p>
+  <footer class="border-t border-zinc-700 py-4 text-center text-sm text-zinc-500">
+    <p>Powered by <a href="https://universalis.app" target="_blank"
+        class="text-ffxiv-gold hover:text-white">Universalis</a> & <a href="https://xivapi.com" target="_blank"
+        class="text-ffxiv-gold hover:text-white">xivapi</a></p>
   </footer>
 
   <script type="module" src="scanner.js"></script>
 </body>
+
 </html>
