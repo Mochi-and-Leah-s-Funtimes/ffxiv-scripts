@@ -328,13 +328,13 @@ export async function processBatch(
     if (gross < minProfit || margin < minPct) continue;
 
     const avgSp = market.averageSalePrice?.dc?.price;
-    const dcWorldId = ml.dc?.worldId;
+    const buyWorldId = scope === "dc" ? ml.dc?.worldId : ml.region?.worldId;
 
     candidates.push({
       id: iid,
       buy: buyPrice,
       dc_min: dcP,
-      dc_world_id: dcWorldId,
+      buy_world_id: buyWorldId,
       home: worldP,
       fees: fees,
       gross: gross,

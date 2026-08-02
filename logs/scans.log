@@ -168,3 +168,12 @@
 [high_tier] ✅ 20 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/high_tier.json
 
 ✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-02T22:00:01.069Z
+
+[mid_high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Balmung
+[low_tier] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Balmung
+[high_tier] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Balmung
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Balmung
+[mid_high] Balmung (ID 91) [DC: Crystal]
+[low_tier] Balmung (ID 91) [DC: Crystal]

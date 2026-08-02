@@ -112,7 +112,7 @@ function handleSort(scanId, column) {
 const SORT_MAP = {
   item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
   buy:      (a, b) => a.buy - b.buy,
-  source:   (a, b) => (worldNameMap[a.dc_world_id] || "").localeCompare(worldNameMap[b.dc_world_id] || ""),
+  source:   (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
   sell:     (a, b) => a.home - b.home,
   profit:   (a, b) => a.gross - b.gross,
   margin:   (a, b) => a.margin - b.margin,
@@ -171,7 +171,7 @@ function renderScanCard(scanId, results, status, total = null) {
     </thead><tbody>`;
 
   for (const r of ordered) {
-    const source = r.dc_world_id ? (worldNameMap[r.dc_world_id] || `#${r.dc_world_id}`) : "—";
+    const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
     const profitClass = r.gross >= 1000 ? "text-gil-green" : "text-yellow-400";
     const marginClass = r.margin >= 15 ? "text-gil-green" : r.margin >= 5 ? "text-yellow-400" : "text-gil-red";
     html += `

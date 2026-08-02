@@ -328,11 +328,13 @@ export async function processBatch(
     if (gross < minProfit || margin < minPct) continue;
 
     const avgSp = market.averageSalePrice?.dc?.price;
+    const buyWorldId = scope === "dc" ? ml.dc?.worldId : ml.region?.worldId;
 
     candidates.push({
       id: iid,
       buy: buyPrice,
       dc_min: dcP,
+      buy_world_id: buyWorldId,
       home: worldP,
       fees: fees,
       gross: gross,
@@ -389,7 +391,7 @@ export async function runScan({
   const total = batches.length;
   if (onLog) onLog(`Batches: ${total} (${itemIds.length.toLocaleString()} items @ ${BATCH}/batch)`);
 
-  const allCand = [];
+  let allCand = [];
   let noData = 0;
   let done = 0;
   const t0 = Date.now();
