@@ -1,7 +1,8 @@
-// static/app.js
+// web/app.js
 //
-// Targeted static scanner — runs 4 predefined scan configurations
-// and renders compact result cards.  Imports the shared engine.
+// Targeted static scanner — loads pre-computed JSON from the backend
+// (src/run_scans.js + src/scan_worker.js) and renders result cards.
+// Falls back to an in-browser engine scan if JSON is missing.
 //
 import {
   fetchMarketable,
@@ -11,87 +12,44 @@ import {
   runScan,
   DEFAULT_SELL_WORLD,
   DC_NAME,
-} from "../src/engine.js";
+} from "./src/engine.js";
 
 // ── Predefined scan configs ────────────────────────────────────────────────────
-// Each scan is a "targeted" configuration tuned for a specific strategy.
+// Matches the user's python bash script scan tiers.
+// jsonFile points to the output of src/scan_worker.js.
 
 const SCANS = {
   scan1: {
-    color: "scan-1",
-    icon: "💰",
-    label: "High Profit Flips",
-    desc: "Premium items with large absolute profit per unit.",
-    opts: {
-      scope:        "region",
-      minProfit:    1000,
-      minVel:       3,
-      minMargin:    10,
-      priceFloor:   200,
-      maxPriceFloor: 500000,
-      maxSaleAge:   168,
-      historyEntries: 5,
-      workers:      6,
-      sortBy:       "profit",
-      topN:         15,
-    },
+    color:     "scan-1",
+    icon:      "💰",
+    label:     "High Tier (500k–2M)",
+    desc:      "Premium items with large absolute profit per unit.",
+    jsonFile:  "high_tier.json",
+    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "score" },
   },
   scan2: {
-    color: "scan-2",
-    icon: "📈",
-    label: "High Margin Flips",
-    desc: "Deeply underpriced items with high % returns.",
-    opts: {
-      scope:        "dc",
-      minProfit:    150,
-      minVel:       5,
-      minMargin:    25,
-      priceFloor:   100,
-      maxPriceFloor: 200000,
-      maxSaleAge:   120,
-      historyEntries: 5,
-      workers:      6,
-      sortBy:       "margin",
-      topN:         15,
-    },
+    color:     "scan-2",
+    icon:      "📈",
+    label:     "Mid-High (100k–750k)",
+    desc:      "Deep underpriced items with high % returns.",
+    jsonFile:  "mid_high.json",
+    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "score" },
   },
   scan3: {
-    color: "scan-3",
-    icon: "⚡",
-    label: "High Velocity Flips",
-    desc: "Fastest turnover — items that sell daily.",
-    opts: {
-      scope:        "region",
-      minProfit:    50,
-      minVel:       10,
-      minMargin:    3,
-      priceFloor:   50,
-      maxPriceFloor: 200000,
-      maxSaleAge:   72,
-      historyEntries: 5,
-      workers:      6,
-      sortBy:       "velocity",
-      topN:         15,
-    },
+    color:     "scan-3",
+    icon:      "⚡",
+    label:     "Mid Tier (50k–200k)",
+    desc:      "Solid mid-range flips with good turnover.",
+    jsonFile:  "mid.json",
+    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "profit" },
   },
   scan4: {
-    color: "scan-4",
-    icon: "🏆",
-    label: "Daily Revenue Leaders",
-    desc: "Best profit × velocity — active market maker picks.",
-    opts: {
-      scope:        "region",
-      minProfit:    300,
-      minVel:       5,
-      minMargin:    5,
-      priceFloor:   200,
-      maxPriceFloor: 500000,
-      maxSaleAge:   168,
-      historyEntries: 5,
-      workers:      6,
-      sortBy:       "gpday",
-      topN:         15,
-    },
+    color:     "scan-4",
+    icon:      "🏆",
+    label:     "Low Tier (10k–100k)",
+    desc:      "Fastest turnover — items that sell quickly at low margin.",
+    jsonFile:  "low_tier.json",
+    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "velocity" },
   },
 };
 
@@ -111,33 +69,74 @@ function fmt(num) {
 }
 
 function escapeHtml(str) {
-  return String(str ?? "").replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  }[c]));
+  const map = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"};
+  return String(str ?? "").replace(/[&<>"']/g, (c) => map[c]);
 }
 
-function log(msg) {
-  const area = $("logArea");
-  const line = document.createElement("div");
-  line.className = "text-gray-400";
-  const ts = new Date().toLocaleTimeString();
-  line.textContent = `[${ts}] ${msg}`;
-  area.appendChild(line);
-  area.scrollTop = area.scrollHeight;
-  area.parentElement.parentElement.classList.remove("hidden");
+function setTimestamp(scanId, isoString) {
+  const tsEl = $(`${scanId}-ts`);
+  if (!tsEl) return;
+  const d = new Date(isoString);
+  tsEl.textContent = `Updated ${d.toLocaleString()}`;
 }
 
-function renderScanCard(scanId, results, status) {
+// ── per-card sort state ───────────────────────────────────────────────────────
+
+const sortState = {};
+let worldNameMap = {};
+
+function getSortKey(scanId) {
+  const cfg = SCANS[scanId];
+  const defaultSort = cfg.opts.sortBy || "score";
+  if (!sortState[scanId]) {
+    sortState[scanId] = { column: defaultSort, dir: "desc" };
+  }
+  return sortState[scanId];
+}
+
+function handleSort(scanId, column) {
+  const state = getSortKey(scanId);
+  if (state.column === column) {
+    state.dir = state.dir === "asc" ? "desc" : "asc";
+  } else {
+    state.column = column;
+    state.dir = "desc";
+  }
+  const container = $(`${scanId}-results`);
+  const results = container._cachedResults;
+  if (results) renderScanCard(scanId, results, "done", container._cachedTotal);
+}
+
+// ── rendering ──────────────────────────────────────────────────────────────────
+
+const SORT_MAP = {
+  item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
+  buy:      (a, b) => a.buy - b.buy,
+  source:   (a, b) => (worldNameMap[a.dc_world_id] || "").localeCompare(worldNameMap[b.dc_world_id] || ""),
+  sell:     (a, b) => a.home - b.home,
+  profit:   (a, b) => b.gross - a.gross,
+  margin:   (a, b) => b.margin - a.margin,
+  velocity: (a, b) => b.dc_vel - a.dc_vel,
+  score:    (a, b) => b.score - a.score,
+};
+
+function sortArrow(column, state) {
+  if (state.column !== column) return "↕";
+  return state.dir === "asc" ? "↑" : "↓";
+}
+
+function renderScanCard(scanId, results, status, total = null) {
   const container = $(`${scanId}-results`);
   const cfg = SCANS[scanId];
+  const state = getSortKey(scanId);
 
   if (status === "running") {
-    container.innerHTML = `<div class="text-gray-400 flex items-center gap-2"><span class="w-4 h-4 border-2 border-${cfg.color} border-t-transparent rounded-full animate-spin"></span>Scanning…</div>`;
+    container.innerHTML = `<div class="text-gray-400 flex items-center gap-2"><span class="w-4 h-4 border-2 border-${cfg.color} border-t-transparent rounded-full animate-spin"></span>Loading…</div>`;
     return;
   }
 
   if (status === "error") {
-    container.innerHTML = `<div class="text-gil-red">❌ Scan failed. Check console for details.</div>`;
+    container.innerHTML = `<div class="text-gil-red">❌ Failed to load scan data.</div>`;
     return;
   }
 
@@ -146,125 +145,88 @@ function renderScanCard(scanId, results, status) {
     return;
   }
 
-  const sortFn = {
-    profit:   (a, b) => b.gross - a.gross,
-    margin:   (a, b) => b.margin - a.margin,
-    velocity: (a, b) => b.dc_vel - a.dc_vel,
-    gpday:    (a, b) => b.est_gp_d - a.est_gp_d,
-  }[cfg.opts.sortBy] || ((a, b) => b.gross - a.gross);
+  const sortFn = SORT_MAP[state.column] || SORT_MAP.score;
+  const ordered = [...results].sort((a, b) => sortFn(a, b) * (state.dir === "asc" ? 1 : -1)).slice(0, cfg.opts.topN);
+  const shown = total ?? results.length;
 
-  const ordered = [...results].sort(sortFn).slice(0, cfg.opts.topN);
+  container._cachedResults = results;
+  container._cachedTotal = total;
 
-  let html = `
-    <div class="mb-3 text-xs text-gray-400">${results.length.toLocaleString()} candidates found</div>
-    <div class="overflow-x-auto">
-      <table class="w-full text-xs">
-        <thead class="text-gray-500 uppercase">
-          <tr>
-            <th class="text-left px-2 py-1">Item</th>
-            <th class="text-right px-2 py-1">Buy</th>
-            <th class="text-right px-2 py-1">Sell</th>
-            <th class="text-right px-2 py-1 profit">Profit</th>
-            <th class="text-right px-2 py-1">Margin</th>
-            <th class="text-right px-2 py-1">GP/Day</th>
-          </tr>
-        </thead>
-        <tbody>`;
+  const th = (col, label, cls = "") =>
+    `<th class="px-2 py-1 cursor-pointer select-none hover:text-white ${cls}" onclick="handleSort('${scanId}', '${col}')">${label} ${sortArrow(col, state)}</th>`;
+
+  let html = `<div class="mb-2 text-xs text-gray-400">${shown.toLocaleString()} candidates</div>`;
+  html += `<div class="overflow-x-auto"><table class="w-full text-xs">
+    <thead class="text-gray-500 uppercase">
+      <tr>
+        <th class="text-left px-2 py-1 cursor-pointer select-none hover:text-white" onclick="handleSort('${scanId}', 'item')">Item ${sortArrow('item', state)}</th>
+        ${th("buy", "Buy", "text-right")}
+        ${th("source", "Source", "text-left")}
+        ${th("sell", "Sell", "text-right")}
+        ${th("profit", "Profit", "text-right font-bold")}
+        ${th("margin", "Margin", "text-right")}
+        ${th("velocity", "Vel/d", "text-right")}
+        ${th("score", "Score", "text-right font-mono")}
+      </tr>
+    </thead><tbody>`;
 
   for (const r of ordered) {
+    const source = r.dc_world_id ? (worldNameMap[r.dc_world_id] || `#${r.dc_world_id}`) : "—";
     const profitClass = r.gross >= 1000 ? "text-gil-green" : "text-yellow-400";
     const marginClass = r.margin >= 15 ? "text-gil-green" : r.margin >= 5 ? "text-yellow-400" : "text-gil-red";
     html += `
       <tr class="border-b border-gray-700/30 hover:bg-gray-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
         <td class="px-2 py-1 text-right">${fmt(r.buy)}g</td>
+        <td class="px-2 py-1 text-right text-ffxiv-gold">${source}</td>
         <td class="px-2 py-1 text-right">${fmt(r.home)}g</td>
         <td class="px-2 py-1 text-right font-bold ${profitClass}">${fmt(r.gross)}g</td>
         <td class="px-2 py-1 text-right ${marginClass}">${r.margin.toFixed(1)}%</td>
-        <td class="px-2 py-1 text-right font-mono">${fmt(r.est_gp_d)}g</td>
+        <td class="px-2 py-1 text-right">${r.dc_vel.toFixed(1)}</td>
+        <td class="px-2 py-1 text-right font-mono text-ffxiv-gold">${fmt(r.score)}</td>
       </tr>`;
   }
 
-  html += `
-        </tbody>
-      </table>
-    </div>`;
-
+  html += `</tbody></table></div>`;
   container.innerHTML = html;
 }
 
-// ── core scan logic ─────────────────────────────────────────────────────────────
+// ── JSON loading (primary mode) ───────────────────────────────────────────────
 
-async function fetchTargets() {
-  if (!worldMapCache) worldMapCache = await fetchWorldMap();
-  if (!dcListCache) dcListCache = await fetchDcWorlds(DC_NAME);
-  return { worldMap: worldMapCache, dcList: dcListCache };
-}
-
-async function executeScan(scanId) {
+async function loadScan(scanId) {
   const cfg = SCANS[scanId];
-  const opts = cfg.opts;
-  const sellWorld = $("sellWorld").value.trim() || DEFAULT_SELL_WORLD;
 
   renderScanCard(scanId, null, "running");
-  running.add(scanId);
-  log(`[${scanId}] Starting: ${cfg.label}`);
-  log(`[${scanId}] Sell world: ${sellWorld}, scope: ${opts.scope}`);
 
   try {
-    const { worldMap } = await fetchTargets();
-    const sellId = worldMap[sellWorld.toLowerCase()];
-    if (!sellId) throw new Error(`Sell world '${sellWorld}' not found.`);
-
-    const sellWorldDc = await fetchDcName(sellId);
-    log(`[${scanId}] ${sellWorld} (ID ${sellId}) [DC: ${sellWorldDc || "?"}]`);
-
-    const results = await runScan({
-      itemIds:        await fetchMarketable(),
-      queryWorld:     sellWorld,
-      sellWorldId:    sellId,
-      ...opts,
-      onLog: (msg) => log(`[${scanId}] ${msg}`),
-      onBatchProgress: (done, total) => {
-        const bar = $(`${scanId}`).querySelector(`#${scanId}-results`);
-        // could update progress here, keeping simple for now
-      },
-    });
-
-    log(`[${scanId}] ✅ ${results.length.toLocaleString()} candidates`);
-    renderScanCard(scanId, results, "done");
-  } catch (err) {
-    log(`[${scanId}] ERROR: ${err.message}`);
+    const res = await fetch(`scans/${cfg.jsonFile}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    worldNameMap = {};
+    if (data.worlds) {
+      for (const [name, id] of Object.entries(data.worlds)) {
+        worldNameMap[id] = name.charAt(0).toUpperCase() + name.slice(1);
+      }
+    }
+    setTimestamp(scanId, data.generatedAt);
+    renderScanCard(scanId, data.results, "done", data.count);
+  } catch {
     renderScanCard(scanId, null, "error");
-  } finally {
-    running.delete(scanId);
   }
 }
 
-// ── batch runner ───────────────────────────────────────────────────────────────
-
-async function runAllScans() {
-  $("runAllBtn").disabled = true;
-  $("runAllBtn").textContent = "⏳ Running...";
-
+async function refreshAll() {
   for (const id of Object.keys(SCANS)) {
-    await executeScan(id);
+    await loadScan(id);
   }
-
-  $("runAllBtn").disabled = false;
-  $("runAllBtn").textContent = "🚀 Run All Scans";
-  log("All scans complete!");
 }
 
 // ── global for inline onclick handlers ─────────────────────────────────────────
 
-window.runScanById = executeScan;
-window.runAllScans = runAllScans;
+window.runScanById = loadScan;
+window.runAllScans = refreshAll;
+window.handleSort = handleSort;
 
-// ── wire up the Run All button ─────────────────────────────────────────────────
+// ── auto-load on page open ─────────────────────────────────────────────────────
 
-$("runAllBtn").addEventListener("click", runAllScans);
-
-// ── auto-intro message ────────────────────────────────────────────────────────
-
-log("Targeted scanner ready. Click a Run button or Run All Scans to get started.");
+refreshAll();

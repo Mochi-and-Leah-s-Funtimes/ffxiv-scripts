@@ -1,0 +1,50 @@
+{
+  "startedAt": "2026-08-02T20:31:50.532Z",
+  "completedAt": "2026-08-02T20:34:15.611Z",
+  "sellWorld": "Balmung",
+  "prefix": "(none)",
+  "datacenter": "Crystal",
+  "ips": [
+    "2603:c021:1:a500:7588::5",
+    "2603:c021:1:a500:7588::4",
+    "2603:c021:1:a500:7588::3",
+    "2603:c021:1:a500:7588::2"
+  ],
+  "totalScans": 4,
+  "succeeded": 4,
+  "failed": 0,
+  "scans": [
+    {
+      "name": "high_tier",
+      "label": "High Tier (500k–2M)",
+      "ip": "2603:c021:1:a500:7588::5",
+      "status": "completed",
+      "exitCode": 0,
+      "outputFile": "high_tier.json"
+    },
+    {
+      "name": "mid_high",
+      "label": "Mid-High (100k–750k)",
+      "ip": "2603:c021:1:a500:7588::4",
+      "status": "completed",
+      "exitCode": 0,
+      "outputFile": "mid_high.json"
+    },
+    {
+      "name": "mid",
+      "label": "Mid Tier (50k–200k)",
+      "ip": "2603:c021:1:a500:7588::3",
+      "status": "completed",
+      "exitCode": 0,
+      "outputFile": "mid.json"
+    },
+    {
+      "name": "low_tier",
+      "label": "Low Tier (10k–100k)",
+      "ip": "2603:c021:1:a500:7588::2",
+      "status": "completed",
+      "exitCode": 0,
+      "outputFile": "low_tier.json"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 // web/app.js
 //
-// Web scanner UI — imports the shared engine from ../src/engine.js
+// Web scanner UI — imports the shared engine from ./src/engine.js
 //
 import {
   fetchMarketable,
@@ -10,7 +10,7 @@ import {
   runScan,
   DEFAULT_SELL_WORLD,
   DC_NAME,
-} from "../src/engine.js";
+} from "./src/engine.js";
 
 // ── DOM references ────────────────────────────────────────────────────────────
 

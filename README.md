@@ -50,12 +50,13 @@ node src/cli.js --quick --sort-by velocity --show-velocity -v   # fast scan w/ v
 
 A full-featured browser scanner with all the same filters, live progress, and a styled results table.
 
-Open `web/index.html` in your browser (must be served over HTTP, not `file://`):
+Open `web/scanner.html` in your browser (must be served over HTTP, not `file://`):
 
 ```bash
-npx --yes http-server .     # then visit http://localhost:8080/web/
+cd ..
+npx --yes http-server .     # then visit http://localhost:8080/web/scanner.html
 # or
-python3 -m http.server 8080  # then visit http://localhost:8080/web/
+python3 -m http.server 8080  # then visit http://localhost:8080/web/scanner.html
 ```
 
 **Features:**
@@ -69,10 +70,10 @@ python3 -m http.server 8080  # then visit http://localhost:8080/web/
 
 A pre-configured page that runs four targeted scans with strategy-specific settings, ideal for quickly surveying the market.
 
-Open `static/index.html` in your browser (served over HTTP):
+Open `web/balmung.html` in your browser (served over HTTP):
 
 ```
-http://localhost:8080/static/
+http://localhost:8080/web/balmung.html
 ```
 
 **Predefined scans:**
@@ -96,15 +97,14 @@ src/
   cli.js      ← Node CLI wrapper (imports engine, no deps)
 
 web/
-  index.html  ← Full scanner UI (Tailwind via CDN)
-  app.js      ← Web UI logic (imports ../src/engine.js)
-
-static/
-  index.html  ← Targeted scan cards (Tailwind via CDN)
-  app.js      ← Predefined scan runner (imports ../src/engine.js)
+  scanner.html ← Full scanner UI (Tailwind via CDN)
+  scanner.js   ← Web UI logic (imports ./src/engine.js)
+  balmung.html ← Targeted scan cards (Tailwind via CDN)
+  app.js       ← Targeted scan runner (imports ./src/engine.js)
+  src/         ← Copy of engine.js for browser ESM imports
 ```
 
-The **engine** (`src/engine.js`) contains all market-data logic and is shared by all three entry points:
+The **engine** (`src/engine.js`, also copied to `web/src/engine.js` for browser use) contains all market-data logic and is shared by all three entry points:
 - Uses native `fetch` (no `axios`/`node-fetch`)
 - Uses `Promise`-based concurrency pool (no `p-limit` or worker pools)
 - Exposes `runScan()`, `fetchMarketable()`, `fetchWorldMap()`, `fetchDcWorlds()`, `fetchItemNames()`, `processBatch()`
