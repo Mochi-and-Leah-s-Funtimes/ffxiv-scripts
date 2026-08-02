@@ -27,6 +27,7 @@ const countEl      = document.getElementById("resultsCount");
 // ── state ─────────────────────────────────────────────────────────────────────
 
 let currentResults = [];
+let worldNameMap = {};
 
 function $(id) { return document.getElementById(id); }
 
@@ -71,40 +72,67 @@ function escapeHtml(str) {
 
 // ── render ────────────────────────────────────────────────────────────────────
 
+const sortState = { column: "score", dir: "desc" };
+
+const SORT_MAP = {
+  item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
+  buy:      (a, b) => a.buy - b.buy,
+  source:   (a, b) => (worldNameMap[a.dc_world_id] || "").localeCompare(worldNameMap[b.dc_world_id] || ""),
+  sell:     (a, b) => a.home - b.home,
+  profit:   (a, b) => a.gross - b.gross,
+  margin:   (a, b) => a.margin - b.margin,
+  velocity: (a, b) => a.dc_vel - b.dc_vel,
+  score:    (a, b) => a.score - b.score,
+};
+
+function sortArrow(col) {
+  if (sortState.column !== col) return "↕";
+  return sortState.dir === "asc" ? "↑" : "↓";
+}
+
+function handleSort(column) {
+  if (sortState.column === column) {
+    sortState.dir = sortState.dir === "asc" ? "desc" : "asc";
+  } else {
+    sortState.column = column;
+    sortState.dir = "desc";
+  }
+  if (currentResults.length > 0) {
+    renderResults(currentResults, sortState.column, currentResults._topN || 50);
+  }
+}
+
 function renderResults(results, sortBy, topN) {
+  currentResults = results;
+  currentResults._topN = topN;
   countEl.textContent = `${results.length.toLocaleString()} candidates (showing ${Math.min(topN, results.length)})`;
 
   if (results.length === 0) {
     resultsBody.innerHTML =
-      '<tr><td colspan="10" class="text-center py-8 text-gray-500">No candidates found. Try relaxing your filters (e.g. use ⚡ Quick Scan).</td></tr>';
+      '<tr><td colspan="8" class="text-center py-8 text-gray-500">No candidates found. Try relaxing your filters (e.g. use ⚡ Quick Scan).</td></tr>';
     return;
   }
 
-  const sortFn = {
-    profit:    (a, b) => b.gross - a.gross,
-    margin:    (a, b) => b.margin - a.margin,
-    velocity:  (a, b) => b.dc_vel - a.dc_vel,
-    gpday:     (a, b) => b.est_gp_d - a.est_gp_d,
-    score:     (a, b) => b.score - a.score,
-  }[sortBy] || ((a, b) => b.gross - a.gross);
+  const sortFn = SORT_MAP[sortBy] || SORT_MAP.score;
+  const ordered = [...results].sort((a, b) => sortFn(a, b) * (sortState.dir === "asc" ? 1 : -1)).slice(0, topN);
 
-  const ordered = [...results].sort(sortFn).slice(0, topN);
+  const th = (col, label, cls = "") =>
+    `<th class="px-3 py-2 cursor-pointer select-none hover:text-white ${cls}" onclick="handleSort('${col}')">${label} ${sortArrow(col)}</th>`;
 
   resultsBody.innerHTML = ordered.map((r) => {
     const profitClass = r.gross >= 1000 ? "text-gil-green" : "text-yellow-400";
     const marginOk = r.margin >= 10 ? "text-gil-green" : r.margin >= 5 ? "text-yellow-400" : "text-gil-red";
+    const source = r.dc_world_id ? (worldNameMap[r.dc_world_id] || `#${r.dc_world_id}`) : "—";
     return `
       <tr class="hover:bg-gray-700/30 transition-colors">
         <td class="px-3 py-2 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
-        <td class="px-3 py-2 text-right font-mono">${r.id}</td>
         <td class="px-3 py-2 text-right">${fmt(r.buy)} <span class="text-gray-500">gil</span></td>
+        <td class="px-3 py-2 text-left text-ffxiv-gold">${source}</td>
         <td class="px-3 py-2 text-right">${fmt(r.home)} <span class="text-gray-500">gil</span></td>
         <td class="px-3 py-2 text-right font-bold ${profitClass}">${fmt(r.gross)} <span class="text-gray-500">gil</span></td>
         <td class="px-3 py-2 text-right ${marginOk}">${pct(r.margin)}</td>
         <td class="px-3 py-2 text-right">${r.dc_vel.toFixed(1)}</td>
-        <td class="px-3 py-2 text-right font-mono">${fmt(r.est_gp_d)} <span class="text-gray-500">gil</span></td>
-        <td class="px-3 py-2 text-right font-mono text-ffxiv-gold">${fmt(r.score)} <span class="text-gray-500">gil</span></td>
-        <td class="px-3 py-2 text-right">${r.avg_sp ? fmt(r.avg_sp) : "—"} <span class="text-gray-500">gil</span></td>
+        <td class="px-3 py-2 text-right font-mono text-ffxiv-gold">${fmt(r.score)} <span class="text-gray-500">pts</span></td>
       </tr>`;
   }).join("");
 }
@@ -169,6 +197,10 @@ async function doScan(opts) {
     }
 
     const sellWorldDc = await fetchDcName(sellId);
+    worldNameMap = {};
+    for (const [name, id] of Object.entries(worldMap)) {
+      worldNameMap[id] = name.charAt(0).toUpperCase() + name.slice(1);
+    }
     log(`🎯 Sell on: ${sellWorld} (World ID ${sellId}) [DC: ${sellWorldDc || "?"}]`);
     log(`🌐 Buy scope: ${opts.scope}`);
     log(`📊 Datacenter: ${DC_NAME} (${dcList.length} worlds)`);

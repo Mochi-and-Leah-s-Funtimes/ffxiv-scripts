@@ -287,21 +287,19 @@
         <table class="w-full text-sm text-left text-zinc-300">
           <thead class="bg-zinc-900/50 text-xs text-zinc-400 uppercase">
             <tr>
-              <th class="px-3 py-2 sticky top-0">Item</th>
-              <th class="px-3 py-2 text-right sticky top-0">ID</th>
-              <th class="px-3 py-2 text-right sticky top-0">Buy</th>
-              <th class="px-3 py-2 text-right sticky top-0">Sell</th>
-              <th class="px-3 py-2 text-right sticky top-0">Profit</th>
-              <th class="px-3 py-2 text-right sticky top-0">Margin</th>
-              <th class="px-3 py-2 text-right sticky top-0">Vel/Day</th>
-              <th class="px-3 py-2 text-right sticky top-0">GP/Day</th>
-              <th class="px-3 py-2 text-right sticky top-0">Score</th>
-              <th class="px-3 py-2 text-right sticky top-0">Avg Sale</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white sticky top-0" onclick="handleSort('item')">Item ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('buy')">Buy ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-left sticky top-0" onclick="handleSort('source')">Source ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('sell')">Sell ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('profit')">Profit ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('margin')">Margin ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('velocity')">Vel/Day ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('score')">Score ↕</th>
             </tr>
           </thead>
           <tbody id="resultsBody" class="divide-y divide-zinc-700/50">
             <tr>
-              <td colspan="10" class="text-center py-8 text-zinc-500">No results yet. Run a scan to see flip candidates.
+              <td colspan="8" class="text-center py-8 text-zinc-500">No results yet. Run a scan to see flip candidates.
               </td>
             </tr>
           </tbody>
