@@ -59,12 +59,12 @@ const DEFAULT_OPTS = {
 const SCANS = [
   {
     name:  "high_tier",
-    label: "High Tier (500k–2M)",
+    label: "High Tier (500k–10M)",
     opts: {
       ...DEFAULT_OPTS,
       minProfit:  100000,
       priceFloor: 500000,
-      maxPriceFloor: 2000000,
+      maxPriceFloor: 10000000,
       maxSaleAgeH: 72,
       minVel:     5,
       sortBy:     "score",
@@ -72,12 +72,12 @@ const SCANS = [
   },
   {
     name:  "mid_high",
-    label: "Mid-High (100k–750k)",
+    label: "Mid-High (100k–1M)",
     opts: {
       ...DEFAULT_OPTS,
       minProfit:  50000,
       priceFloor: 100000,
-      maxPriceFloor: 750000,
+      maxPriceFloor: 1000000,
       maxSaleAgeH: 48,
       minVel:     10,
       sortBy:     "score",
@@ -85,12 +85,12 @@ const SCANS = [
   },
   {
     name:  "mid",
-    label: "Mid Tier (50k–200k)",
+    label: "Mid Tier (50k–250k)",
     opts: {
       ...DEFAULT_OPTS,
       minProfit:  10000,
       priceFloor: 50000,
-      maxPriceFloor: 200000,
+      maxPriceFloor: 250000,
       maxSaleAgeH: 16,
       minVel:     15,
       sortBy:     "profit",

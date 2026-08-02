@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,17 +24,34 @@
       },
     };
   </script>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffeb3b'%3E%3Cpath d='M12 1l3 8h8l-6 5 2 8-7-5-7 5 2-8z'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffeb3b'%3E%3Cpath d='M12 1l3 8h8l-6 5 2 8-7-5-7 5 2-8z'/%3E%3C/svg%3E" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Licorice&family=Limelight&family=Pacifico&display=swap');
+
+    .font-fira {
+      font-family: "Fira Sans", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .headline-font {
+      font-family: "Limelight", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-b from-gray-900 to-gray-950 text-gray-100 min-h-screen font-sans">
+
+<body class="bg-gradient-to-b from-zinc-950 to-zinc-900 text-zinc-100 min-h-screen font-fira">
 
   <!-- Header -->
-  <header class="bg-gradient-to-r from-ffxiv-blue to-indigo-900 shadow-xl border-b-2 border-ffxiv-gold">
+  <header class="bg-gradient-to-r from-zinc-800 to-zinc-900 shadow-xl border-b-2 border-zinc-400">
     <div class="container mx-auto px-6 py-6 text-center">
-      <h1 class="text-3xl font-extrabold text-white mb-1">
-        ⚔️ Balmung Market Flips
+      <h1 class="text-5xl font-extrabold text-white mb-1 headline-font">
+        Balmung Market Engine
       </h1>
-      <p class="text-gray-300 text-lg">Cross-world flip candidates — updated hourly</p>
+      <p class="text-zinc-300 text-lg">Cross-world flip candidates — updated hourly</p>
     </div>
   </header>
 
@@ -42,16 +60,16 @@
     <!-- ── Scan 1: High Tier ── -->
     <section class="mb-8">
       <div class="flex items-center gap-3 mb-3">
-        <div class="w-1 h-6 bg-scan-1 rounded"></div>
-        <h2 class="text-xl font-semibold text-white">💰 High Tier (500k–2M)</h2>
-        <span class="text-sm text-gray-400">Premium items with large absolute profit per unit</span>
+        <div class="w-1 h-6 bg-red-500 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">Gillionaire Tier (500k–20M)</h2>
+        <span class="text-sm text-zinc-400">Premium items with large absolute profit per unit</span>
       </div>
-      <div id="scan1" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
-        <div class="p-3 border-b border-gray-700">
-          <span id="scan1-ts" class="text-sm text-gray-500">Awaiting data…</span>
+      <div id="scan1" class="bg-zinc-800/30 rounded-xl border border-zinc-700 overflow-hidden">
+        <div class="p-3 border-b border-zinc-700">
+          <span id="scan1-ts" class="text-sm text-zinc-500">Awaiting data…</span>
         </div>
         <div class="p-4">
-          <div id="scan1-results" class="text-gray-400">Backend scan data will appear here once generated.</div>
+          <div id="scan1-results" class="text-zinc-400">Backend scan data will appear here once generated.</div>
         </div>
       </div>
     </section>
@@ -59,16 +77,16 @@
     <!-- ── Scan 2: Mid-High ── -->
     <section class="mb-8">
       <div class="flex items-center gap-3 mb-3">
-        <div class="w-1 h-6 bg-scan-2 rounded"></div>
-        <h2 class="text-xl font-semibold text-white">📈 Mid-High (100k–750k)</h2>
-        <span class="text-sm text-gray-400">Deep underpriced items — high % returns</span>
+        <div class="w-1 h-6 bg-amber-500 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">High Tier (100k–1M)</h2>
+        <span class="text-sm text-zinc-400">Deep underpriced items — high % returns</span>
       </div>
-      <div id="scan2" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
-        <div class="p-3 border-b border-gray-700">
-          <span id="scan2-ts" class="text-sm text-gray-500">Awaiting data…</span>
+      <div id="scan2" class="bg-zinc-800/30 rounded-xl border border-zinc-700 overflow-hidden">
+        <div class="p-3 border-b border-zinc-700">
+          <span id="scan2-ts" class="text-sm text-zinc-500">Awaiting data…</span>
         </div>
         <div class="p-4">
-          <div id="scan2-results" class="text-gray-400">Backend scan data will appear here once generated.</div>
+          <div id="scan2-results" class="text-zinc-400">Backend scan data will appear here once generated.</div>
         </div>
       </div>
     </section>
@@ -76,16 +94,16 @@
     <!-- ── Scan 3: Mid Tier ── -->
     <section class="mb-8">
       <div class="flex items-center gap-3 mb-3">
-        <div class="w-1 h-6 bg-scan-3 rounded"></div>
-        <h2 class="text-xl font-semibold text-white">⚡ Mid Tier (50k–200k)</h2>
-        <span class="text-sm text-gray-400">Solid mid-range flips with good turnover</span>
+        <div class="w-1 h-6 bg-teal-500 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">Mid Tier (50k–250k)</h2>
+        <span class="text-sm text-zinc-400">Solid mid-range flips with good turnover</span>
       </div>
-      <div id="scan3" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
-        <div class="p-3 border-b border-gray-700">
-          <span id="scan3-ts" class="text-sm text-gray-500">Awaiting data…</span>
+      <div id="scan3" class="bg-zinc-800/30 rounded-xl border border-zinc-700 overflow-hidden">
+        <div class="p-3 border-b border-zinc-700">
+          <span id="scan3-ts" class="text-sm text-zinc-500">Awaiting data…</span>
         </div>
         <div class="p-4">
-          <div id="scan3-results" class="text-gray-400">Backend scan data will appear here once generated.</div>
+          <div id="scan3-results" class="text-zinc-400">Backend scan data will appear here once generated.</div>
         </div>
       </div>
     </section>
@@ -93,26 +111,29 @@
     <!-- ── Scan 4: Low Tier ── -->
     <section class="mb-8">
       <div class="flex items-center gap-3 mb-3">
-        <div class="w-1 h-6 bg-scan-4 rounded"></div>
-        <h2 class="text-xl font-semibold text-white">🏆 Low Tier (10k–100k)</h2>
-        <span class="text-sm text-gray-400">Fastest turnover — items that sell quickly at low margin</span>
+        <div class="w-1 h-6 bg-violet-500 rounded"></div>
+        <h2 class="text-xl font-semibold text-white">Low Tier (10k–100k)</h2>
+        <span class="text-sm text-zinc-400">Fastest turnover — items that sell quickly at low margin</span>
       </div>
-      <div id="scan4" class="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
-        <div class="p-3 border-b border-gray-700">
-          <span id="scan4-ts" class="text-sm text-gray-500">Awaiting data…</span>
+      <div id="scan4" class="bg-zinc-800/30 rounded-xl border border-zinc-700 overflow-hidden">
+        <div class="p-3 border-b border-zinc-700">
+          <span id="scan4-ts" class="text-sm text-zinc-500">Awaiting data…</span>
         </div>
         <div class="p-4">
-          <div id="scan4-results" class="text-gray-400">Backend scan data will appear here once generated.</div>
+          <div id="scan4-results" class="text-zinc-400">Backend scan data will appear here once generated.</div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="border-t border-gray-700 py-4 text-center text-sm text-gray-500">
-    <p>Powered by <a href="https://universalis.app" target="_blank" class="text-ffxiv-gold hover:text-white">Universalis</a> & <a href="https://xivapi.com" target="_blank" class="text-ffxiv-gold hover:text-white">xivapi</a></p>
+  <footer class="border-t border-zinc-700 py-4 text-center text-sm text-zinc-500">
+    <p>Powered by <a href="https://universalis.app" target="_blank"
+        class="text-ffxiv-gold hover:text-white">Universalis</a> & <a href="https://xivapi.com" target="_blank"
+        class="text-ffxiv-gold hover:text-white">xivapi</a></p>
   </footer>
 
   <script type="module" src="app.js"></script>
 </body>
+
 </html>
