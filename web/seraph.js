@@ -130,9 +130,12 @@ function percentileColor(values, val) {
   const sorted = [...values].sort((a, b) => a - b);
   const idx = sorted.findIndex((v) => v >= val);
   const pct = idx === -1 ? 1 : idx / sorted.length;
-  if (pct >= 0.8) return "text-green-400";
-  if (pct >= 0.4) return "text-yellow-400";
-  return "text-red-400";
+  if (pct >= 0.96) return "text-orange-300";
+  if (pct >= 0.92) return "text-pink-500";
+  if (pct >= 0.75) return "text-purple-500";
+  if (pct >= 0.5) return "text-blue-500";
+  if (pct >= 0.25) return "text-green-500";
+  return "text-zinc-500";
 }
 
 function renderScanCard(scanId, results, status, total = null) {

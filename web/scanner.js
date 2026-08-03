@@ -14,15 +14,15 @@ import {
 
 // ── DOM references ────────────────────────────────────────────────────────────
 
-const scanBtn      = document.getElementById("scanBtn");
-const quickBtn     = document.getElementById("quickBtn");
-const exportBtn    = document.getElementById("exportCsv");
-const progressEl   = document.getElementById("progressSection");
-const progressTxt  = document.getElementById("progressText");
-const progressBar  = document.getElementById("progressBar");
-const logArea      = document.getElementById("logArea");
-const resultsBody  = document.getElementById("resultsBody");
-const countEl      = document.getElementById("resultsCount");
+const scanBtn = document.getElementById("scanBtn");
+const quickBtn = document.getElementById("quickBtn");
+const exportBtn = document.getElementById("exportCsv");
+const progressEl = document.getElementById("progressSection");
+const progressTxt = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+const logArea = document.getElementById("logArea");
+const resultsBody = document.getElementById("resultsBody");
+const countEl = document.getElementById("resultsCount");
 
 // ── state ─────────────────────────────────────────────────────────────────────
 
@@ -75,14 +75,14 @@ function escapeHtml(str) {
 const sortState = { column: "score", dir: "desc" };
 
 const SORT_MAP = {
-  item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
-  buy:      (a, b) => a.buy - b.buy,
-  source:   (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
-  sell:     (a, b) => a.home - b.home,
-  profit:   (a, b) => a.gross - b.gross,
-  margin:   (a, b) => a.margin - b.margin,
+  item: (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
+  buy: (a, b) => a.buy - b.buy,
+  source: (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
+  sell: (a, b) => a.home - b.home,
+  profit: (a, b) => a.gross - b.gross,
+  margin: (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.dc_vel - b.dc_vel,
-  score:    (a, b) => a.score - b.score,
+  score: (a, b) => a.score - b.score,
 };
 
 function sortArrow(col) {
@@ -95,9 +95,12 @@ function percentileColor(values, val) {
   const sorted = [...values].sort((a, b) => a - b);
   const idx = sorted.findIndex((v) => v >= val);
   const pct = idx === -1 ? 1 : idx / sorted.length;
-  if (pct >= 0.8) return "text-green-400";
-  if (pct >= 0.4) return "text-yellow-400";
-  return "text-red-400";
+  if (pct >= 0.96) return "text-orange-300";
+  if (pct >= 0.92) return "text-pink-500";
+  if (pct >= 0.75) return "text-purple-500";
+  if (pct >= 0.5) return "text-blue-500";
+  if (pct >= 0.25) return "text-green-500";
+  return "text-zinc-500";
 }
 
 function handleSort(column) {
@@ -158,9 +161,9 @@ function exportCsv(results) {
     return;
   }
   const fields = [
-    "id","name","buy","dc_min","home","fees","gross",
-    "margin","avg_sp","dc_vel","est_gp_d","confidence","score",
-    "last_sale_age_h","last_sale_price","last_sale_qty",
+    "id", "name", "buy", "dc_min", "home", "fees", "gross",
+    "margin", "avg_sp", "dc_vel", "est_gp_d", "confidence", "score",
+    "last_sale_age_h", "last_sale_price", "last_sale_qty",
   ];
   const rows = [...results].sort((a, b) => b.gross - a.gross);
   const lines = [fields.join(",")];
@@ -179,8 +182,8 @@ function exportCsv(results) {
     lines.push(row.join(","));
   }
   const blob = new Blob([lines.join("\n")], { type: "text/csv" });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
   a.href = url;
   a.download = `ffxiv-flips-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
@@ -223,19 +226,19 @@ async function doScan(opts) {
     log(`Scanning in batches of 100…`);
 
     const results = await runScan({
-      itemIds:         itemList,
-      queryWorld:      sellWorld,
-      sellWorldId:     sellId,
-      scope:           opts.scope,
-      minVel:          opts.minVel,
-      minProfit:       opts.minProfit,
-      minPct:          opts.minMargin,
-      priceFloor:      opts.priceFloor,
-      maxPriceFloor:   opts.maxPriceFloor,
-      maxSaleAgeH:     opts.maxSaleAge,
-      historyEntries:  opts.historyEntries,
-      workers:         opts.workers,
-      onLog:           log,
+      itemIds: itemList,
+      queryWorld: sellWorld,
+      sellWorldId: sellId,
+      scope: opts.scope,
+      minVel: opts.minVel,
+      minProfit: opts.minProfit,
+      minPct: opts.minMargin,
+      priceFloor: opts.priceFloor,
+      maxPriceFloor: opts.maxPriceFloor,
+      maxSaleAgeH: opts.maxSaleAge,
+      historyEntries: opts.historyEntries,
+      workers: opts.workers,
+      onLog: log,
       onBatchProgress: setProgress,
     });
 
@@ -267,18 +270,18 @@ const PRESETS = {
 
 function readForm() {
   return {
-    sellWorld:        $("sellWorld").value.trim() || DEFAULT_SELL_WORLD,
-    scope:            $("scope").value,
-    sortBy:           $("sortBy").value,
-    topN:             parseInt($("topN").value, 10) || 50,
-    minProfit:        parseFloat($("minProfit").value) || 0,
-    minVel:           parseFloat($("minVel").value) || 0,
-    minMargin:        parseFloat($("minMargin").value) || 0,
-    priceFloor:       parseFloat($("priceFloor").value) || 0,
-    maxPriceFloor:    $("maxPriceFloor").value ? parseFloat($("maxPriceFloor").value) : null,
-    maxSaleAge:       $("maxSaleAge").value ? parseFloat($("maxSaleAge").value) : null,
-    historyEntries:   5,
-    workers:          parseInt($("workers").value, 10) || 5,
+    sellWorld: $("sellWorld").value.trim() || DEFAULT_SELL_WORLD,
+    scope: $("scope").value,
+    sortBy: $("sortBy").value,
+    topN: parseInt($("topN").value, 10) || 50,
+    minProfit: parseFloat($("minProfit").value) || 0,
+    minVel: parseFloat($("minVel").value) || 0,
+    minMargin: parseFloat($("minMargin").value) || 0,
+    priceFloor: parseFloat($("priceFloor").value) || 0,
+    maxPriceFloor: $("maxPriceFloor").value ? parseFloat($("maxPriceFloor").value) : null,
+    maxSaleAge: $("maxSaleAge").value ? parseFloat($("maxSaleAge").value) : null,
+    historyEntries: 5,
+    workers: parseInt($("workers").value, 10) || 5,
   };
 }
 
