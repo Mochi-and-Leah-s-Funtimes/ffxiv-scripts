@@ -24,7 +24,7 @@ const SCANS = {
     icon: "💰",
     label: "High Tier (500k–2M)",
     desc: "Premium items with large absolute profit per unit.",
-    jsonFile: "balmung_gillionaire.json",
+    jsonFile: "seraph_gillionaire.json",
     opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "profit" },
   },
   scan2: {
@@ -32,7 +32,7 @@ const SCANS = {
     icon: "📈",
     label: "Mid-High (100k–750k)",
     desc: "Deep underpriced items with high % returns.",
-    jsonFile: "balmung_high.json",
+    jsonFile: "seraph_high.json",
     opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 40, sortBy: "margin" },
   },
   scan3: {
@@ -40,7 +40,7 @@ const SCANS = {
     icon: "⚡",
     label: "Mid Tier (50k–200k)",
     desc: "Solid mid-range flips with good turnover.",
-    jsonFile: "balmung_mid.json",
+    jsonFile: "seraph_mid.json",
     opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 40, sortBy: "score" },
   },
   scan4: {
@@ -48,7 +48,7 @@ const SCANS = {
     icon: "🏆",
     label: "Low Tier (10k–100k)",
     desc: "Fastest turnover — items that sell quickly at low margin.",
-    jsonFile: "balmung_low.json",
+    jsonFile: "seraph_low.json",
     opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 40, sortBy: "score" },
   },
 };
