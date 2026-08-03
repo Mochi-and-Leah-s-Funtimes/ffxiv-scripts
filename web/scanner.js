@@ -90,6 +90,16 @@ function sortArrow(col) {
   return sortState.dir === "asc" ? "↑" : "↓";
 }
 
+function percentileColor(values, val) {
+  if (!values || values.length === 0) return "";
+  const sorted = [...values].sort((a, b) => a - b);
+  const idx = sorted.findIndex((v) => v >= val);
+  const pct = idx === -1 ? 1 : idx / sorted.length;
+  if (pct >= 0.8) return "text-green-400";
+  if (pct >= 0.4) return "text-yellow-400";
+  return "text-red-400";
+}
+
 function handleSort(column) {
   if (sortState.column === column) {
     sortState.dir = sortState.dir === "asc" ? "desc" : "asc";
@@ -116,12 +126,15 @@ function renderResults(results, sortBy, topN) {
   const sortFn = SORT_MAP[sortBy] || SORT_MAP.score;
   const ordered = [...results].sort((a, b) => sortFn(a, b) * (sortState.dir === "asc" ? 1 : -1)).slice(0, topN);
 
+  const grossValues = results.map((r) => r.gross);
+  const marginValues = results.map((r) => r.margin);
+
   const th = (col, label, cls = "") =>
     `<th class="px-3 py-2 cursor-pointer select-none hover:text-white ${cls}" onclick="handleSort('${col}')">${label} ${sortArrow(col)}</th>`;
 
   resultsBody.innerHTML = ordered.map((r) => {
-    const profitClass = r.gross >= 1000 ? "text-gil-green" : "text-yellow-400";
-    const marginOk = r.margin >= 10 ? "text-gil-green" : r.margin >= 5 ? "text-yellow-400" : "text-gil-red";
+    const profitClass = percentileColor(grossValues, r.gross);
+    const marginOk = percentileColor(marginValues, r.margin);
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
     return `
       <tr class="hover:bg-gray-700/30 transition-colors">

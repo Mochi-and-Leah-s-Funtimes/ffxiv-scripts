@@ -125,6 +125,16 @@ function sortArrow(column, state) {
   return state.dir === "asc" ? "↑" : "↓";
 }
 
+function percentileColor(values, val) {
+  if (!values || values.length === 0) return "";
+  const sorted = [...values].sort((a, b) => a - b);
+  const idx = sorted.findIndex((v) => v >= val);
+  const pct = idx === -1 ? 1 : idx / sorted.length;
+  if (pct >= 0.8) return "text-green-400";
+  if (pct >= 0.4) return "text-yellow-400";
+  return "text-red-400";
+}
+
 function renderScanCard(scanId, results, status, total = null) {
   const container = $(`${scanId}-results`);
   const cfg = SCANS[scanId];
@@ -144,6 +154,9 @@ function renderScanCard(scanId, results, status, total = null) {
     container.innerHTML = `<div class="text-zinc-400">No candidates found.</div>`;
     return;
   }
+
+  const grossValues = results.map((r) => r.gross);
+  const marginValues = results.map((r) => r.margin);
 
   const sortFn = SORT_MAP[state.column] || SORT_MAP.score;
   const ordered = [...results].sort((a, b) => sortFn(a, b) * (state.dir === "asc" ? 1 : -1)).slice(0, cfg.opts.topN);
@@ -172,8 +185,8 @@ function renderScanCard(scanId, results, status, total = null) {
 
   for (const r of ordered) {
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
-    const profitClass = r.gross >= 200000 ? "text-pink-500" : r.gross >= 50000 ? "text-green-500" : r.gross >= 10000 ? "text-yellow-500" : "text-red-500";
-    const marginClass = r.margin >= 125 ? "text-pink-500" : r.margin >= 50 ? "text-green-500" : r.margin >= 15 ? "text-yellow-500" : "text-red-500";
+    const profitClass = percentileColor(grossValues, r.gross);
+    const marginClass = percentileColor(marginValues, r.margin);
     html += `
       <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
