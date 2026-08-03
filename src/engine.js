@@ -488,7 +488,7 @@ export async function runScan({
     const target = c.home;
     const last = c.last_sale_price || 0;
     c.confidence = target && target > 0 ? Math.min(1.0, last / target) : 0;
-    c.score = c.gross * c.dc_vel * c.confidence;
+    c.score = (c.gross * c.dc_vel * c.confidence) * 0.05;
   }
 
   // ── Item-name enrichment ──────────────────────────────────────────────────
