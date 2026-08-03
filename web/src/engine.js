@@ -483,12 +483,26 @@ export async function runScan({
     allCand = allCand.filter((c) => !c._filteredAge);
   }
 
-  // Compute confidence + score
+  // ── Score computation ────────────────────────────────────────────────────────
+  // A flip's attractiveness is driven by three factors:
+  //   gross      — absolute profit per unit (gil)
+  //   dc_vel     — daily sales velocity on the DC
+  //   confidence — last_sale_price / current home price (0-1)
+  //
+  // Raw product `gross * vel * confidence` spans orders of magnitude because
+  // velocity can range from ~0.5 to 600+. We dampen velocity with sqrt() so
+  // extreme outliers don't completely dominate, then scale to a readable range.
+
   for (const c of allCand) {
     const target = c.home;
     const last = c.last_sale_price || 0;
     c.confidence = target && target > 0 ? Math.min(1.0, last / target) : 0;
-    c.score = c.gross * c.dc_vel * c.confidence;
+
+    const gross = Math.min(c.gross, 500_000);              // cap extreme outliers
+    const vel   = Math.sqrt(Math.max(1, c.dc_vel));        // diminishing returns on velocity
+    const conf  = Math.max(0.05, c.confidence);            // floor so unknowns don't score 0
+
+    c.score = (gross * vel * conf) / 100;
   }
 
   // ── Item-name enrichment ──────────────────────────────────────────────────
