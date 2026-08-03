@@ -155,23 +155,24 @@ async function fetchV1Batch(batch) {
 // v2 single-item fallback: https://v2.xivapi.com/api/sheet/Item/{id}?fields=Name
 async function fetchV2Single(iid) {
   const url = `https://v2.xivapi.com/api/sheet/Item/${iid}?fields=Name`;
-  for (let attempt = 0; attempt < 2; attempt++) {
+  for (let attempt = 0; attempt < 4; attempt++) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 10000);
+    const timer = setTimeout(() => controller.abort(), 15000);
     try {
       const res = await fetch(url, { signal: controller.signal });
       clearTimeout(timer);
       if (res.status === 429) {
-        await sleep(1000);
+        await sleep(Math.pow(2, attempt) * 1000);
         continue;
       }
       if (!res.ok) throw new Error(res.statusText);
       const data = await res.json();
-      const name = data?.fields?.Name || "";
+      // v2 may nest under .fields.Name or return Name directly
+      const name = data?.fields?.Name || data?.Name || "";
       return name || null;
     } catch (err) {
       clearTimeout(timer);
-      if (attempt < 1) await sleep(500);
+      if (attempt < 3) await sleep(1000);
     }
   }
   return null;

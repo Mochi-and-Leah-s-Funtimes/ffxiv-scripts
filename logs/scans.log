@@ -1443,3 +1443,428 @@
 [gillionaire] ✅ 39 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_gillionaire.json
 
 ✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T13:00:01.471Z
+
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Balmung
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Balmung
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Balmung
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Balmung
+[high] Balmung (ID 91) [DC: Crystal]
+[low] Balmung (ID 91) [DC: Crystal]
+[mid] Balmung (ID 91) [DC: Crystal]
+[gillionaire] Balmung (ID 91) [DC: Crystal]
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 147.5s — 0 candidates
+[mid] [50/169] 147.5s — 7 candidates
+[mid] [75/169] 147.5s — 11 candidates
+[mid] [100/169] 147.5s — 18 candidates
+[mid] [125/169] 147.5s — 31 candidates
+[mid] [150/169] 147.5s — 36 candidates
+[mid] [169/169] 147.5s — 63 candidates
+[mid] 169 batches in 147.5s | 63 flip candidates | 0 items with no listings
+[mid] Fetching history for 63 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 22 items last sold > 24h ago
+[mid] Fetching item names for 41 candidates
+[mid] Falling back to v2.xivapi for 16 items
+[mid] Names fetched in 3.2s
+[mid] Final candidates: 41
+[mid] ✅ 41 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_mid.json
+[gillionaire] [25/169] 154.6s — 0 candidates
+[gillionaire] [50/169] 154.6s — 0 candidates
+[gillionaire] [75/169] 154.6s — 1 candidates
+[gillionaire] [100/169] 154.6s — 8 candidates
+[gillionaire] [125/169] 154.6s — 12 candidates
+[gillionaire] [150/169] 154.6s — 29 candidates
+[gillionaire] [169/169] 154.6s — 63 candidates
+[gillionaire] 169 batches in 154.6s | 63 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 63 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 25 items last sold > 72h ago
+[gillionaire] Fetching item names for 38 candidates
+[gillionaire] Falling back to v2.xivapi for 23 items
+[gillionaire] Names fetched in 3.8s
+[gillionaire] Final candidates: 38
+[gillionaire] ✅ 38 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_gillionaire.json
+[low] [25/169] 159.0s — 0 candidates
+[low] [50/169] 159.0s — 28 candidates
+[low] [75/169] 159.0s — 42 candidates
+[low] [100/169] 159.0s — 72 candidates
+[low] [125/169] 159.0s — 106 candidates
+[low] [150/169] 159.0s — 131 candidates
+[low] [169/169] 159.0s — 183 candidates
+[low] 169 batches in 159.0s | 183 flip candidates | 0 items with no listings
+[low] Fetching history for 183 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 86 items last sold > 16h ago
+[low] Fetching item names for 97 candidates
+[low] Falling back to v2.xivapi for 30 items
+[low] Names fetched in 5.2s
+[low] Final candidates: 97
+[low] ✅ 97 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_low.json
+[high] [25/169] 176.9s — 0 candidates
+[high] [50/169] 176.9s — 4 candidates
+[high] [75/169] 176.9s — 7 candidates
+[high] [100/169] 176.9s — 14 candidates
+[high] [125/169] 176.9s — 22 candidates
+[high] [150/169] 176.9s — 35 candidates
+[high] [169/169] 176.9s — 99 candidates
+[high] 169 batches in 176.9s | 99 flip candidates | 0 items with no listings
+[high] Fetching history for 99 candidates (1 batches)
+[high] History fetched in 0.4s
+[high] Filtered out 31 items last sold > 48h ago
+[high] Fetching item names for 68 candidates
+[high] Falling back to v2.xivapi for 45 items
+[high] Names fetched in 2.2s
+[high] Final candidates: 68
+[high] ✅ 68 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_high.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T13:21:07.678Z
+
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Balmung
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Balmung
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Balmung
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Balmung
+[low] Balmung (ID 91) [DC: Crystal]
+[gillionaire] Balmung (ID 91) [DC: Crystal]
+[mid] Balmung (ID 91) [DC: Crystal]
+[high] Balmung (ID 91) [DC: Crystal]
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] [25/169] 138.5s — 0 candidates
+[gillionaire] [50/169] 138.5s — 0 candidates
+[gillionaire] [75/169] 138.5s — 1 candidates
+[gillionaire] [100/169] 138.5s — 8 candidates
+[gillionaire] [125/169] 138.5s — 12 candidates
+[gillionaire] [150/169] 138.5s — 29 candidates
+[gillionaire] [169/169] 138.5s — 62 candidates
+[gillionaire] 169 batches in 138.5s | 62 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 62 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 25 items last sold > 72h ago
+[gillionaire] Fetching item names for 37 candidates
+[gillionaire] Falling back to v2.xivapi for 22 items
+[gillionaire] Names fetched in 4.3s
+[gillionaire] Final candidates: 37
+[gillionaire] ✅ 37 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_gillionaire.json
+[mid] [25/169] 143.2s — 0 candidates
+[mid] [50/169] 143.2s — 7 candidates
+[mid] [75/169] 143.2s — 11 candidates
+[mid] [100/169] 143.2s — 18 candidates
+[mid] [125/169] 143.2s — 32 candidates
+[mid] [150/169] 143.2s — 37 candidates
+[mid] [169/169] 143.2s — 64 candidates
+[mid] 169 batches in 143.2s | 64 flip candidates | 0 items with no listings
+[mid] Fetching history for 64 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 22 items last sold > 24h ago
+[mid] Fetching item names for 42 candidates
+[mid] Falling back to v2.xivapi for 16 items
+[high] [25/169] 146.2s — 0 candidates
+[high] [50/169] 146.2s — 4 candidates
+[high] [75/169] 146.2s — 7 candidates
+[high] [100/169] 146.2s — 15 candidates
+[high] [125/169] 146.2s — 23 candidates
+[high] [150/169] 146.2s — 36 candidates
+[high] [169/169] 146.2s — 100 candidates
+[high] 169 batches in 146.2s | 100 flip candidates | 0 items with no listings
+[high] Fetching history for 100 candidates (1 batches)
+[high] History fetched in 0.2s
+[high] Filtered out 32 items last sold > 48h ago
+[high] Fetching item names for 68 candidates
+[high] Falling back to v2.xivapi for 45 items
+[mid] Names fetched in 3.3s
+[mid] Final candidates: 42
+[mid] ✅ 42 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_mid.json
+[low] [25/169] 148.4s — 0 candidates
+[low] [50/169] 148.4s — 29 candidates
+[low] [75/169] 148.4s — 43 candidates
+[low] [100/169] 148.4s — 73 candidates
+[low] [125/169] 148.4s — 109 candidates
+[low] [150/169] 148.4s — 134 candidates
+[low] [169/169] 148.4s — 186 candidates
+[low] 169 batches in 148.4s | 186 flip candidates | 0 items with no listings
+[low] Fetching history for 186 candidates (2 batches)
+[low] History fetched in 0.5s
+[low] Filtered out 88 items last sold > 16h ago
+[low] Fetching item names for 98 candidates
+[low] Falling back to v2.xivapi for 30 items
+[low] Names fetched in 4.6s
+[low] Final candidates: 98
+[low] ✅ 98 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_low.json
+[high] Names fetched in 7.2s
+[high] Final candidates: 68
+[high] ✅ 68 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_high.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T13:36:23.350Z
+
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Balmung
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Balmung
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Balmung
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Balmung
+[gillionaire] Balmung (ID 91) [DC: Crystal]
+[high] Balmung (ID 91) [DC: Crystal]
+[mid] Balmung (ID 91) [DC: Crystal]
+[low] Balmung (ID 91) [DC: Crystal]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 100.5s — 0 candidates
+[mid] [50/169] 100.5s — 7 candidates
+[mid] [75/169] 100.5s — 11 candidates
+[mid] [100/169] 100.5s — 18 candidates
+[mid] [125/169] 100.5s — 32 candidates
+[mid] [150/169] 100.5s — 37 candidates
+[mid] [169/169] 100.5s — 64 candidates
+[mid] 169 batches in 100.5s | 64 flip candidates | 0 items with no listings
+[mid] Fetching history for 64 candidates (1 batches)
+[mid] History fetched in 0.9s
+[mid] Filtered out 22 items last sold > 24h ago
+[mid] Fetching item names for 42 candidates
+[mid] Falling back to v2.xivapi for 16 items
+[mid] Names fetched in 1.3s
+[mid] Final candidates: 42
+[mid] ✅ 42 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_mid.json
+[high] [25/169] 104.7s — 0 candidates
+[high] [50/169] 104.7s — 4 candidates
+[high] [75/169] 104.7s — 7 candidates
+[high] [100/169] 104.7s — 15 candidates
+[high] [125/169] 104.7s — 23 candidates
+[high] [150/169] 104.7s — 35 candidates
+[high] [169/169] 104.7s — 101 candidates
+[high] 169 batches in 104.7s | 101 flip candidates | 0 items with no listings
+[high] Fetching history for 101 candidates (2 batches)
+[high] History fetched in 1.0s
+[high] Filtered out 32 items last sold > 48h ago
+[high] Fetching item names for 69 candidates
+[high] Falling back to v2.xivapi for 46 items
+[high] Names fetched in 2.3s
+[high] Final candidates: 69
+[high] ✅ 69 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_high.json
+[gillionaire] [25/169] 110.9s — 0 candidates
+[gillionaire] [50/169] 110.9s — 0 candidates
+[gillionaire] [75/169] 110.9s — 1 candidates
+[gillionaire] [100/169] 110.9s — 8 candidates
+[gillionaire] [125/169] 110.9s — 12 candidates
+[gillionaire] [150/169] 110.9s — 29 candidates
+[gillionaire] [169/169] 110.9s — 62 candidates
+[gillionaire] 169 batches in 110.9s | 62 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 62 candidates (1 batches)
+[gillionaire] History fetched in 1.1s
+[gillionaire] Filtered out 25 items last sold > 72h ago
+[gillionaire] Fetching item names for 37 candidates
+[gillionaire] Falling back to v2.xivapi for 22 items
+[gillionaire] Names fetched in 0.9s
+[gillionaire] Final candidates: 37
+[gillionaire] ✅ 37 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_gillionaire.json
+[low] [25/169] 113.0s — 0 candidates
+[low] [50/169] 113.0s — 29 candidates
+[low] [75/169] 113.0s — 42 candidates
+[low] [100/169] 113.0s — 72 candidates
+[low] [125/169] 113.0s — 108 candidates
+[low] [150/169] 113.0s — 133 candidates
+[low] [169/169] 113.0s — 185 candidates
+[low] 169 batches in 113.0s | 185 flip candidates | 0 items with no listings
+[low] Fetching history for 185 candidates (2 batches)
+[low] History fetched in 1.3s
+[low] Filtered out 89 items last sold > 16h ago
+[low] Fetching item names for 96 candidates
+[low] Falling back to v2.xivapi for 30 items
+[low] Names fetched in 1.3s
+[low] Final candidates: 96
+[low] ✅ 96 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T14:00:02.007Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Balmung
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Balmung
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Balmung
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Balmung
+[high] Balmung (ID 91) [DC: Crystal]
+[low] Balmung (ID 91) [DC: Crystal]
+[gillionaire] Balmung (ID 91) [DC: Crystal]
+[mid] Balmung (ID 91) [DC: Crystal]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[high] [25/169] 160.8s — 0 candidates
+[high] [50/169] 160.8s — 4 candidates
+[high] [75/169] 160.8s — 7 candidates
+[high] [100/169] 160.8s — 15 candidates
+[high] [125/169] 160.8s — 23 candidates
+[high] [150/169] 160.8s — 35 candidates
+[high] [169/169] 160.8s — 100 candidates
+[high] 169 batches in 160.8s | 100 flip candidates | 0 items with no listings
+[high] Fetching history for 100 candidates (1 batches)
+[high] History fetched in 0.6s
+[high] Filtered out 31 items last sold > 48h ago
+[high] Fetching item names for 69 candidates
+[high] Falling back to v2.xivapi for 46 items
+[high] Names fetched in 2.3s
+[high] Final candidates: 69
+[high] ✅ 69 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_high.json
+[low] [25/169] 187.2s — 0 candidates
+[low] [50/169] 187.2s — 29 candidates
+[low] [75/169] 187.2s — 43 candidates
+[low] [100/169] 187.2s — 74 candidates
+[low] [125/169] 187.2s — 109 candidates
+[low] [150/169] 187.2s — 133 candidates
+[low] [169/169] 187.2s — 187 candidates
+[low] 169 batches in 187.2s | 187 flip candidates | 0 items with no listings
+[low] Fetching history for 187 candidates (2 batches)
+[low] History fetched in 1.0s
+[low] Filtered out 91 items last sold > 16h ago
+[low] Fetching item names for 96 candidates
+[low] Falling back to v2.xivapi for 32 items
+[low] Names fetched in 1.8s
+[low] Final candidates: 96
+[low] ✅ 96 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_low.json
+[mid] [25/169] 191.0s — 0 candidates
+[mid] [50/169] 191.0s — 7 candidates
+[mid] [75/169] 191.0s — 11 candidates
+[mid] [100/169] 191.0s — 18 candidates
+[mid] [125/169] 191.0s — 32 candidates
+[mid] [150/169] 191.0s — 37 candidates
+[mid] [169/169] 191.0s — 64 candidates
+[mid] 169 batches in 191.0s | 64 flip candidates | 0 items with no listings
+[mid] Fetching history for 64 candidates (1 batches)
+[mid] History fetched in 0.8s
+[mid] Filtered out 22 items last sold > 24h ago
+[mid] Fetching item names for 42 candidates
+[mid] Falling back to v2.xivapi for 16 items
+[mid] Names fetched in 1.0s
+[mid] Final candidates: 42
+[mid] ✅ 42 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_mid.json
+[gillionaire] [25/169] 193.3s — 0 candidates
+[gillionaire] [50/169] 193.3s — 0 candidates
+[gillionaire] [75/169] 193.3s — 1 candidates
+[gillionaire] [100/169] 193.3s — 8 candidates
+[gillionaire] [125/169] 193.3s — 12 candidates
+[gillionaire] [150/169] 193.3s — 29 candidates
+[gillionaire] [169/169] 193.3s — 62 candidates
+[gillionaire] 169 batches in 193.3s | 62 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 62 candidates (1 batches)
+[gillionaire] History fetched in 0.3s
+[gillionaire] Filtered out 25 items last sold > 72h ago
+[gillionaire] Fetching item names for 37 candidates
+[gillionaire] Falling back to v2.xivapi for 22 items
+[gillionaire] Names fetched in 0.9s
+[gillionaire] Final candidates: 37
+[gillionaire] ✅ 37 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_gillionaire.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T15:00:01.640Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Balmung
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Balmung
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Balmung
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Balmung
+[high] Balmung (ID 91) [DC: Crystal]
+[mid] Balmung (ID 91) [DC: Crystal]
+[low] Balmung (ID 91) [DC: Crystal]
+[gillionaire] Balmung (ID 91) [DC: Crystal]
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 144.9s — 0 candidates
+[mid] [50/169] 144.9s — 8 candidates
+[mid] [75/169] 144.9s — 12 candidates
+[mid] [100/169] 144.9s — 19 candidates
+[mid] [125/169] 144.9s — 31 candidates
+[mid] [150/169] 144.9s — 36 candidates
+[mid] [169/169] 144.9s — 63 candidates
+[mid] 169 batches in 144.9s | 63 flip candidates | 0 items with no listings
+[mid] Fetching history for 63 candidates (1 batches)
+[mid] History fetched in 0.5s
+[mid] Filtered out 21 items last sold > 24h ago
+[mid] Fetching item names for 42 candidates
+[mid] Falling back to v2.xivapi for 17 items
+[mid] Names fetched in 1.5s
+[mid] Final candidates: 42
+[mid] ✅ 42 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_mid.json
+[gillionaire] [25/169] 157.2s — 0 candidates
+[gillionaire] [50/169] 157.2s — 0 candidates
+[gillionaire] [75/169] 157.2s — 1 candidates
+[gillionaire] [100/169] 157.2s — 8 candidates
+[gillionaire] [125/169] 157.2s — 12 candidates
+[gillionaire] [150/169] 157.2s — 27 candidates
+[gillionaire] [169/169] 157.2s — 59 candidates
+[gillionaire] 169 batches in 157.2s | 59 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 59 candidates (1 batches)
+[gillionaire] History fetched in 0.3s
+[gillionaire] Filtered out 23 items last sold > 72h ago
+[gillionaire] Fetching item names for 36 candidates
+[gillionaire] Falling back to v2.xivapi for 21 items
+[gillionaire] Names fetched in 1.3s
+[gillionaire] Final candidates: 36
+[gillionaire] ✅ 36 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_gillionaire.json
+[high] [25/169] 165.9s — 0 candidates
+[high] [50/169] 165.9s — 3 candidates
+[high] [75/169] 165.9s — 5 candidates
+[high] [100/169] 165.9s — 12 candidates
+[high] [125/169] 165.9s — 20 candidates
+[high] [150/169] 165.9s — 31 candidates
+[high] [169/169] 165.9s — 93 candidates
+[high] 169 batches in 165.9s | 93 flip candidates | 0 items with no listings
+[high] Fetching history for 93 candidates (1 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 27 items last sold > 48h ago
+[high] Fetching item names for 66 candidates
+[high] Falling back to v2.xivapi for 45 items
+[high] Names fetched in 1.6s
+[high] Final candidates: 66
+[high] ✅ 66 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_high.json
+[low] [25/169] 175.8s — 0 candidates
+[low] [50/169] 175.8s — 29 candidates
+[low] [75/169] 175.8s — 43 candidates
+[low] [100/169] 175.8s — 73 candidates
+[low] [125/169] 175.8s — 109 candidates
+[low] [150/169] 175.8s — 132 candidates
+[low] [169/169] 175.8s — 187 candidates
+[low] 169 batches in 175.8s | 187 flip candidates | 0 items with no listings
+[low] Fetching history for 187 candidates (2 batches)
+[low] History fetched in 0.6s
+[low] Filtered out 103 items last sold > 16h ago
+[low] Fetching item names for 84 candidates
+[low] Falling back to v2.xivapi for 28 items
+[low] Names fetched in 1.0s
+[low] Final candidates: 84
+[low] ✅ 84 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/balmung_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
