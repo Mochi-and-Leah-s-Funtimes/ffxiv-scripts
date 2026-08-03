@@ -1,0 +1,934 @@
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T02:15:01.412Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[mid] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[low] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[low] [25/169] 120.7s — 0 candidates
+[low] [50/169] 120.7s — 24 candidates
+[low] [75/169] 120.7s — 40 candidates
+[low] [100/169] 120.7s — 68 candidates
+[low] [125/169] 120.7s — 95 candidates
+[low] [150/169] 120.7s — 112 candidates
+[low] [169/169] 120.7s — 144 candidates
+[low] 169 batches in 120.7s | 144 flip candidates | 0 items with no listings
+[low] Fetching history for 144 candidates (2 batches)
+[low] History fetched in 0.3s
+[low] Filtered out 126 items last sold > 4h ago
+[low] Fetching item names for 18 candidates
+[low] Falling back to v2.xivapi for 6 items
+[low] Names fetched in 0.4s
+[low] Final candidates: 18
+[low] ✅ 18 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+[high] [25/169] 123.8s — 0 candidates
+[high] [50/169] 123.8s — 5 candidates
+[high] [75/169] 123.8s — 9 candidates
+[high] [100/169] 123.8s — 15 candidates
+[high] [125/169] 123.8s — 31 candidates
+[high] [150/169] 123.8s — 44 candidates
+[high] [169/169] 123.8s — 98 candidates
+[high] 169 batches in 123.8s | 98 flip candidates | 0 items with no listings
+[high] Fetching history for 98 candidates (1 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 59 items last sold > 48h ago
+[high] Fetching item names for 39 candidates
+[high] Falling back to v2.xivapi for 18 items
+[high] Names fetched in 1.1s
+[high] Final candidates: 39
+[high] ✅ 39 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[mid] [25/169] 134.3s — 0 candidates
+[mid] [50/169] 134.3s — 11 candidates
+[mid] [75/169] 134.3s — 13 candidates
+[mid] [100/169] 134.3s — 20 candidates
+[mid] [125/169] 134.3s — 28 candidates
+[mid] [150/169] 134.3s — 32 candidates
+[mid] [169/169] 134.3s — 58 candidates
+[mid] 169 batches in 134.3s | 58 flip candidates | 0 items with no listings
+[mid] Fetching history for 58 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 45 items last sold > 16h ago
+[mid] Fetching item names for 13 candidates
+[gillionaire] [25/169] 135.2s — 0 candidates
+[gillionaire] [50/169] 135.2s — 0 candidates
+[gillionaire] [75/169] 135.2s — 2 candidates
+[gillionaire] [100/169] 135.2s — 8 candidates
+[gillionaire] [125/169] 135.2s — 17 candidates
+[gillionaire] [150/169] 135.2s — 25 candidates
+[gillionaire] [169/169] 135.2s — 59 candidates
+[gillionaire] 169 batches in 135.2s | 59 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 59 candidates (1 batches)
+[mid] Falling back to v2.xivapi for 7 items
+[gillionaire] History fetched in 0.4s
+[gillionaire] Filtered out 34 items last sold > 72h ago
+[gillionaire] Fetching item names for 25 candidates
+[mid] Names fetched in 0.8s
+[mid] Final candidates: 13
+[mid] ✅ 13 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[gillionaire] Falling back to v2.xivapi for 15 items
+[gillionaire] Names fetched in 1.0s
+[gillionaire] Final candidates: 25
+[gillionaire] ✅ 25 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T03:15:01.764Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[mid] Seraph (ID 405) [DC: Dynamis]
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[high] [25/169] 124.2s — 0 candidates
+[high] [50/169] 124.2s — 5 candidates
+[high] [75/169] 124.2s — 9 candidates
+[high] [100/169] 124.2s — 15 candidates
+[high] [125/169] 124.2s — 31 candidates
+[high] [150/169] 124.2s — 42 candidates
+[high] [169/169] 124.2s — 100 candidates
+[high] 169 batches in 124.2s | 100 flip candidates | 0 items with no listings
+[high] Fetching history for 100 candidates (1 batches)
+[high] History fetched in 0.6s
+[high] Filtered out 61 items last sold > 48h ago
+[high] Fetching item names for 39 candidates
+[high] Falling back to v2.xivapi for 18 items
+[high] Names fetched in 1.4s
+[high] Final candidates: 39
+[high] ✅ 39 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[mid] [25/169] 134.1s — 0 candidates
+[mid] [50/169] 134.1s — 9 candidates
+[mid] [75/169] 134.1s — 11 candidates
+[mid] [100/169] 134.1s — 18 candidates
+[mid] [125/169] 134.1s — 26 candidates
+[mid] [150/169] 134.1s — 29 candidates
+[mid] [169/169] 134.1s — 56 candidates
+[mid] 169 batches in 134.1s | 56 flip candidates | 0 items with no listings
+[mid] Fetching history for 56 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 42 items last sold > 16h ago
+[mid] Fetching item names for 14 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[mid] Names fetched in 0.9s
+[mid] Final candidates: 14
+[mid] ✅ 14 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[gillionaire] [25/169] 135.8s — 0 candidates
+[gillionaire] [50/169] 135.8s — 0 candidates
+[gillionaire] [75/169] 135.8s — 2 candidates
+[gillionaire] [100/169] 135.8s — 8 candidates
+[gillionaire] [125/169] 135.8s — 17 candidates
+[gillionaire] [150/169] 135.8s — 25 candidates
+[gillionaire] [169/169] 135.8s — 60 candidates
+[gillionaire] 169 batches in 135.8s | 60 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 60 candidates (1 batches)
+[low] [25/169] 135.9s — 0 candidates
+[low] [50/169] 135.9s — 23 candidates
+[low] [75/169] 135.9s — 40 candidates
+[low] [100/169] 135.9s — 67 candidates
+[low] [125/169] 135.9s — 95 candidates
+[low] [150/169] 135.9s — 112 candidates
+[low] [169/169] 135.9s — 148 candidates
+[low] 169 batches in 135.9s | 148 flip candidates | 0 items with no listings
+[low] Fetching history for 148 candidates (2 batches)
+[gillionaire] History fetched in 0.3s
+[gillionaire] Filtered out 35 items last sold > 72h ago
+[gillionaire] Fetching item names for 25 candidates
+[gillionaire] Falling back to v2.xivapi for 15 items
+[low] History fetched in 0.4s
+[low] Filtered out 133 items last sold > 4h ago
+[low] Fetching item names for 15 candidates
+[low] Falling back to v2.xivapi for 5 items
+[gillionaire] Names fetched in 0.7s
+[gillionaire] Final candidates: 25
+[gillionaire] ✅ 25 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[low] Names fetched in 0.5s
+[low] Final candidates: 15
+[low] ✅ 15 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T04:15:01.337Z
+
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[mid] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[low] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[high] [25/169] 131.5s — 0 candidates
+[high] [50/169] 131.5s — 5 candidates
+[high] [75/169] 131.5s — 9 candidates
+[high] [100/169] 131.5s — 14 candidates
+[high] [125/169] 131.5s — 30 candidates
+[high] [150/169] 131.5s — 43 candidates
+[high] [169/169] 131.5s — 103 candidates
+[high] 169 batches in 131.5s | 103 flip candidates | 0 items with no listings
+[high] Fetching history for 103 candidates (2 batches)
+[high] History fetched in 0.4s
+[high] Filtered out 63 items last sold > 48h ago
+[high] Fetching item names for 40 candidates
+[high] Falling back to v2.xivapi for 22 items
+[high] Names fetched in 1.5s
+[high] Final candidates: 40
+[high] ✅ 40 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[mid] [25/169] 135.7s — 0 candidates
+[mid] [50/169] 135.7s — 8 candidates
+[mid] [75/169] 135.7s — 10 candidates
+[mid] [100/169] 135.7s — 17 candidates
+[mid] [125/169] 135.7s — 25 candidates
+[mid] [150/169] 135.7s — 28 candidates
+[mid] [169/169] 135.7s — 55 candidates
+[mid] 169 batches in 135.7s | 55 flip candidates | 0 items with no listings
+[mid] Fetching history for 55 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 41 items last sold > 16h ago
+[mid] Fetching item names for 14 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[mid] Names fetched in 1.0s
+[mid] Final candidates: 14
+[mid] ✅ 14 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[gillionaire] [25/169] 137.9s — 0 candidates
+[gillionaire] [50/169] 137.9s — 0 candidates
+[gillionaire] [75/169] 137.9s — 2 candidates
+[gillionaire] [100/169] 137.9s — 7 candidates
+[gillionaire] [125/169] 137.9s — 16 candidates
+[gillionaire] [150/169] 137.9s — 24 candidates
+[gillionaire] [169/169] 137.9s — 60 candidates
+[gillionaire] 169 batches in 137.9s | 60 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 60 candidates (1 batches)
+[gillionaire] History fetched in 0.4s
+[gillionaire] Filtered out 36 items last sold > 72h ago
+[gillionaire] Fetching item names for 24 candidates
+[gillionaire] Falling back to v2.xivapi for 16 items
+[gillionaire] Names fetched in 0.6s
+[gillionaire] Final candidates: 24
+[gillionaire] ✅ 24 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[low] [25/169] 140.6s — 0 candidates
+[low] [50/169] 140.6s — 23 candidates
+[low] [75/169] 140.6s — 40 candidates
+[low] [100/169] 140.6s — 67 candidates
+[low] [125/169] 140.6s — 92 candidates
+[low] [150/169] 140.6s — 109 candidates
+[low] [169/169] 140.6s — 145 candidates
+[low] 169 batches in 140.6s | 145 flip candidates | 0 items with no listings
+[low] Fetching history for 145 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 129 items last sold > 4h ago
+[low] Fetching item names for 16 candidates
+[low] Falling back to v2.xivapi for 6 items
+[low] Names fetched in 0.3s
+[low] Final candidates: 16
+[low] ✅ 16 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T05:15:01.710Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] [25/169] 129.2s — 0 candidates
+[high] [50/169] 129.2s — 5 candidates
+[high] [75/169] 129.2s — 9 candidates
+[high] [100/169] 129.2s — 14 candidates
+[high] [125/169] 129.2s — 28 candidates
+[high] [150/169] 129.2s — 40 candidates
+[high] [169/169] 129.2s — 99 candidates
+[high] 169 batches in 129.2s | 99 flip candidates | 0 items with no listings
+[high] Fetching history for 99 candidates (1 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 60 items last sold > 48h ago
+[high] Fetching item names for 39 candidates
+[high] Falling back to v2.xivapi for 21 items
+[high] Names fetched in 1.1s
+[high] Final candidates: 39
+[high] ✅ 39 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[gillionaire] [25/169] 133.1s — 0 candidates
+[gillionaire] [50/169] 133.1s — 0 candidates
+[gillionaire] [75/169] 133.1s — 2 candidates
+[gillionaire] [100/169] 133.1s — 7 candidates
+[gillionaire] [125/169] 133.1s — 15 candidates
+[gillionaire] [150/169] 133.1s — 23 candidates
+[gillionaire] [169/169] 133.1s — 58 candidates
+[gillionaire] 169 batches in 133.1s | 58 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 58 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 35 items last sold > 72h ago
+[gillionaire] Fetching item names for 23 candidates
+[gillionaire] Falling back to v2.xivapi for 15 items
+[gillionaire] Names fetched in 1.0s
+[gillionaire] Final candidates: 23
+[gillionaire] ✅ 23 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[mid] [25/169] 141.9s — 0 candidates
+[mid] [50/169] 141.9s — 9 candidates
+[mid] [75/169] 141.9s — 11 candidates
+[mid] [100/169] 141.9s — 19 candidates
+[mid] [125/169] 141.9s — 28 candidates
+[mid] [150/169] 141.9s — 31 candidates
+[mid] [169/169] 141.9s — 58 candidates
+[mid] 169 batches in 141.9s | 58 flip candidates | 0 items with no listings
+[mid] Fetching history for 58 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 41 items last sold > 16h ago
+[mid] Fetching item names for 17 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[low] [25/169] 142.7s — 0 candidates
+[low] [50/169] 142.7s — 25 candidates
+[low] [75/169] 142.7s — 41 candidates
+[low] [100/169] 142.7s — 68 candidates
+[low] [125/169] 142.7s — 92 candidates
+[low] [150/169] 142.7s — 110 candidates
+[low] [169/169] 142.7s — 144 candidates
+[low] 169 batches in 142.7s | 144 flip candidates | 0 items with no listings
+[low] Fetching history for 144 candidates (2 batches)
+[mid] Names fetched in 0.6s
+[mid] Final candidates: 17
+[mid] ✅ 17 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[low] History fetched in 0.4s
+[low] Filtered out 128 items last sold > 4h ago
+[low] Fetching item names for 16 candidates
+[low] Falling back to v2.xivapi for 6 items
+[low] Names fetched in 0.8s
+[low] Final candidates: 16
+[low] ✅ 16 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T06:15:01.743Z
+
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] [25/169] 125.1s — 0 candidates
+[gillionaire] [50/169] 125.1s — 0 candidates
+[gillionaire] [75/169] 125.1s — 2 candidates
+[gillionaire] [100/169] 125.1s — 7 candidates
+[gillionaire] [125/169] 125.1s — 15 candidates
+[gillionaire] [150/169] 125.1s — 23 candidates
+[gillionaire] [169/169] 125.1s — 60 candidates
+[gillionaire] 169 batches in 125.1s | 60 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 60 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 35 items last sold > 72h ago
+[gillionaire] Fetching item names for 25 candidates
+[gillionaire] Falling back to v2.xivapi for 17 items
+[high] [25/169] 125.7s — 0 candidates
+[high] [50/169] 125.7s — 5 candidates
+[high] [75/169] 125.7s — 9 candidates
+[high] [100/169] 125.7s — 14 candidates
+[high] [125/169] 125.7s — 28 candidates
+[high] [150/169] 125.7s — 41 candidates
+[high] [169/169] 125.7s — 101 candidates
+[high] 169 batches in 125.7s | 101 flip candidates | 0 items with no listings
+[high] Fetching history for 101 candidates (2 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 61 items last sold > 48h ago
+[high] Fetching item names for 40 candidates
+[high] Falling back to v2.xivapi for 22 items
+[gillionaire] Names fetched in 1.2s
+[gillionaire] Final candidates: 25
+[gillionaire] ✅ 25 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[high] Names fetched in 1.3s
+[high] Final candidates: 40
+[high] ✅ 40 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[low] [25/169] 136.2s — 0 candidates
+[low] [50/169] 136.2s — 25 candidates
+[low] [75/169] 136.2s — 41 candidates
+[low] [100/169] 136.2s — 66 candidates
+[low] [125/169] 136.2s — 89 candidates
+[low] [150/169] 136.2s — 107 candidates
+[low] [169/169] 136.2s — 141 candidates
+[low] 169 batches in 136.2s | 141 flip candidates | 0 items with no listings
+[low] Fetching history for 141 candidates (2 batches)
+[low] History fetched in 0.5s
+[low] Filtered out 132 items last sold > 4h ago
+[low] Fetching item names for 9 candidates
+[low] Falling back to v2.xivapi for 5 items
+[low] Names fetched in 0.5s
+[low] Final candidates: 9
+[low] ✅ 9 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+[mid] [25/169] 143.6s — 0 candidates
+[mid] [50/169] 143.6s — 9 candidates
+[mid] [75/169] 143.6s — 11 candidates
+[mid] [100/169] 143.6s — 19 candidates
+[mid] [125/169] 143.6s — 28 candidates
+[mid] [150/169] 143.6s — 31 candidates
+[mid] [169/169] 143.6s — 57 candidates
+[mid] 169 batches in 143.6s | 57 flip candidates | 0 items with no listings
+[mid] Fetching history for 57 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 40 items last sold > 16h ago
+[mid] Fetching item names for 17 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[mid] Names fetched in 0.5s
+[mid] Final candidates: 17
+[mid] ✅ 17 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T07:15:01.514Z
+
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] [25/169] 116.2s — 0 candidates
+[high] [50/169] 116.2s — 3 candidates
+[high] [75/169] 116.2s — 7 candidates
+[high] [100/169] 116.2s — 12 candidates
+[high] [125/169] 116.2s — 25 candidates
+[high] [150/169] 116.2s — 38 candidates
+[high] [169/169] 116.2s — 97 candidates
+[high] 169 batches in 116.2s | 97 flip candidates | 0 items with no listings
+[high] Fetching history for 97 candidates (1 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 59 items last sold > 48h ago
+[high] Fetching item names for 38 candidates
+[high] Falling back to v2.xivapi for 22 items
+[high] Names fetched in 1.5s
+[high] Final candidates: 38
+[high] ✅ 38 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[low] [25/169] 118.0s — 0 candidates
+[low] [50/169] 118.0s — 23 candidates
+[low] [75/169] 118.0s — 39 candidates
+[low] [100/169] 118.0s — 64 candidates
+[low] [125/169] 118.0s — 87 candidates
+[low] [150/169] 118.0s — 105 candidates
+[low] [169/169] 118.0s — 138 candidates
+[low] 169 batches in 118.0s | 138 flip candidates | 0 items with no listings
+[low] Fetching history for 138 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 132 items last sold > 4h ago
+[low] Fetching item names for 6 candidates
+[low] Falling back to v2.xivapi for 4 items
+[low] Names fetched in 0.9s
+[low] Final candidates: 6
+[low] ✅ 6 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+[gillionaire] [25/169] 120.1s — 0 candidates
+[gillionaire] [50/169] 120.1s — 0 candidates
+[gillionaire] [75/169] 120.1s — 2 candidates
+[gillionaire] [100/169] 120.1s — 7 candidates
+[gillionaire] [125/169] 120.1s — 15 candidates
+[gillionaire] [150/169] 120.1s — 23 candidates
+[gillionaire] [169/169] 120.1s — 58 candidates
+[gillionaire] 169 batches in 120.1s | 58 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 58 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 35 items last sold > 72h ago
+[gillionaire] Fetching item names for 23 candidates
+[gillionaire] Falling back to v2.xivapi for 16 items
+[gillionaire] Names fetched in 0.6s
+[gillionaire] Final candidates: 23
+[gillionaire] ✅ 23 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[mid] [25/169] 138.1s — 0 candidates
+[mid] [50/169] 138.1s — 9 candidates
+[mid] [75/169] 138.1s — 11 candidates
+[mid] [100/169] 138.1s — 19 candidates
+[mid] [125/169] 138.1s — 28 candidates
+[mid] [150/169] 138.1s — 31 candidates
+[mid] [169/169] 138.1s — 57 candidates
+[mid] 169 batches in 138.1s | 57 flip candidates | 0 items with no listings
+[mid] Fetching history for 57 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 40 items last sold > 16h ago
+[mid] Fetching item names for 17 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[mid] Names fetched in 1.1s
+[mid] Final candidates: 17
+[mid] ✅ 17 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T08:15:01.374Z
+
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 102.6s — 0 candidates
+[mid] [50/169] 102.6s — 9 candidates
+[mid] [75/169] 102.6s — 11 candidates
+[mid] [100/169] 102.6s — 19 candidates
+[mid] [125/169] 102.6s — 27 candidates
+[mid] [150/169] 102.6s — 30 candidates
+[mid] [169/169] 102.6s — 55 candidates
+[mid] 169 batches in 102.6s | 55 flip candidates | 0 items with no listings
+[mid] Fetching history for 55 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 38 items last sold > 16h ago
+[mid] Fetching item names for 17 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[mid] Names fetched in 1.1s
+[mid] Final candidates: 17
+[mid] ✅ 17 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[gillionaire] [25/169] 108.4s — 0 candidates
+[gillionaire] [50/169] 108.4s — 0 candidates
+[gillionaire] [75/169] 108.4s — 2 candidates
+[gillionaire] [100/169] 108.4s — 7 candidates
+[gillionaire] [125/169] 108.4s — 15 candidates
+[gillionaire] [150/169] 108.4s — 23 candidates
+[gillionaire] [169/169] 108.4s — 58 candidates
+[gillionaire] 169 batches in 108.4s | 58 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 58 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 34 items last sold > 72h ago
+[gillionaire] Fetching item names for 24 candidates
+[gillionaire] Falling back to v2.xivapi for 16 items
+[gillionaire] Names fetched in 1.2s
+[gillionaire] Final candidates: 24
+[gillionaire] ✅ 24 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[high] [25/169] 141.3s — 0 candidates
+[high] [50/169] 141.3s — 3 candidates
+[high] [75/169] 141.3s — 7 candidates
+[high] [100/169] 141.3s — 13 candidates
+[high] [125/169] 141.3s — 25 candidates
+[high] [150/169] 141.3s — 39 candidates
+[high] [169/169] 141.3s — 99 candidates
+[high] 169 batches in 141.3s | 99 flip candidates | 0 items with no listings
+[high] Fetching history for 99 candidates (1 batches)
+[high] History fetched in 0.2s
+[high] Filtered out 62 items last sold > 48h ago
+[high] Fetching item names for 37 candidates
+[high] Falling back to v2.xivapi for 22 items
+[high] Names fetched in 1.1s
+[high] Final candidates: 37
+[high] ✅ 37 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[low] [25/169] 146.6s — 0 candidates
+[low] [50/169] 146.6s — 23 candidates
+[low] [75/169] 146.6s — 39 candidates
+[low] [100/169] 146.6s — 65 candidates
+[low] [125/169] 146.6s — 88 candidates
+[low] [150/169] 146.6s — 107 candidates
+[low] [169/169] 146.6s — 140 candidates
+[low] 169 batches in 146.6s | 140 flip candidates | 0 items with no listings
+[low] Fetching history for 140 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 131 items last sold > 4h ago
+[low] Fetching item names for 9 candidates
+[low] Falling back to v2.xivapi for 4 items
+[low] Names fetched in 0.6s
+[low] Final candidates: 9
+[low] ✅ 9 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T09:15:01.271Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 109.6s — 0 candidates
+[mid] [50/169] 109.6s — 9 candidates
+[mid] [75/169] 109.6s — 11 candidates
+[mid] [100/169] 109.6s — 19 candidates
+[mid] [125/169] 109.6s — 27 candidates
+[mid] [150/169] 109.6s — 30 candidates
+[mid] [169/169] 109.6s — 56 candidates
+[mid] 169 batches in 109.6s | 56 flip candidates | 0 items with no listings
+[mid] Fetching history for 56 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 38 items last sold > 16h ago
+[mid] Fetching item names for 18 candidates
+[high] [25/169] 110.1s — 0 candidates
+[high] [50/169] 110.1s — 3 candidates
+[high] [75/169] 110.1s — 7 candidates
+[high] [100/169] 110.1s — 13 candidates
+[high] [125/169] 110.1s — 25 candidates
+[high] [150/169] 110.1s — 39 candidates
+[high] [169/169] 110.1s — 98 candidates
+[high] 169 batches in 110.1s | 98 flip candidates | 0 items with no listings
+[high] Fetching history for 98 candidates (1 batches)
+[mid] Falling back to v2.xivapi for 8 items
+[high] History fetched in 0.2s
+[high] Filtered out 61 items last sold > 48h ago
+[high] Fetching item names for 37 candidates
+[high] Falling back to v2.xivapi for 22 items
+[mid] Names fetched in 1.1s
+[mid] Final candidates: 18
+[mid] ✅ 18 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[high] Names fetched in 1.4s
+[high] Final candidates: 37
+[high] ✅ 37 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[gillionaire] [25/169] 114.2s — 0 candidates
+[gillionaire] [50/169] 114.2s — 0 candidates
+[gillionaire] [75/169] 114.2s — 2 candidates
+[gillionaire] [100/169] 114.2s — 7 candidates
+[gillionaire] [125/169] 114.2s — 15 candidates
+[gillionaire] [150/169] 114.2s — 24 candidates
+[gillionaire] [169/169] 114.2s — 59 candidates
+[gillionaire] 169 batches in 114.2s | 59 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 59 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 36 items last sold > 72h ago
+[gillionaire] Fetching item names for 23 candidates
+[gillionaire] Falling back to v2.xivapi for 15 items
+[gillionaire] Names fetched in 0.6s
+[gillionaire] Final candidates: 23
+[gillionaire] ✅ 23 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[low] [25/169] 127.8s — 0 candidates
+[low] [50/169] 127.8s — 23 candidates
+[low] [75/169] 127.8s — 39 candidates
+[low] [100/169] 127.8s — 66 candidates
+[low] [125/169] 127.8s — 90 candidates
+[low] [150/169] 127.8s — 109 candidates
+[low] [169/169] 127.8s — 140 candidates
+[low] 169 batches in 127.8s | 140 flip candidates | 0 items with no listings
+[low] Fetching history for 140 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 133 items last sold > 4h ago
+[low] Fetching item names for 7 candidates
+[low] Falling back to v2.xivapi for 2 items
+[low] Names fetched in 0.3s
+[low] Final candidates: 7
+[low] ✅ 7 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T10:15:01.978Z
+
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] [25/169] 109.4s — 0 candidates
+[gillionaire] [50/169] 109.4s — 0 candidates
+[gillionaire] [75/169] 109.4s — 2 candidates
+[gillionaire] [100/169] 109.4s — 7 candidates
+[gillionaire] [125/169] 109.4s — 15 candidates
+[gillionaire] [150/169] 109.4s — 24 candidates
+[gillionaire] [169/169] 109.4s — 62 candidates
+[gillionaire] 169 batches in 109.4s | 62 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 62 candidates (1 batches)
+[gillionaire] History fetched in 0.3s
+[gillionaire] Filtered out 36 items last sold > 72h ago
+[gillionaire] Fetching item names for 26 candidates
+[gillionaire] Falling back to v2.xivapi for 18 items
+[gillionaire] Names fetched in 1.4s
+[gillionaire] Final candidates: 26
+[gillionaire] ✅ 26 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[high] [25/169] 115.6s — 0 candidates
+[high] [50/169] 115.6s — 3 candidates
+[high] [75/169] 115.6s — 7 candidates
+[high] [100/169] 115.6s — 13 candidates
+[high] [125/169] 115.6s — 25 candidates
+[high] [150/169] 115.6s — 39 candidates
+[high] [169/169] 115.6s — 96 candidates
+[high] 169 batches in 115.6s | 96 flip candidates | 0 items with no listings
+[high] Fetching history for 96 candidates (1 batches)
+[high] History fetched in 0.2s
+[high] Filtered out 59 items last sold > 48h ago
+[high] Fetching item names for 37 candidates
+[high] Falling back to v2.xivapi for 22 items
+[high] Names fetched in 1.4s
+[high] Final candidates: 37
+[high] ✅ 37 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[mid] [25/169] 126.0s — 0 candidates
+[mid] [50/169] 126.0s — 9 candidates
+[mid] [75/169] 126.0s — 11 candidates
+[mid] [100/169] 126.0s — 19 candidates
+[mid] [125/169] 126.0s — 27 candidates
+[mid] [150/169] 126.0s — 30 candidates
+[mid] [169/169] 126.0s — 57 candidates
+[mid] 169 batches in 126.0s | 57 flip candidates | 0 items with no listings
+[mid] Fetching history for 57 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 39 items last sold > 16h ago
+[mid] Fetching item names for 18 candidates
+[mid] Falling back to v2.xivapi for 8 items
+[mid] Names fetched in 0.7s
+[mid] Final candidates: 18
+[mid] ✅ 18 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[low] [25/169] 135.6s — 0 candidates
+[low] [50/169] 135.6s — 21 candidates
+[low] [75/169] 135.6s — 37 candidates
+[low] [100/169] 135.6s — 64 candidates
+[low] [125/169] 135.6s — 88 candidates
+[low] [150/169] 135.6s — 107 candidates
+[low] [169/169] 135.6s — 141 candidates
+[low] 169 batches in 135.6s | 141 flip candidates | 0 items with no listings
+[low] Fetching history for 141 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 137 items last sold > 4h ago
+[low] Fetching item names for 4 candidates
+[low] Falling back to v2.xivapi for 1 items
+[low] Names fetched in 0.6s
+[low] Final candidates: 4
+[low] ✅ 4 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T11:15:01.938Z
+
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[mid] Seraph (ID 405) [DC: Dynamis]
+[low] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 113.0s — 0 candidates
+[mid] [50/169] 113.0s — 9 candidates
+[mid] [75/169] 113.0s — 11 candidates
+[mid] [100/169] 113.0s — 19 candidates
+[mid] [125/169] 113.0s — 27 candidates
+[mid] [150/169] 113.0s — 31 candidates
+[mid] [169/169] 113.0s — 58 candidates
+[mid] 169 batches in 113.0s | 58 flip candidates | 0 items with no listings
+[mid] Fetching history for 58 candidates (1 batches)
+[mid] History fetched in 0.2s
+[mid] Filtered out 43 items last sold > 16h ago
+[mid] Fetching item names for 15 candidates
+[mid] Falling back to v2.xivapi for 7 items
+[mid] Names fetched in 1.1s
+[mid] Final candidates: 15
+[mid] ✅ 15 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[gillionaire] [25/169] 122.8s — 0 candidates
+[gillionaire] [50/169] 122.8s — 0 candidates
+[gillionaire] [75/169] 122.8s — 2 candidates
+[gillionaire] [100/169] 122.8s — 7 candidates
+[gillionaire] [125/169] 122.8s — 15 candidates
+[gillionaire] [150/169] 122.8s — 24 candidates
+[gillionaire] [169/169] 122.8s — 62 candidates
+[gillionaire] 169 batches in 122.8s | 62 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 62 candidates (1 batches)
+[gillionaire] History fetched in 0.2s
+[gillionaire] Filtered out 36 items last sold > 72h ago
+[gillionaire] Fetching item names for 26 candidates
+[gillionaire] Falling back to v2.xivapi for 18 items
+[gillionaire] Names fetched in 1.6s
+[gillionaire] Final candidates: 26
+[gillionaire] ✅ 26 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+[high] [25/169] 138.4s — 0 candidates
+[high] [50/169] 138.4s — 3 candidates
+[high] [75/169] 138.4s — 7 candidates
+[high] [100/169] 138.4s — 13 candidates
+[high] [125/169] 138.4s — 25 candidates
+[high] [150/169] 138.4s — 39 candidates
+[high] [169/169] 138.4s — 98 candidates
+[high] 169 batches in 138.4s | 98 flip candidates | 0 items with no listings
+[high] Fetching history for 98 candidates (1 batches)
+[high] History fetched in 0.6s
+[high] Filtered out 60 items last sold > 48h ago
+[high] Fetching item names for 38 candidates
+[high] Falling back to v2.xivapi for 22 items
+[low] [25/169] 139.5s — 0 candidates
+[low] [50/169] 139.5s — 21 candidates
+[low] [75/169] 139.5s — 36 candidates
+[low] [100/169] 139.5s — 62 candidates
+[low] [125/169] 139.5s — 85 candidates
+[low] [150/169] 139.5s — 105 candidates
+[low] [169/169] 139.5s — 139 candidates
+[low] 169 batches in 139.5s | 139 flip candidates | 0 items with no listings
+[low] Fetching history for 139 candidates (2 batches)
+[low] History fetched in 0.4s
+[low] Filtered out 137 items last sold > 4h ago
+[low] Fetching item names for 2 candidates
+[low] Falling back to v2.xivapi for 1 items
+[high] Names fetched in 1.4s
+[high] Final candidates: 38
+[high] ✅ 38 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[low] Names fetched in 0.3s
+[low] Final candidates: 2
+[low] ✅ 2 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T12:15:01.373Z
+
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Seraph
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Seraph
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Seraph
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Seraph
+[low] Seraph (ID 405) [DC: Dynamis]
+[high] Seraph (ID 405) [DC: Dynamis]
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] Seraph (ID 405) [DC: Dynamis]
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[gillionaire] Seraph (ID 405) [DC: Dynamis]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 142.0s — 0 candidates
+[mid] [50/169] 142.0s — 9 candidates
+[mid] [75/169] 142.0s — 11 candidates
+[mid] [100/169] 142.0s — 19 candidates
+[mid] [125/169] 142.0s — 28 candidates
+[mid] [150/169] 142.0s — 32 candidates
+[mid] [169/169] 142.0s — 59 candidates
+[mid] 169 batches in 142.0s | 59 flip candidates | 0 items with no listings
+[mid] Fetching history for 59 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 45 items last sold > 16h ago
+[mid] Fetching item names for 14 candidates
+[high] [25/169] 143.0s — 0 candidates
+[high] [50/169] 143.0s — 3 candidates
+[high] [75/169] 143.0s — 7 candidates
+[high] [100/169] 143.0s — 13 candidates
+[high] [125/169] 143.0s — 25 candidates
+[high] [150/169] 143.0s — 39 candidates
+[high] [169/169] 143.0s — 94 candidates
+[high] 169 batches in 143.0s | 94 flip candidates | 0 items with no listings
+[high] Fetching history for 94 candidates (1 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 56 items last sold > 48h ago
+[high] Fetching item names for 38 candidates
+[mid] Falling back to v2.xivapi for 6 items
+[high] Falling back to v2.xivapi for 22 items
+[mid] Names fetched in 1.0s
+[mid] Final candidates: 14
+[mid] ✅ 14 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_mid.json
+[high] Names fetched in 1.3s
+[high] Final candidates: 38
+[high] ✅ 38 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_high.json
+[low] [25/169] 146.4s — 0 candidates
+[low] [50/169] 146.4s — 22 candidates
+[low] [75/169] 146.4s — 37 candidates
+[low] [100/169] 146.4s — 64 candidates
+[low] [125/169] 146.4s — 88 candidates
+[low] [150/169] 146.4s — 108 candidates
+[low] [169/169] 146.4s — 143 candidates
+[low] 169 batches in 146.4s | 143 flip candidates | 0 items with no listings
+[low] Fetching history for 143 candidates (2 batches)
+[low] History fetched in 0.3s
+[low] Filtered out 141 items last sold > 4h ago
+[low] Fetching item names for 2 candidates
+[low] Names fetched in 0.1s
+[low] Final candidates: 2
+[low] ✅ 2 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_low.json
+[gillionaire] [25/169] 153.3s — 0 candidates
+[gillionaire] [50/169] 153.3s — 0 candidates
+[gillionaire] [75/169] 153.3s — 2 candidates
+[gillionaire] [100/169] 153.3s — 6 candidates
+[gillionaire] [125/169] 153.3s — 14 candidates
+[gillionaire] [150/169] 153.3s — 23 candidates
+[gillionaire] [169/169] 153.3s — 60 candidates
+[gillionaire] 169 batches in 153.3s | 60 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 60 candidates (1 batches)
+[gillionaire] History fetched in 0.3s
+[gillionaire] Filtered out 35 items last sold > 72h ago
+[gillionaire] Fetching item names for 25 candidates
+[gillionaire] Falling back to v2.xivapi for 17 items
+[gillionaire] Names fetched in 0.7s
+[gillionaire] Final candidates: 25
+[gillionaire] ✅ 25 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/seraph_gillionaire.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
