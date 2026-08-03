@@ -45,11 +45,20 @@
   <header class="bg-gradient-to-r from-zinc-800 to-zinc-900 shadow-xl border-b-2 border-zinc-400">
     <div class="container mx-auto px-6 py-6 text-center">
       <h1 class="text-5xl font-extrabold text-white mb-1 headline-font">
-        Market Scanner
+        FFXIV Arbitrage Engine
       </h1>
-      <p class="text-zinc-300 text-lg">
-        Find profitable cross-world flips using Universalis market data
-      </p>
+      <p class="text-zinc-300 text-lg">Scanner for competative flip targets</p>
+      <div class="mx-auto flex justify-center gap-8">
+        <div class="mx-4">
+          <a href="./balmung" class="text-amber-300 hover:text-amber-600 transition duration-300">Balmung</a>
+        </div>
+        <div class="mx-4">
+          <a href="./mateus" class="text-amber-300 hover:text-amber-600 transition duration-300">Mateus</a>
+        </div>
+        <div class="mx-4">
+          <a href="./scanner" class="text-orange-300 hover:text-amber-600 transition duration-300">Scanner</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -287,14 +296,22 @@
         <table class="w-full text-sm text-left text-zinc-300">
           <thead class="bg-zinc-900/50 text-xs text-zinc-400 uppercase">
             <tr>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white sticky top-0" onclick="handleSort('item')">Item ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('buy')">Buy ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-left sticky top-0" onclick="handleSort('source')">Source ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('sell')">Sell ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('profit')">Profit ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('margin')">Margin ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('velocity')">Vel/Day ↕</th>
-              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0" onclick="handleSort('score')">Score ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white sticky top-0"
+                onclick="handleSort('item')">Item ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0"
+                onclick="handleSort('buy')">Buy ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-left sticky top-0"
+                onclick="handleSort('source')">Source ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0"
+                onclick="handleSort('sell')">Sell ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0"
+                onclick="handleSort('profit')">Profit ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0"
+                onclick="handleSort('margin')">Margin ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0"
+                onclick="handleSort('velocity')">Vel/Day ↕</th>
+              <th class="px-3 py-2 cursor-pointer select-none hover:text-white text-right sticky top-0"
+                onclick="handleSort('score')">Score ↕</th>
             </tr>
           </thead>
           <tbody id="resultsBody" class="divide-y divide-zinc-700/50">
