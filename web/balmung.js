@@ -136,7 +136,7 @@ function renderScanCard(scanId, results, status, total = null) {
   }
 
   if (status === "error") {
-    container.innerHTML = `<div class="text-gil-red">❌ Failed to load scan data.</div>`;
+    container.innerHTML = `<div class="text-red-400">❌ Failed to load scan data.</div>`;
     return;
   }
 
@@ -172,8 +172,8 @@ function renderScanCard(scanId, results, status, total = null) {
 
   for (const r of ordered) {
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
-    const profitClass = r.gross >= 1000 ? "text-gil-green" : "text-yellow-400";
-    const marginClass = r.margin >= 15 ? "text-gil-green" : r.margin >= 5 ? "text-yellow-400" : "text-gil-red";
+    const profitClass = r.gross >= 1000 ? "text-green-400" : "text-yellow-400";
+    const marginClass = r.margin >= 15 ? "text-green-400" : r.margin >= 5 ? "text-yellow-400" : "text-red-400";
     html += `
       <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
