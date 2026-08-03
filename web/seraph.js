@@ -114,6 +114,7 @@ const SORT_MAP = {
   buy: (a, b) => a.buy - b.buy,
   source: (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
   sell: (a, b) => a.home - b.home,
+  supply: (a, b) => (a.home_supply != null ? a.home_supply : 9999) - (b.home_supply != null ? b.home_supply : 9999),
   profit: (a, b) => a.gross - b.gross,
   margin: (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.dc_vel - b.dc_vel,
@@ -179,6 +180,7 @@ function renderScanCard(scanId, results, status, total = null) {
         ${th("buy", "Buy", "text-right")}
         ${th("source", "Source", "text-left")}
         ${th("sell", "Sell", "text-right")}
+        ${th("supply", "Supply", "text-right")}
         ${th("profit", "Profit", "text-right font-bold")}
         ${th("margin", "Margin", "text-right")}
         ${th("velocity", "Vel/d", "text-right")}
@@ -190,12 +192,14 @@ function renderScanCard(scanId, results, status, total = null) {
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
     const profitClass = percentileColor(grossValues, r.gross);
     const marginClass = percentileColor(marginValues, r.margin);
+    const supply = r.home_supply != null ? r.home_supply : "—";
     html += `
       <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
         <td class="px-2 py-1 text-right">${fmt(r.buy)}g</td>
         <td class="px-2 py-1 text-right text-ffxiv-gold">${source}</td>
         <td class="px-2 py-1 text-right">${fmt(r.home)}g</td>
+        <td class="px-2 py-1 text-right">${supply}</td>
         <td class="px-2 py-1 text-right font-bold ${profitClass}">${fmt(r.gross)}g</td>
         <td class="px-2 py-1 text-right ${marginClass}">${r.margin.toFixed(1)}%</td>
         <td class="px-2 py-1 text-right">${r.dc_vel.toFixed(1)}</td>

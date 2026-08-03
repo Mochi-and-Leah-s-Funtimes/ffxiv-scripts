@@ -75,14 +75,15 @@ function escapeHtml(str) {
 const sortState = { column: "score", dir: "desc" };
 
 const SORT_MAP = {
-  item: (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
-  buy: (a, b) => a.buy - b.buy,
-  source: (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
-  sell: (a, b) => a.home - b.home,
-  profit: (a, b) => a.gross - b.gross,
-  margin: (a, b) => a.margin - b.margin,
+  item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
+  buy:      (a, b) => a.buy - b.buy,
+  source:   (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
+  sell:     (a, b) => a.home - b.home,
+  supply:   (a, b) => (a.home_supply != null ? a.home_supply : 9999) - (b.home_supply != null ? b.home_supply : 9999),
+  profit:   (a, b) => a.gross - b.gross,
+  margin:   (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.dc_vel - b.dc_vel,
-  score: (a, b) => a.score - b.score,
+  score:    (a, b) => a.score - b.score,
 };
 
 function sortArrow(col) {
@@ -139,12 +140,14 @@ function renderResults(results, sortBy, topN) {
     const profitClass = percentileColor(grossValues, r.gross);
     const marginOk = percentileColor(marginValues, r.margin);
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
+    const supply = r.home_supply != null ? r.home_supply : "—";
     return `
       <tr class="hover:bg-gray-700/30 transition-colors">
         <td class="px-3 py-2 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
         <td class="px-3 py-2 text-right">${fmt(r.buy)} <span class="text-gray-500">gil</span></td>
         <td class="px-3 py-2 text-left text-ffxiv-gold">${source}</td>
         <td class="px-3 py-2 text-right">${fmt(r.home)} <span class="text-gray-500">gil</span></td>
+        <td class="px-3 py-2 text-right">${supply}</td>
         <td class="px-3 py-2 text-right font-bold ${profitClass}">${fmt(r.gross)} <span class="text-gray-500">gil</span></td>
         <td class="px-3 py-2 text-right ${marginOk}">${pct(r.margin)}</td>
         <td class="px-3 py-2 text-right">${r.dc_vel.toFixed(1)}</td>

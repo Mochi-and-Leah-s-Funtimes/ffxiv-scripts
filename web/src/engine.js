@@ -257,6 +257,25 @@ export async function fetchHistoryBatch(batch, targetWorld, entries = 5) {
   return history;
 }
 
+// Fetch active listings for a batch of items on targetWorld.
+// Returns { itemId: total_quantity } — sum of all quantities listed on that world.
+export async function fetchListingsBatch(batch, targetWorld) {
+  const ids = batch.join(",");
+  const url = `${API_BASE}/${targetWorld}/${ids}`;
+  const raw = await httpGet(url);
+  if (!raw) return {};
+
+  const supply = {};
+  const items = raw.items || {};
+  for (const [itemIdStr, itemData] of Object.entries(items)) {
+    const iid = parseInt(itemIdStr, 10);
+    const qty = itemData?.unitsForSale ?? 0;
+    supply[iid] = qty;
+  }
+
+  return supply;
+}
+
 // ── Per-batch processing ───────────────────────────────────────────────────────
 
 // Fetch aggregated data for one batch of item IDs and apply filter logic.
@@ -343,6 +362,7 @@ export async function processBatch(
       avg_sp: avgSp,
       dc_vel: dcVel,
       est_gp_d: Math.trunc(estGpD),
+      home_supply: 0,
     });
   }
 
@@ -483,6 +503,36 @@ export async function runScan({
     allCand = allCand.filter((c) => !c._filteredAge);
   }
 
+  // ── Supply enrichment ────────────────────────────────────────────────────────
+  if (allCand.length > 0) {
+    const ids = allCand.map((c) => c.id);
+    const supplyBatches = [];
+    for (let i = 0; i < ids.length; i += BATCH) {
+      supplyBatches.push(ids.slice(i, i + BATCH));
+    }
+    if (onLog)
+      onLog(
+        `Fetching supply data for ${ids.length.toLocaleString()} candidates (${supplyBatches.length} batches)`
+      );
+
+    const t3 = Date.now();
+    const supplyMap = {};
+    const supplyResults = await pool(
+      supplyBatches,
+      (sb) => fetchListingsBatch(sb, queryWorld),
+      workers,
+      onLog
+    );
+    for (const partial of supplyResults) {
+      if (partial) Object.assign(supplyMap, partial);
+    }
+    if (onLog) onLog(`Supply fetched in ${((Date.now() - t3) / 1000).toFixed(1)}s`);
+
+    for (const c of allCand) {
+      c.home_supply = supplyMap[c.id] || 0;
+    }
+  }
+
   // ── Score computation ────────────────────────────────────────────────────────
   // A flip's attractiveness is driven by three factors:
   //   gross      — absolute profit per unit (gil)
@@ -502,7 +552,11 @@ export async function runScan({
     const vel   = Math.sqrt(Math.max(1, c.dc_vel));        // diminishing returns on velocity
     const conf  = Math.max(0.05, c.confidence);            // floor so unknowns don't score 0
 
-    c.score = (gross * vel * conf) / 100;
+    // supply factor: 1.0 when <3 items listed, 0.05 when >=20 items, linear between
+    const supply = c.home_supply || 0;
+    const supplyFactor = supply >= 20 ? 0.05 : supply < 3 ? 1.0 : 1.0 - ((supply - 3) / 17) * 0.95;
+
+    c.score = (gross * vel * conf * supplyFactor) / 100;
   }
 
   // ── Item-name enrichment ──────────────────────────────────────────────────
