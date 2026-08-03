@@ -25,7 +25,7 @@ const SCANS = {
     label: "High Tier (500k–2M)",
     desc: "Premium items with large absolute profit per unit.",
     jsonFile: "mateus_gillionaire.json",
-    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "score" },
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "profit" },
   },
   scan2: {
     color: "scan-2",
@@ -33,7 +33,7 @@ const SCANS = {
     label: "Mid-High (100k–750k)",
     desc: "Deep underpriced items with high % returns.",
     jsonFile: "mateus_high.json",
-    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "score" },
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 40, sortBy: "margin" },
   },
   scan3: {
     color: "scan-3",
@@ -41,7 +41,7 @@ const SCANS = {
     label: "Mid Tier (50k–200k)",
     desc: "Solid mid-range flips with good turnover.",
     jsonFile: "mateus_mid.json",
-    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "profit" },
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 40, sortBy: "score" },
   },
   scan4: {
     color: "scan-4",
@@ -49,7 +49,7 @@ const SCANS = {
     label: "Low Tier (10k–100k)",
     desc: "Fastest turnover — items that sell quickly at low margin.",
     jsonFile: "mateus_low.json",
-    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "velocity" },
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 40, sortBy: "score" },
   },
 };
 

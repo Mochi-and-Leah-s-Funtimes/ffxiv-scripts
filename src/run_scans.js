@@ -67,7 +67,7 @@ const SCANS = [
       maxSaleAgeH: 72,
       minVel: 5,
       sortBy: "profit",
-      topN: 25,
+      topN: 50,
     },
   },
   {
@@ -81,7 +81,7 @@ const SCANS = [
       maxSaleAgeH: 48,
       minVel: 10,
       sortBy: "margin",
-      topN: 40,
+      topN: 50,
     },
   },
   {
@@ -95,7 +95,7 @@ const SCANS = [
       maxSaleAgeH: 24,
       minVel: 15,
       sortBy: "score",
-      topN: 40,
+      topN: 50,
     },
   },
   {
@@ -109,7 +109,7 @@ const SCANS = [
       maxSaleAgeH: 16,
       minVel: 25,
       sortBy: "score",
-      topN: 40,
+      topN: 50,
     },
   },
 ];
