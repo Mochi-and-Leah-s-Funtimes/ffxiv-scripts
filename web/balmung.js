@@ -172,8 +172,8 @@ function renderScanCard(scanId, results, status, total = null) {
 
   for (const r of ordered) {
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
-    const profitClass = r.gross >= 10000 ? "text-green-400" : "text-yellow-400";
-    const marginClass = r.margin >= 50 ? "text-green-400" : r.margin >= 15 ? "text-yellow-400" : "text-red-400";
+    const profitClass = r.gross >= 200000 ? "text-pink-500" : r.gross >= 50000 ? "text-green-500" : r.gross >= 10000 ? "text-yellow-500" : "text-red-500";
+    const marginClass = r.margin >= 125 ? "text-pink-500" : r.margin >= 50 ? "text-green-500" : r.margin >= 15 ? "text-yellow-500" : "text-red-500";
     html += `
       <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
