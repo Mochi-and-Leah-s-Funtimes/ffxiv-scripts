@@ -20,36 +20,36 @@ import {
 
 const SCANS = {
   scan1: {
-    color:     "scan-1",
-    icon:      "💰",
-    label:     "High Tier (500k–2M)",
-    desc:      "Premium items with large absolute profit per unit.",
-    jsonFile:  "mateus_gillionaire.json",
-    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "score" },
+    color: "scan-1",
+    icon: "💰",
+    label: "High Tier (500k–2M)",
+    desc: "Premium items with large absolute profit per unit.",
+    jsonFile: "mateus_gillionaire.json",
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "score" },
   },
   scan2: {
-    color:     "scan-2",
-    icon:      "📈",
-    label:     "Mid-High (100k–750k)",
-    desc:      "Deep underpriced items with high % returns.",
-    jsonFile:  "mateus_high.json",
-    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "score" },
+    color: "scan-2",
+    icon: "📈",
+    label: "Mid-High (100k–750k)",
+    desc: "Deep underpriced items with high % returns.",
+    jsonFile: "mateus_high.json",
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "score" },
   },
   scan3: {
-    color:     "scan-3",
-    icon:      "⚡",
-    label:     "Mid Tier (50k–200k)",
-    desc:      "Solid mid-range flips with good turnover.",
-    jsonFile:  "mateus_mid.json",
-    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "profit" },
+    color: "scan-3",
+    icon: "⚡",
+    label: "Mid Tier (50k–200k)",
+    desc: "Solid mid-range flips with good turnover.",
+    jsonFile: "mateus_mid.json",
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "profit" },
   },
   scan4: {
-    color:     "scan-4",
-    icon:      "🏆",
-    label:     "Low Tier (10k–100k)",
-    desc:      "Fastest turnover — items that sell quickly at low margin.",
-    jsonFile:  "mateus_low.json",
-    opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "velocity" },
+    color: "scan-4",
+    icon: "🏆",
+    label: "Low Tier (10k–100k)",
+    desc: "Fastest turnover — items that sell quickly at low margin.",
+    jsonFile: "mateus_low.json",
+    opts: { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 25, sortBy: "velocity" },
   },
 };
 
@@ -69,7 +69,7 @@ function fmt(num) {
 }
 
 function escapeHtml(str) {
-  const map = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"};
+  const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
   return String(str ?? "").replace(/[&<>"']/g, (c) => map[c]);
 }
 
@@ -110,14 +110,14 @@ function handleSort(scanId, column) {
 // ── rendering ──────────────────────────────────────────────────────────────────
 
 const SORT_MAP = {
-  item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
-  buy:      (a, b) => a.buy - b.buy,
-  source:   (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
-  sell:     (a, b) => a.home - b.home,
-  profit:   (a, b) => a.gross - b.gross,
-  margin:   (a, b) => a.margin - b.margin,
+  item: (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
+  buy: (a, b) => a.buy - b.buy,
+  source: (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
+  sell: (a, b) => a.home - b.home,
+  profit: (a, b) => a.gross - b.gross,
+  margin: (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.dc_vel - b.dc_vel,
-  score:    (a, b) => a.score - b.score,
+  score: (a, b) => a.score - b.score,
 };
 
 function sortArrow(column, state) {
@@ -131,7 +131,7 @@ function renderScanCard(scanId, results, status, total = null) {
   const state = getSortKey(scanId);
 
   if (status === "running") {
-    container.innerHTML = `<div class="text-gray-400 flex items-center gap-2"><span class="w-4 h-4 border-2 border-${cfg.color} border-t-transparent rounded-full animate-spin"></span>Loading…</div>`;
+    container.innerHTML = `<div class="text-zinc-400 flex items-center gap-2"><span class="w-4 h-4 border-2 border-${cfg.color} border-t-transparent rounded-full animate-spin"></span>Loading…</div>`;
     return;
   }
 
@@ -141,7 +141,7 @@ function renderScanCard(scanId, results, status, total = null) {
   }
 
   if (!results || results.length === 0) {
-    container.innerHTML = `<div class="text-gray-400">No candidates found.</div>`;
+    container.innerHTML = `<div class="text-zinc-400">No candidates found.</div>`;
     return;
   }
 
@@ -155,9 +155,9 @@ function renderScanCard(scanId, results, status, total = null) {
   const th = (col, label, cls = "") =>
     `<th class="px-2 py-1 cursor-pointer select-none hover:text-white ${cls}" onclick="handleSort('${scanId}', '${col}')">${label} ${sortArrow(col, state)}</th>`;
 
-  let html = `<div class="mb-2 text-xs text-gray-400">${shown.toLocaleString()} candidates</div>`;
+  let html = `<div class="mb-2 text-xs text-zinc-400">${shown.toLocaleString()} candidates</div>`;
   html += `<div class="overflow-x-auto"><table class="w-full text-xs">
-    <thead class="text-gray-500 uppercase">
+    <thead class="text-zinc-500 uppercase">
       <tr>
         <th class="text-left px-2 py-1 cursor-pointer select-none hover:text-white" onclick="handleSort('${scanId}', 'item')">Item ${sortArrow('item', state)}</th>
         ${th("buy", "Buy", "text-right")}
@@ -175,7 +175,7 @@ function renderScanCard(scanId, results, status, total = null) {
     const profitClass = r.gross >= 1000 ? "text-gil-green" : "text-yellow-400";
     const marginClass = r.margin >= 15 ? "text-gil-green" : r.margin >= 5 ? "text-yellow-400" : "text-gil-red";
     html += `
-      <tr class="border-b border-gray-700/30 hover:bg-gray-700/20">
+      <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
         <td class="px-2 py-1 text-right">${fmt(r.buy)}g</td>
         <td class="px-2 py-1 text-right text-ffxiv-gold">${source}</td>
