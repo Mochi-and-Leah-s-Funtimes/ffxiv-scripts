@@ -83,3 +83,258 @@
 [mid_high] ✅ 69 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid_high.json
 
 ✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-02T22:30:01.217Z
+
+[mid_high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Mateus
+[low_tier] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Mateus
+[high_tier] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Mateus
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Mateus
+[mid_high] Mateus (ID 37) [DC: Crystal]
+[high_tier] Mateus (ID 37) [DC: Crystal]
+[low_tier] Mateus (ID 37) [DC: Crystal]
+[mid] Mateus (ID 37) [DC: Crystal]
+[high_tier] 16,843 marketable items
+[high_tier] Batches: 169 (16,843 items @ 100/batch)
+[mid_high] 16,843 marketable items
+[mid_high] Batches: 169 (16,843 items @ 100/batch)
+[low_tier] 16,843 marketable items
+[low_tier] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[high_tier] [25/169] 194.3s — 0 candidates
+[high_tier] [50/169] 194.3s — 0 candidates
+[high_tier] [75/169] 194.3s — 1 candidates
+[high_tier] [100/169] 194.3s — 7 candidates
+[high_tier] [125/169] 194.3s — 14 candidates
+[high_tier] [150/169] 194.3s — 31 candidates
+[high_tier] [169/169] 194.3s — 62 candidates
+[high_tier] 169 batches in 194.3s | 62 flip candidates | 0 items with no listings
+[high_tier] Fetching history for 62 candidates (1 batches)
+[mid_high] [25/169] 194.5s — 0 candidates
+[mid_high] [50/169] 194.5s — 8 candidates
+[mid_high] [75/169] 194.5s — 14 candidates
+[mid_high] [100/169] 194.5s — 24 candidates
+[mid_high] [125/169] 194.5s — 38 candidates
+[mid_high] [150/169] 194.5s — 46 candidates
+[mid_high] [169/169] 194.5s — 106 candidates
+[mid_high] 169 batches in 194.5s | 106 flip candidates | 0 items with no listings
+[mid_high] Fetching history for 106 candidates (2 batches)
+[mid_high] History fetched in 0.2s
+[mid_high] Filtered out 30 items last sold > 48h ago
+[mid_high] Fetching item names for 76 candidates
+[mid_high] Falling back to v2.xivapi for 47 items
+[mid_high] Names fetched in 1.9s
+[mid_high] Final candidates: 76
+[mid_high] ✅ 76 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid_high.json
+[low_tier] [25/169] 203.1s — 0 candidates
+[low_tier] [50/169] 203.1s — 23 candidates
+[low_tier] [75/169] 203.1s — 33 candidates
+[low_tier] [100/169] 203.1s — 55 candidates
+[low_tier] [125/169] 203.1s — 89 candidates
+[low_tier] [150/169] 203.1s — 111 candidates
+[low_tier] [169/169] 203.1s — 151 candidates
+[low_tier] 169 batches in 203.1s | 151 flip candidates | 0 items with no listings
+[low_tier] Fetching history for 151 candidates (2 batches)
+[low_tier] History fetched in 0.4s
+[low_tier] Filtered out 122 items last sold > 4h ago
+[low_tier] Fetching item names for 29 candidates
+[low_tier] Falling back to v2.xivapi for 11 items
+[low_tier] Names fetched in 0.7s
+[low_tier] Final candidates: 29
+[low_tier] ✅ 29 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_low_tier.json
+[high_tier] History fetched in 15.0s
+[high_tier] Filtered out 32 items last sold > 72h ago
+[high_tier] Fetching item names for 30 candidates
+[high_tier] Falling back to v2.xivapi for 16 items
+[high_tier] Names fetched in 1.0s
+[high_tier] Final candidates: 30
+[high_tier] ✅ 30 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_high_tier.json
+[mid] [25/169] 265.0s — 0 candidates
+[mid] [50/169] 265.0s — 15 candidates
+[mid] [75/169] 265.0s — 18 candidates
+[mid] [100/169] 265.0s — 25 candidates
+[mid] [125/169] 265.0s — 41 candidates
+[mid] [150/169] 265.0s — 44 candidates
+[mid] [169/169] 265.0s — 69 candidates
+[mid] 169 batches in 265.0s | 69 flip candidates | 0 items with no listings
+[mid] Fetching history for 69 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 44 items last sold > 16h ago
+[mid] Fetching item names for 25 candidates
+[mid] Falling back to v2.xivapi for 16 items
+[mid] Names fetched in 1.1s
+[mid] Final candidates: 25
+[mid] ✅ 25 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-02T23:30:01.895Z
+
+[mid_high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Mateus
+[high_tier] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Mateus
+[low_tier] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Mateus
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Mateus
+[high_tier] Mateus (ID 37) [DC: Crystal]
+[low_tier] Mateus (ID 37) [DC: Crystal]
+[mid_high] Mateus (ID 37) [DC: Crystal]
+[mid] Mateus (ID 37) [DC: Crystal]
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[high_tier] 16,843 marketable items
+[high_tier] Batches: 169 (16,843 items @ 100/batch)
+[mid_high] 16,843 marketable items
+[mid_high] Batches: 169 (16,843 items @ 100/batch)
+[low_tier] 16,843 marketable items
+[low_tier] Batches: 169 (16,843 items @ 100/batch)
+[mid_high] [25/169] 132.6s — 0 candidates
+[mid_high] [50/169] 132.6s — 8 candidates
+[mid_high] [75/169] 132.6s — 15 candidates
+[mid_high] [100/169] 132.6s — 25 candidates
+[mid_high] [125/169] 132.6s — 38 candidates
+[mid_high] [150/169] 132.6s — 46 candidates
+[mid_high] [169/169] 132.6s — 108 candidates
+[mid_high] 169 batches in 132.6s | 108 flip candidates | 0 items with no listings
+[mid_high] Fetching history for 108 candidates (2 batches)
+[mid_high] History fetched in 0.4s
+[mid_high] Filtered out 30 items last sold > 48h ago
+[mid_high] Fetching item names for 78 candidates
+[mid_high] Falling back to v2.xivapi for 49 items
+[mid_high] Names fetched in 2.2s
+[mid_high] Final candidates: 78
+[mid_high] ✅ 78 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid_high.json
+[high_tier] [25/169] 138.5s — 0 candidates
+[high_tier] [50/169] 138.5s — 0 candidates
+[high_tier] [75/169] 138.5s — 1 candidates
+[high_tier] [100/169] 138.6s — 7 candidates
+[high_tier] [125/169] 138.6s — 14 candidates
+[high_tier] [150/169] 138.6s — 32 candidates
+[high_tier] [169/169] 138.6s — 66 candidates
+[high_tier] 169 batches in 138.6s | 66 flip candidates | 0 items with no listings
+[high_tier] Fetching history for 66 candidates (1 batches)
+[high_tier] History fetched in 0.4s
+[high_tier] Filtered out 34 items last sold > 72h ago
+[high_tier] Fetching item names for 32 candidates
+[high_tier] Falling back to v2.xivapi for 18 items
+[low_tier] [25/169] 139.1s — 0 candidates
+[low_tier] [50/169] 139.1s — 22 candidates
+[low_tier] [75/169] 139.1s — 31 candidates
+[low_tier] [100/169] 139.1s — 52 candidates
+[low_tier] [125/169] 139.1s — 85 candidates
+[low_tier] [150/169] 139.1s — 106 candidates
+[low_tier] [169/169] 139.1s — 146 candidates
+[low_tier] 169 batches in 139.1s | 146 flip candidates | 0 items with no listings
+[low_tier] Fetching history for 146 candidates (2 batches)
+[high_tier] Names fetched in 0.7s
+[high_tier] Final candidates: 32
+[high_tier] ✅ 32 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_high_tier.json
+[low_tier] History fetched in 0.5s
+[low_tier] Filtered out 117 items last sold > 4h ago
+[low_tier] Fetching item names for 29 candidates
+[low_tier] Falling back to v2.xivapi for 12 items
+[low_tier] Names fetched in 1.1s
+[low_tier] Final candidates: 29
+[low_tier] ✅ 29 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_low_tier.json
+[mid] [25/169] 152.4s — 0 candidates
+[mid] [50/169] 152.4s — 16 candidates
+[mid] [75/169] 152.4s — 19 candidates
+[mid] [100/169] 152.4s — 25 candidates
+[mid] [125/169] 152.4s — 41 candidates
+[mid] [150/169] 152.4s — 44 candidates
+[mid] [169/169] 152.4s — 66 candidates
+[mid] 169 batches in 152.4s | 66 flip candidates | 0 items with no listings
+[mid] Fetching history for 66 candidates (1 batches)
+[mid] History fetched in 0.4s
+[mid] Filtered out 45 items last sold > 16h ago
+[mid] Fetching item names for 21 candidates
+[mid] Falling back to v2.xivapi for 12 items
+[mid] Names fetched in 0.5s
+[mid] Final candidates: 21
+[mid] ✅ 21 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T00:30:01.308Z
+
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Mateus
+[high_tier] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Mateus
+[mid_high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Mateus
+[low_tier] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Mateus
+[mid] Mateus (ID 37) [DC: Crystal]
+[mid_high] Mateus (ID 37) [DC: Crystal]
+[high_tier] Mateus (ID 37) [DC: Crystal]
+[low_tier] Mateus (ID 37) [DC: Crystal]
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[mid_high] 16,843 marketable items
+[mid_high] Batches: 169 (16,843 items @ 100/batch)
+[high_tier] 16,843 marketable items
+[high_tier] Batches: 169 (16,843 items @ 100/batch)
+[low_tier] 16,843 marketable items
+[low_tier] Batches: 169 (16,843 items @ 100/batch)
+[high_tier] [25/169] 116.8s — 0 candidates
+[high_tier] [50/169] 116.8s — 1 candidates
+[high_tier] [75/169] 116.8s — 1 candidates
+[high_tier] [100/169] 116.8s — 7 candidates
+[high_tier] [125/169] 116.8s — 14 candidates
+[high_tier] [150/169] 116.8s — 32 candidates
+[high_tier] [169/169] 116.8s — 66 candidates
+[high_tier] 169 batches in 116.8s | 66 flip candidates | 0 items with no listings
+[high_tier] Fetching history for 66 candidates (1 batches)
+[high_tier] History fetched in 0.3s
+[high_tier] Filtered out 35 items last sold > 72h ago
+[high_tier] Fetching item names for 31 candidates
+[high_tier] Falling back to v2.xivapi for 18 items
+[high_tier] Names fetched in 1.3s
+[high_tier] Final candidates: 31
+[high_tier] ✅ 31 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_high_tier.json
+[mid] [25/169] 138.2s — 0 candidates
+[mid] [50/169] 138.2s — 17 candidates
+[mid] [75/169] 138.2s — 20 candidates
+[mid] [100/169] 138.2s — 26 candidates
+[mid] [125/169] 138.2s — 42 candidates
+[mid] [150/169] 138.2s — 46 candidates
+[mid] [169/169] 138.2s — 71 candidates
+[mid] 169 batches in 138.2s | 71 flip candidates | 0 items with no listings
+[mid] Fetching history for 71 candidates (1 batches)
+[mid] History fetched in 0.3s
+[mid] Filtered out 46 items last sold > 16h ago
+[mid] Fetching item names for 25 candidates
+[mid] Falling back to v2.xivapi for 14 items
+[low_tier] [25/169] 139.1s — 0 candidates
+[low_tier] [50/169] 139.1s — 26 candidates
+[low_tier] [75/169] 139.1s — 35 candidates
+[low_tier] [100/169] 139.1s — 59 candidates
+[low_tier] [125/169] 139.1s — 93 candidates
+[low_tier] [150/169] 139.1s — 115 candidates
+[low_tier] [169/169] 139.1s — 159 candidates
+[low_tier] 169 batches in 139.1s | 159 flip candidates | 0 items with no listings
+[low_tier] Fetching history for 159 candidates (2 batches)
+[mid] Names fetched in 1.0s
+[mid] Final candidates: 25
+[mid] ✅ 25 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid.json
+[mid_high] [25/169] 139.6s — 0 candidates
+[mid_high] [50/169] 139.6s — 8 candidates
+[mid_high] [75/169] 139.6s — 13 candidates
+[mid_high] [100/169] 139.6s — 22 candidates
+[mid_high] [125/169] 139.6s — 36 candidates
+[mid_high] [150/169] 139.6s — 44 candidates
+[mid_high] [169/169] 139.6s — 103 candidates
+[mid_high] 169 batches in 139.6s | 103 flip candidates | 0 items with no listings
+[mid_high] Fetching history for 103 candidates (2 batches)
+[low_tier] History fetched in 0.5s
+[low_tier] Filtered out 132 items last sold > 4h ago
+[low_tier] Fetching item names for 27 candidates
+[mid_high] History fetched in 0.3s
+[mid_high] Filtered out 29 items last sold > 48h ago
+[mid_high] Fetching item names for 74 candidates
+[low_tier] Falling back to v2.xivapi for 12 items
+[mid_high] Falling back to v2.xivapi for 48 items
+[low_tier] Names fetched in 0.7s
+[low_tier] Final candidates: 27
+[low_tier] ✅ 27 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_low_tier.json
+[mid_high] Names fetched in 1.8s
+[mid_high] Final candidates: 74
+[mid_high] ✅ 74 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid_high.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
