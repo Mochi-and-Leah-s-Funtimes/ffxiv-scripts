@@ -24,7 +24,7 @@ const SCANS = {
     icon:      "💰",
     label:     "High Tier (500k–2M)",
     desc:      "Premium items with large absolute profit per unit.",
-    jsonFile:  "mateus_high_tier.json",
+    jsonFile:  "mateus_gillionaire.json",
     opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "score" },
   },
   scan2: {
@@ -32,7 +32,7 @@ const SCANS = {
     icon:      "📈",
     label:     "Mid-High (100k–750k)",
     desc:      "Deep underpriced items with high % returns.",
-    jsonFile:  "mateus_mid_high.json",
+    jsonFile:  "mateus_high.json",
     opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "score" },
   },
   scan3: {
@@ -48,7 +48,7 @@ const SCANS = {
     icon:      "🏆",
     label:     "Low Tier (10k–100k)",
     desc:      "Fastest turnover — items that sell quickly at low margin.",
-    jsonFile:  "mateus_low_tier.json",
+    jsonFile:  "mateus_low.json",
     opts:      { scope: "dc", minPct: 5, historyEntries: 5, workers: 6, topN: 15, sortBy: "velocity" },
   },
 };

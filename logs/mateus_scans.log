@@ -338,3 +338,88 @@
 [mid_high] ✅ 74 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid_high.json
 
 ✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json
+🚀 Starting 4 parallel scans on 2603:c021:1:a500:7588::5, 2603:c021:1:a500:7588::4, 2603:c021:1:a500:7588::3, 2603:c021:1:a500:7588::2
+   Started at: 2026-08-03T01:30:01.592Z
+
+[high] Starting scan on IP 2603:c021:1:a500:7588::4, sell world: Mateus
+[gillionaire] Starting scan on IP 2603:c021:1:a500:7588::5, sell world: Mateus
+[mid] Starting scan on IP 2603:c021:1:a500:7588::3, sell world: Mateus
+[low] Starting scan on IP 2603:c021:1:a500:7588::2, sell world: Mateus
+[high] Mateus (ID 37) [DC: Crystal]
+[gillionaire] Mateus (ID 37) [DC: Crystal]
+[mid] Mateus (ID 37) [DC: Crystal]
+[low] Mateus (ID 37) [DC: Crystal]
+[gillionaire] 16,843 marketable items
+[gillionaire] Batches: 169 (16,843 items @ 100/batch)
+[high] 16,843 marketable items
+[high] Batches: 169 (16,843 items @ 100/batch)
+[mid] 16,843 marketable items
+[mid] Batches: 169 (16,843 items @ 100/batch)
+[low] 16,843 marketable items
+[low] Batches: 169 (16,843 items @ 100/batch)
+[mid] [25/169] 141.3s — 0 candidates
+[mid] [50/169] 141.3s — 17 candidates
+[mid] [75/169] 141.3s — 20 candidates
+[mid] [100/169] 141.3s — 25 candidates
+[mid] [125/169] 141.3s — 42 candidates
+[mid] [150/169] 141.3s — 46 candidates
+[mid] [169/169] 141.3s — 71 candidates
+[mid] 169 batches in 141.3s | 71 flip candidates | 0 items with no listings
+[mid] Fetching history for 71 candidates (1 batches)
+[mid] History fetched in 0.4s
+[mid] Filtered out 44 items last sold > 16h ago
+[mid] Fetching item names for 27 candidates
+[mid] Falling back to v2.xivapi for 15 items
+[mid] Names fetched in 1.4s
+[mid] Final candidates: 27
+[mid] ✅ 27 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_mid.json
+[high] [25/169] 146.7s — 0 candidates
+[high] [50/169] 146.7s — 9 candidates
+[high] [75/169] 146.7s — 14 candidates
+[high] [100/169] 146.7s — 23 candidates
+[high] [125/169] 146.7s — 37 candidates
+[high] [150/169] 146.7s — 46 candidates
+[high] [169/169] 146.7s — 104 candidates
+[high] 169 batches in 146.7s | 104 flip candidates | 0 items with no listings
+[high] Fetching history for 104 candidates (2 batches)
+[high] History fetched in 0.3s
+[high] Filtered out 32 items last sold > 48h ago
+[high] Fetching item names for 72 candidates
+[high] Falling back to v2.xivapi for 46 items
+[high] Names fetched in 2.1s
+[high] Final candidates: 72
+[high] ✅ 72 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_high.json
+[gillionaire] [25/169] 174.1s — 0 candidates
+[gillionaire] [50/169] 174.1s — 1 candidates
+[gillionaire] [75/169] 174.1s — 1 candidates
+[gillionaire] [100/169] 174.1s — 7 candidates
+[gillionaire] [125/169] 174.1s — 14 candidates
+[gillionaire] [150/169] 174.1s — 32 candidates
+[gillionaire] [169/169] 174.1s — 68 candidates
+[gillionaire] 169 batches in 174.1s | 68 flip candidates | 0 items with no listings
+[gillionaire] Fetching history for 68 candidates (1 batches)
+[low] [25/169] 174.0s — 0 candidates
+[low] [50/169] 174.0s — 27 candidates
+[low] [75/169] 174.0s — 38 candidates
+[low] [100/169] 174.0s — 62 candidates
+[low] [125/169] 174.0s — 95 candidates
+[low] [150/169] 174.0s — 115 candidates
+[low] [169/169] 174.0s — 160 candidates
+[low] 169 batches in 174.0s | 160 flip candidates | 0 items with no listings
+[low] Fetching history for 160 candidates (2 batches)
+[gillionaire] History fetched in 0.3s
+[gillionaire] Filtered out 35 items last sold > 72h ago
+[gillionaire] Fetching item names for 33 candidates
+[gillionaire] Falling back to v2.xivapi for 21 items
+[low] History fetched in 0.6s
+[low] Filtered out 130 items last sold > 4h ago
+[low] Fetching item names for 30 candidates
+[low] Falling back to v2.xivapi for 12 items
+[gillionaire] Names fetched in 0.8s
+[gillionaire] Final candidates: 33
+[gillionaire] ✅ 33 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_gillionaire.json
+[low] Names fetched in 0.6s
+[low] Final candidates: 30
+[low] ✅ 30 candidates → /home/ubuntu/web/ffxiv-scripts/web/scans/mateus_low.json
+
+✅ 4/4 scans completed. Summary → /home/ubuntu/web/ffxiv-scripts/web/scans/index.json

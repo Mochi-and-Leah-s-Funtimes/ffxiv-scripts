@@ -58,7 +58,7 @@ const DEFAULT_OPTS = {
 
 const SCANS = [
   {
-    name:  "high_tier",
+    name:  "gillionaire",
     label: "High Tier (500k–10M)",
     opts: {
       ...DEFAULT_OPTS,
@@ -71,7 +71,7 @@ const SCANS = [
     },
   },
   {
-    name:  "mid_high",
+    name:  "high",
     label: "Mid-High (100k–1M)",
     opts: {
       ...DEFAULT_OPTS,
@@ -97,7 +97,7 @@ const SCANS = [
     },
   },
   {
-    name:  "low_tier",
+    name:  "low",
     label: "Low Tier (10k–100k)",
     opts: {
       ...DEFAULT_OPTS,

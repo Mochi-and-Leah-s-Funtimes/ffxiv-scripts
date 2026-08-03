@@ -1,8 +1,8 @@
 {
-  "startedAt": "2026-08-03T01:00:01.834Z",
-  "completedAt": "2026-08-03T01:02:28.517Z",
-  "sellWorld": "Balmung",
-  "prefix": "balmung_",
+  "startedAt": "2026-08-03T01:30:01.592Z",
+  "completedAt": "2026-08-03T01:32:57.584Z",
+  "sellWorld": "Mateus",
+  "prefix": "mateus_",
   "datacenter": "Crystal",
   "ips": [
     "2603:c021:1:a500:7588::5",
@@ -15,20 +15,20 @@
   "failed": 0,
   "scans": [
     {
-      "name": "high_tier",
+      "name": "gillionaire",
       "label": "High Tier (500k–10M)",
       "ip": "2603:c021:1:a500:7588::5",
       "status": "completed",
       "exitCode": 0,
-      "outputFile": "balmung_high_tier.json"
+      "outputFile": "mateus_gillionaire.json"
     },
     {
-      "name": "mid_high",
+      "name": "high",
       "label": "Mid-High (100k–1M)",
       "ip": "2603:c021:1:a500:7588::4",
       "status": "completed",
       "exitCode": 0,
-      "outputFile": "balmung_mid_high.json"
+      "outputFile": "mateus_high.json"
     },
     {
       "name": "mid",
@@ -36,15 +36,15 @@
       "ip": "2603:c021:1:a500:7588::3",
       "status": "completed",
       "exitCode": 0,
-      "outputFile": "balmung_mid.json"
+      "outputFile": "mateus_mid.json"
     },
     {
-      "name": "low_tier",
+      "name": "low",
       "label": "Low Tier (10k–100k)",
       "ip": "2603:c021:1:a500:7588::2",
       "status": "completed",
       "exitCode": 0,
-      "outputFile": "balmung_low_tier.json"
+      "outputFile": "mateus_low.json"
     }
   ]
 }
