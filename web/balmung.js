@@ -129,7 +129,7 @@ function sortArrow(column, state) {
 function percentileColor(values, val) {
   if (!values || values.length === 0) return "";
   const maxVal = Math.max(...values);
-  if (val === maxVal) return "text-orange-300";
+  if (val === maxVal) return "text-orange-200";
   const sorted = [...values].sort((a, b) => a - b);
   const idx = sorted.findIndex((v) => v >= val);
   const pct = idx === -1 ? 1 : idx / sorted.length;
