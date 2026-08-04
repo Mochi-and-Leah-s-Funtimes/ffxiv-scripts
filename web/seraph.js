@@ -131,7 +131,7 @@ function percentileColor(values, val) {
   const sorted = [...values].sort((a, b) => a - b);
   const idx = sorted.findIndex((v) => v >= val);
   const pct = idx === -1 ? 1 : idx / sorted.length;
-  if (pct >= 0.96) return "text-orange-300";
+  if (pct >= 0.97) return "text-orange-300";
   if (pct >= 0.92) return "text-pink-500";
   if (pct >= 0.75) return "text-purple-500";
   if (pct >= 0.5) return "text-blue-500";
@@ -161,6 +161,7 @@ function renderScanCard(scanId, results, status, total = null) {
 
   const grossValues = results.map((r) => r.gross);
   const marginValues = results.map((r) => r.margin);
+  const scoreValues = results.map((r) => r.score);
 
   const sortFn = SORT_MAP[state.column] || SORT_MAP.score;
   const ordered = [...results].sort((a, b) => sortFn(a, b) * (state.dir === "asc" ? 1 : -1)).slice(0, cfg.opts.topN);
@@ -192,6 +193,7 @@ function renderScanCard(scanId, results, status, total = null) {
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
     const profitClass = percentileColor(grossValues, r.gross);
     const marginClass = percentileColor(marginValues, r.margin);
+    const percentileClass = percentileColor(scoreValues, r.score);
     const supply = r.home_supply != null ? r.home_supply : "—";
     html += `
       <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
@@ -203,7 +205,7 @@ function renderScanCard(scanId, results, status, total = null) {
         <td class="px-2 py-1 text-right font-bold ${profitClass}">${fmt(r.gross)}g</td>
         <td class="px-2 py-1 text-right ${marginClass}">${r.margin.toFixed(1)}%</td>
         <td class="px-2 py-1 text-right">${r.dc_vel.toFixed(1)}</td>
-        <td class="px-2 py-1 text-right font-mono text-ffxiv-gold">${fmt(r.score)}</td>
+        <td class="px-2 py-1 text-right ${percentileClass}">${fmt(r.score)}</td>
       </tr>`;
   }
 

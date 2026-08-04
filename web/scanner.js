@@ -75,15 +75,15 @@ function escapeHtml(str) {
 const sortState = { column: "score", dir: "desc" };
 
 const SORT_MAP = {
-  item:     (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
-  buy:      (a, b) => a.buy - b.buy,
-  source:   (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
-  sell:     (a, b) => a.home - b.home,
-  supply:   (a, b) => (a.home_supply != null ? a.home_supply : 9999) - (b.home_supply != null ? b.home_supply : 9999),
-  profit:   (a, b) => a.gross - b.gross,
-  margin:   (a, b) => a.margin - b.margin,
+  item: (a, b) => (a.name || `Item ${a.id}`).localeCompare(b.name || `Item ${b.id}`),
+  buy: (a, b) => a.buy - b.buy,
+  source: (a, b) => (worldNameMap[a.buy_world_id] || "").localeCompare(worldNameMap[b.buy_world_id] || ""),
+  sell: (a, b) => a.home - b.home,
+  supply: (a, b) => (a.home_supply != null ? a.home_supply : 9999) - (b.home_supply != null ? b.home_supply : 9999),
+  profit: (a, b) => a.gross - b.gross,
+  margin: (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.dc_vel - b.dc_vel,
-  score:    (a, b) => a.score - b.score,
+  score: (a, b) => a.score - b.score,
 };
 
 function sortArrow(col) {
@@ -96,7 +96,7 @@ function percentileColor(values, val) {
   const sorted = [...values].sort((a, b) => a - b);
   const idx = sorted.findIndex((v) => v >= val);
   const pct = idx === -1 ? 1 : idx / sorted.length;
-  if (pct >= 0.96) return "text-orange-300";
+  if (pct >= 0.97) return "text-orange-300";
   if (pct >= 0.92) return "text-pink-500";
   if (pct >= 0.75) return "text-purple-500";
   if (pct >= 0.5) return "text-blue-500";
@@ -132,6 +132,7 @@ function renderResults(results, sortBy, topN) {
 
   const grossValues = results.map((r) => r.gross);
   const marginValues = results.map((r) => r.margin);
+  const scoreValues = results.map((r) => r.score);
 
   const th = (col, label, cls = "") =>
     `<th class="px-3 py-2 cursor-pointer select-none hover:text-white ${cls}" onclick="handleSort('${col}')">${label} ${sortArrow(col)}</th>`;
@@ -139,6 +140,7 @@ function renderResults(results, sortBy, topN) {
   resultsBody.innerHTML = ordered.map((r) => {
     const profitClass = percentileColor(grossValues, r.gross);
     const marginOk = percentileColor(marginValues, r.margin);
+    const percentileClass = percentileColor(scoreValues, r.score);
     const source = r.buy_world_id ? (worldNameMap[r.buy_world_id] || `#${r.buy_world_id}`) : "—";
     const supply = r.home_supply != null ? r.home_supply : "—";
     return `
@@ -151,7 +153,7 @@ function renderResults(results, sortBy, topN) {
         <td class="px-3 py-2 text-right font-bold ${profitClass}">${fmt(r.gross)} <span class="text-gray-500">gil</span></td>
         <td class="px-3 py-2 text-right ${marginOk}">${pct(r.margin)}</td>
         <td class="px-3 py-2 text-right">${r.dc_vel.toFixed(1)}</td>
-        <td class="px-3 py-2 text-right font-mono text-ffxiv-gold">${fmt(r.score)} <span class="text-gray-500">pts</span></td>
+        <td class="px-3 py-2 text-right ${percentileClass}">${fmt(r.score)} <span class="text-gray-500">pts</span></td>
       </tr>`;
   }).join("");
 }
