@@ -117,7 +117,7 @@ const SORT_MAP = {
   supply: (a, b) => (a.home_supply != null ? a.home_supply : 9999) - (b.home_supply != null ? b.home_supply : 9999),
   profit: (a, b) => a.gross - b.gross,
   margin: (a, b) => a.margin - b.margin,
-  velocity: (a, b) => a.dc_vel - b.dc_vel,
+  velocity: (a, b) => a.world_vel - b.world_vel,
   score: (a, b) => a.score - b.score,
 };
 
@@ -206,7 +206,7 @@ function renderScanCard(scanId, results, status, total = null) {
         <td class="px-2 py-1 text-right">${supply}</td>
         <td class="px-2 py-1 text-right font-bold ${profitClass}">${fmt(r.gross)}g</td>
         <td class="px-2 py-1 text-right ${marginClass}">${r.margin.toFixed(1)}%</td>
-        <td class="px-2 py-1 text-right">${r.dc_vel.toFixed(1)}</td>
+        <td class="px-2 py-1 text-right">${r.world_vel.toFixed(1)}</td>
         <td class="px-2 py-1 text-right ${percentileClass}">${fmt(r.score)}</td>
       </tr>`;
   }

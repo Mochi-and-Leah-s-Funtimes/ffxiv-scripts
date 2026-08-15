@@ -26,7 +26,7 @@ import {
 // ── tiny arg parser (no external deps) ────────────────────────────────────────
 
 const ARG_SPEC = {
-  "--min-velocity":      { type: "float",  def: 5.0,   desc: "DC min daily sales velocity" },
+  "--min-velocity":      { type: "float",  def: 5.0,   desc: "World min daily sales velocity" },
   "--min-profit":        { type: "int",    def: 200,   desc: "Min net profit per unit gil" },
   "--min-margin-pct":    { type: "float",  def: 5.0,   desc: "Min profit margin %" },
   "--min-price-floor":   { type: "int",    def: 100,   desc: "Ignore items below this gil" },
@@ -111,7 +111,7 @@ Options:
   --quick                   Relax all filters                (default: off)
   --min-price-floor <int>   Ignore items below this gil      (default: 100)
   --max-price-floor <int>   Ignore items above this gil      (default: none)
-  --min-velocity <float>    Min daily units sold on DC      (default: 5.0)
+  --min-velocity <float>    Min daily units sold on server      (default: 5.0)
   --min-profit <int>        Min net profit per unit (gil)   (default: 200)
   --min-margin-pct <float>  Min profit margin (%)           (default: 5.0)
   --max-sale-age-hours <float>  Skip items sold > N hours ago  (default: none)
@@ -137,7 +137,7 @@ Examples:
 const SORT_KEY = {
   profit:    (r) => r.gross,
   margin:    (r) => r.margin,
-  velocity:  (r) => r.dc_vel,
+  velocity:  (r) => r.world_vel,
   gpday:     (r) => r.est_gp_d,
   score:     (r) => r.score,
 };
@@ -155,7 +155,7 @@ function showTable(results, n = 50, sortBy = "profit") {
   console.log(sep);
   console.log(
     ` ${pad("Item", 26)}  ${pad("ID", 9)}  ${pad("Buy", 9)}  ${pad("Home", 9)}` +
-    `  ${pad("NetProfit", 9)}  ${pad("Margin", 6)}  ${pad("DC Vel/d", 8)}` +
+     `  ${pad("NetProfit", 9)}  ${pad("Margin", 6)}  ${pad("Vel/d", 8)}` +
     `  ${pad("Est GP/d", 10)}  ${pad("Conf", 6)}  ${pad("Score", 12)}` +
     `  ${pad("Last Sale", 20)}  ${pad("Avg Sale", 10)}`
   );
@@ -182,7 +182,7 @@ function showTable(results, n = 50, sortBy = "profit") {
     console.log(
       ` ${pad(name, 26)} ${String(r.id).padStart(9)}  ${r.buy.toLocaleString().padStart(9)} gil  ${r.home.toLocaleString().padStart(9)} gil` +
       `  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%` +
-      `  ${r.dc_vel.toFixed(1).padStart(8)}  ${r.est_gp_d.toLocaleString().padStart(10)} gil` +
+       `  ${r.world_vel.toFixed(1).padStart(8)}  ${r.est_gp_d.toLocaleString().padStart(10)} gil` +
       `  ${r.confidence.toFixed(1).padStart(5)}%  ${Math.trunc(r.score).toLocaleString().padStart(12)} gil` +
       `  ${lastStr.padStart(20)}  ${avg.padStart(10)}`
     );
@@ -192,7 +192,7 @@ function showTable(results, n = 50, sortBy = "profit") {
 }
 
 function showVelocityTable(results, n = 30) {
-  const ordered = [...results].sort((a, b) => b.dc_vel - a.dc_vel).slice(0, n);
+  const ordered = [...results].sort((a, b) => b.world_vel - a.world_vel).slice(0, n);
   if (ordered.length === 0) return;
 
   console.log();
@@ -218,7 +218,7 @@ function showVelocityTable(results, n = 30) {
     const name = r.name || `Item ${r.id}`;
     console.log(
       `  ${pad(name, 26)} ${String(r.id).padStart(9)}  ${r.buy.toLocaleString().padStart(9)} gil` +
-      `  ${r.dc_vel.toFixed(1).padStart(8)}  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%  ${lastStr.padStart(20)}`
+       `  ${r.world_vel.toFixed(1).padStart(8)}  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%  ${lastStr.padStart(20)}`
     );
   }
   console.log("═".repeat(86) + "\n");
@@ -227,7 +227,7 @@ function showVelocityTable(results, n = 30) {
 function saveCsv(results, path) {
   const fields = [
     "id","name","buy","dc_min","home","fees","gross","margin",
-    "avg_sp","dc_vel","est_gp_d","confidence","score",
+    "avg_sp","world_vel","est_gp_d","confidence","score",
     "last_sale_age_h","last_sale_price","last_sale_qty",
   ];
   const rows = [...results].sort((a, b) => b.gross - a.gross);

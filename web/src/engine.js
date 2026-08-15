@@ -318,9 +318,10 @@ export async function processBatch(
     const dcP = ml.dc?.price;
     const regionP = ml.region?.price;
 
+    const worldVel = vel.world?.quantity || 0;
     const dcVel = vel.dc?.quantity || 0;
     const regionVel = vel.region?.quantity || 0;
-    const effVel = Math.max(dcVel, regionVel);
+    const effVel = worldVel || dcVel || regionVel;
 
     if (effVel < minVel) continue;
     if (!worldP) continue;
@@ -360,7 +361,7 @@ export async function processBatch(
       gross: gross,
       margin: margin,
       avg_sp: avgSp,
-      dc_vel: dcVel,
+      world_vel: worldVel,
       est_gp_d: Math.trunc(estGpD),
       home_supply: 0,
     });
@@ -536,7 +537,7 @@ export async function runScan({
   // ── Score computation ────────────────────────────────────────────────────────
   // A flip's attractiveness is driven by three factors:
   //   gross      — absolute profit per unit (gil)
-  //   dc_vel     — daily sales velocity on the DC
+  //   world_vel  — daily sales velocity on the sell world
   //   confidence — last_sale_price / current home price (0-1)
   //
   // Raw product `gross * vel * confidence` spans orders of magnitude because
@@ -549,7 +550,7 @@ export async function runScan({
     c.confidence = target && target > 0 ? Math.min(1.0, last / target) : 0;
 
     const gross = Math.min(c.gross, 500_000);              // cap extreme outliers
-    const vel   = Math.sqrt(Math.max(1, c.dc_vel));        // diminishing returns on velocity
+    const vel   = Math.sqrt(Math.max(1, c.world_vel));        // diminishing returns on velocity
     const conf  = Math.max(0.05, c.confidence);            // floor so unknowns don't score 0
 
     // supply factor: 1.0 when <3 items listed, 0.05 when >=20 items, linear between

@@ -38,7 +38,7 @@ globalThis.fetch = ipFetch;
 const SORT_KEY = {
   profit:    "gross",
   margin:    "margin",
-  velocity:  "dc_vel",
+  velocity:  "world_vel",
   gpday:     "est_gp_d",
   score:     "score",
 };
