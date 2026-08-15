@@ -156,7 +156,8 @@ function showTable(results, n = 50, sortBy = "profit") {
   console.log(
     ` ${pad("Item", 26)}  ${pad("ID", 9)}  ${pad("Buy", 9)}  ${pad("Home", 9)}` +
      `  ${pad("NetProfit", 9)}  ${pad("Margin", 6)}  ${pad("Vel/d", 8)}` +
-    `  ${pad("Est GP/d", 10)}  ${pad("Conf", 6)}  ${pad("Score", 12)}` +
+     `  ${pad("Srv 72h", 8)}  ${pad("DC 72h", 8)}` +
+     `  ${pad("Est GP/d", 10)}  ${pad("Conf", 6)}  ${pad("Score", 12)}` +
     `  ${pad("Last Sale", 20)}  ${pad("Avg Sale", 10)}`
   );
   console.log(sep);
@@ -181,8 +182,8 @@ function showTable(results, n = 50, sortBy = "profit") {
     const name = r.name || `Item ${r.id}`;
     console.log(
       ` ${pad(name, 26)} ${String(r.id).padStart(9)}  ${r.buy.toLocaleString().padStart(9)} gil  ${r.home.toLocaleString().padStart(9)} gil` +
-      `  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%` +
-       `  ${r.world_vel.toFixed(1).padStart(8)}  ${r.est_gp_d.toLocaleString().padStart(10)} gil` +
+       `  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%` +
+        `  ${r.world_vel.toFixed(1).padStart(8)}  ${(r.world_sold_72h ?? 0).toLocaleString().padStart(8)}  ${(r.dc_sold_72h ?? 0).toLocaleString().padStart(8)}  ${r.est_gp_d.toLocaleString().padStart(10)} gil` +
       `  ${r.confidence.toFixed(1).padStart(5)}%  ${Math.trunc(r.score).toLocaleString().padStart(12)} gil` +
       `  ${lastStr.padStart(20)}  ${avg.padStart(10)}`
     );
@@ -200,7 +201,7 @@ function showVelocityTable(results, n = 30) {
   console.log(`  ${"HIGHEST VELOCITY FLIPS".pad(84)}`);
   console.log("═".repeat(86));
   console.log(
-    `  ${pad("Item", 26)}  ${pad("ID", 9)}  ${pad("Buy", 9)}  ${pad("Vel/d", 8)}  ${pad("Profit", 9)}  ${pad("Marg.", 6)}`
+    `  ${pad("Item", 26)}  ${pad("ID", 9)}  ${pad("Buy", 9)}  ${pad("Vel/d", 8)}  ${pad("Srv 72h", 8)}  ${pad("DC 72h", 8)}  ${pad("Profit", 9)}  ${pad("Marg.", 6)}`
   );
   console.log("  " + "─".repeat(78));
   for (const r of ordered) {
@@ -218,7 +219,7 @@ function showVelocityTable(results, n = 30) {
     const name = r.name || `Item ${r.id}`;
     console.log(
       `  ${pad(name, 26)} ${String(r.id).padStart(9)}  ${r.buy.toLocaleString().padStart(9)} gil` +
-       `  ${r.world_vel.toFixed(1).padStart(8)}  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%  ${lastStr.padStart(20)}`
+       `  ${r.world_vel.toFixed(1).padStart(8)}  ${(r.world_sold_72h ?? 0).toLocaleString().padStart(8)}  ${(r.dc_sold_72h ?? 0).toLocaleString().padStart(8)}  ${r.gross.toLocaleString().padStart(9)} gil  ${r.margin.toFixed(1).padStart(5)}%  ${lastStr.padStart(20)}`
     );
   }
   console.log("═".repeat(86) + "\n");
@@ -227,7 +228,7 @@ function showVelocityTable(results, n = 30) {
 function saveCsv(results, path) {
   const fields = [
     "id","name","buy","dc_min","home","fees","gross","margin",
-    "avg_sp","world_vel","est_gp_d","confidence","score",
+    "avg_sp","world_vel","world_sold_72h","dc_sold_72h","est_gp_d","confidence","score",
     "last_sale_age_h","last_sale_price","last_sale_qty",
   ];
   const rows = [...results].sort((a, b) => b.gross - a.gross);

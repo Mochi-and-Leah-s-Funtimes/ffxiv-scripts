@@ -83,6 +83,8 @@ const SORT_MAP = {
   profit: (a, b) => a.gross - b.gross,
   margin: (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.world_vel - b.world_vel,
+  world_sold_72h: (a, b) => (a.world_sold_72h || 0) - (b.world_sold_72h || 0),
+  dc_sold_72h: (a, b) => (a.dc_sold_72h || 0) - (b.dc_sold_72h || 0),
   score: (a, b) => a.score - b.score,
 };
 
@@ -155,6 +157,8 @@ function renderResults(results, sortBy, topN) {
         <td class="px-3 py-2 text-right font-bold ${profitClass}">${fmt(r.gross)} <span class="text-gray-500">gil</span></td>
         <td class="px-3 py-2 text-right ${marginOk}">${pct(r.margin)}</td>
         <td class="px-3 py-2 text-right">${r.world_vel.toFixed(1)}</td>
+        <td class="px-3 py-2 text-right">${r.world_sold_72h ?? "—"}</td>
+        <td class="px-3 py-2 text-right">${r.dc_sold_72h ?? "—"}</td>
         <td class="px-3 py-2 text-right ${percentileClass}">${fmt(r.score)} <span class="text-gray-500">pts</span></td>
       </tr>`;
   }).join("");
@@ -169,7 +173,7 @@ function exportCsv(results) {
   }
   const fields = [
     "id", "name", "buy", "dc_min", "home", "fees", "gross",
-    "margin", "avg_sp", "world_vel", "est_gp_d", "confidence", "score",
+    "margin", "avg_sp", "world_vel", "world_sold_72h", "dc_sold_72h", "est_gp_d", "confidence", "score",
     "last_sale_age_h", "last_sale_price", "last_sale_qty",
   ];
   const rows = [...results].sort((a, b) => b.gross - a.gross);

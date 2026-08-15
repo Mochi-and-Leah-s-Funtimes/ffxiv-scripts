@@ -118,6 +118,8 @@ const SORT_MAP = {
   profit: (a, b) => a.gross - b.gross,
   margin: (a, b) => a.margin - b.margin,
   velocity: (a, b) => a.world_vel - b.world_vel,
+  world_sold_72h: (a, b) => (a.world_sold_72h || 0) - (b.world_sold_72h || 0),
+  dc_sold_72h: (a, b) => (a.dc_sold_72h || 0) - (b.dc_sold_72h || 0),
   score: (a, b) => a.score - b.score,
 };
 
@@ -187,6 +189,8 @@ function renderScanCard(scanId, results, status, total = null) {
         ${th("profit", "Profit", "text-right font-bold")}
         ${th("margin", "Margin", "text-right")}
         ${th("velocity", "Vel/d", "text-right")}
+        ${th("world_sold_72h", "Balmung sales", "text-right")}
+        ${th("dc_sold_72h", "DC sales", "text-right")}
         ${th("score", "Score", "text-right font-mono")}
       </tr>
     </thead><tbody>`;
@@ -207,6 +211,8 @@ function renderScanCard(scanId, results, status, total = null) {
         <td class="px-2 py-1 text-right font-bold ${profitClass}">${fmt(r.gross)}g</td>
         <td class="px-2 py-1 text-right ${marginClass}">${r.margin.toFixed(1)}%</td>
         <td class="px-2 py-1 text-right">${r.world_vel.toFixed(1)}</td>
+        <td class="px-2 py-1 text-right">${r.world_sold_72h ?? "—"}</td>
+        <td class="px-2 py-1 text-right">${r.dc_sold_72h ?? "—"}</td>
         <td class="px-2 py-1 text-right ${percentileClass}">${fmt(r.score)}</td>
       </tr>`;
   }

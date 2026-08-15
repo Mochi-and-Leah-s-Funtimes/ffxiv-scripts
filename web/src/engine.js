@@ -362,6 +362,8 @@ export async function processBatch(
       margin: margin,
       avg_sp: avgSp,
       world_vel: worldVel,
+      world_sold_72h: Math.round(worldVel * 3),
+      dc_sold_72h: Math.round(dcVel * 3),
       est_gp_d: Math.trunc(estGpD),
       home_supply: 0,
     });
