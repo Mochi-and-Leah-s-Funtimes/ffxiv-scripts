@@ -551,7 +551,7 @@ export async function runScan({
     const last = c.last_sale_price || 0;
     c.confidence = target && target > 0 ? Math.min(1.0, last / target) : 0;
 
-    const gross = Math.sqrt(Math.min(c.gross, 500_000));              // cap extreme outliers
+    const gross = Math.sqrt(Math.min(c.gross, 1_000_000));              // cap extreme outliers
     const vel = Math.sqrt(Math.max(1, c.world_vel));        // diminishing returns on velocity
     const conf = Math.max(0.05, c.confidence);            // floor so unknowns don't score 0
 
