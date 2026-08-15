@@ -552,7 +552,7 @@ export async function runScan({
     c.confidence = target && target > 0 ? Math.min(1.0, last / target) : 0;
 
     const gross = Math.sqrt(Math.min(c.gross, 500_000));              // cap extreme outliers
-    const vel = Math.log10(Math.max(1, c.world_vel));        // diminishing returns on velocity
+    const vel = Math.sqrt(Math.max(1, c.world_vel));        // diminishing returns on velocity
     const conf = Math.max(0.05, c.confidence);            // floor so unknowns don't score 0
 
     // supply factor: 1.0 when <3 items listed, 0.05 when >=20 items, linear between
