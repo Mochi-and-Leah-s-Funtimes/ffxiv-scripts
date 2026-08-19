@@ -183,14 +183,14 @@ function renderScanCard(scanId, results, status, total = null) {
       <tr>
         <th class="text-left px-2 py-1 cursor-pointer select-none hover:text-white" onclick="handleSort('${scanId}', 'item')">Item ${sortArrow('item', state)}</th>
         ${th("buy", "Buy", "text-right")}
-        ${th("source", "Source", "text-left")}
-        ${th("sell", "Sell", "text-right")}
-        ${th("supply", "Supply", "text-right")}
-        ${th("profit", "Profit", "text-right font-bold")}
+        <th class="text-left px-2 py-1 cursor-pointer select-none hover:text-white hidden lg:table-cell" onclick="handleSort('${scanId}', 'source')">Source ${sortArrow('source', state)}</th>
+        <th class="text-right px-2 py-1 cursor-pointer select-none hover:text-white hidden xl:table-cell" onclick="handleSort('${scanId}', 'sell')">Sell ${sortArrow('sell', state)}</th>
+        <th class="text-right px-2 py-1 cursor-pointer select-none hover:text-white hidden xl:table-cell" onclick="handleSort('${scanId}', 'supply')">Supply ${sortArrow('supply', state)}</th>
+        <th class="text-right px-2 py-1 cursor-pointer select-none hover:text-white hidden xl:table-cell font-bold" onclick="handleSort('${scanId}', 'profit')">Profit ${sortArrow('profit', state)}</th>
         ${th("margin", "Margin", "text-right")}
-        ${th("velocity", "Vel/d", "text-right")}
-        ${th("world_sold_72h", "Mateus sales", "text-right")}
-        ${th("dc_sold_72h", "DC sales", "text-right")}
+        <th class="text-right px-2 py-1 cursor-pointer select-none hover:text-white hidden lg:table-cell" onclick="handleSort('${scanId}', 'velocity')">Vel/d ${sortArrow('velocity', state)}</th>
+        <th class="text-right px-2 py-1 cursor-pointer select-none hover:text-white hidden xl:table-cell" onclick="handleSort('${scanId}', 'world_sold_72h')">Mateus sales ${sortArrow('world_sold_72h', state)}</th>
+        <th class="text-right px-2 py-1 cursor-pointer select-none hover:text-white hidden xl:table-cell" onclick="handleSort('${scanId}', 'dc_sold_72h')">DC sales ${sortArrow('dc_sold_72h', state)}</th>
         ${th("score", "Score", "text-right font-mono")}
       </tr>
     </thead><tbody>`;
@@ -205,14 +205,14 @@ function renderScanCard(scanId, results, status, total = null) {
       <tr class="border-b border-zinc-700/30 hover:bg-zinc-700/20">
         <td class="px-2 py-1 font-medium text-white">${escapeHtml(r.name || `Item ${r.id}`)}</td>
         <td class="px-2 py-1 text-right">${fmt(r.buy)}g</td>
-        <td class="px-2 py-1 text-right text-ffxiv-gold">${source}</td>
-        <td class="px-2 py-1 text-right">${fmt(r.home)}g</td>
-        <td class="px-2 py-1 text-right">${supply}</td>
-        <td class="px-2 py-1 text-right font-bold ${profitClass}">${fmt(r.gross)}g</td>
+          <td class="px-2 py-1 text-right text-ffxiv-gold hidden lg:table-cell">${source}</td>
+          <td class="px-2 py-1 text-right hidden xl:table-cell">${fmt(r.home)}g</td>
+          <td class="px-2 py-1 text-right hidden xl:table-cell">${supply}</td>
+          <td class="px-2 py-1 text-right font-bold hidden xl:table-cell ${profitClass}">${fmt(r.gross)}g</td>
         <td class="px-2 py-1 text-right ${marginClass}">${r.margin.toFixed(1)}%</td>
-        <td class="px-2 py-1 text-right">${r.world_vel.toFixed(1)}</td>
-        <td class="px-2 py-1 text-right">${r.world_sold_72h ?? "—"}</td>
-        <td class="px-2 py-1 text-right">${r.dc_sold_72h ?? "—"}</td>
+          <td class="px-2 py-1 text-right hidden lg:table-cell">${r.world_vel.toFixed(1)}</td>
+          <td class="px-2 py-1 text-right hidden xl:table-cell">${r.world_sold_72h ?? "—"}</td>
+          <td class="px-2 py-1 text-right hidden xl:table-cell">${r.dc_sold_72h ?? "—"}</td>
         <td class="px-2 py-1 text-right ${percentileClass}">${fmt(r.score)}</td>
       </tr>`;
   }

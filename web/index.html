@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FFXIV Arbitrage Engine — Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ffxiv-blue': '#1a237e',
+            'ffxiv-gold': '#ffeb3b',
+            'gil-green': '#4caf50',
+            'gil-red': '#f44336',
+            'scan-1': '#3b82f6',
+            'scan-2': '#8b5cf6',
+            'scan-3': '#ef4444',
+            'scan-4': '#f59e0b',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffeb3b'%3E%3Cpath d='M12 1l3 8h8l-6 5 2 8-7-5-7 5 2-8z'/%3E%3C/svg%3E" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Licorice&family=Limelight&family=Pacifico&display=swap');
+
+    .font-fira {
+      font-family: "Fira Sans", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .headline-font {
+      font-family: "Limelight", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .equation {
+      font-family: "Fira Sans", monospace;
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-zinc-950 to-zinc-900 text-zinc-100 min-h-screen font-fira">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-zinc-800 to-zinc-900 shadow-xl border-b-2 border-zinc-400">
+    <div class="container mx-auto px-6 py-6 text-center">
+      <h1 class="text-5xl font-extrabold text-white mb-1 headline-font">
+        FFXIV Arbitrage Engine
+      </h1>
+      <p class="text-zinc-300 text-lg">Cross-world flip candidates — updated hourly</p>
+      <div class="mx-auto flex flex-col xl:flex-row justify-center items-center gap-4 xl:gap-8">
+        <div class="mx-4">
+          <a href="./" class="text-orange-300 hover:text-amber-600 transition duration-300">Home</a>
+        </div>
+        <div class="mx-4">
+          <a href="./balmung" class="text-amber-300 hover:text-amber-600 transition duration-300">Balmung</a>
+        </div>
+        <div class="mx-4">
+          <a href="./malboro" class="text-amber-300 hover:text-amber-600 transition duration-300">Malboro</a>
+        </div>
+        <div class="mx-4">
+          <a href="./mateus" class="text-amber-300 hover:text-amber-600 transition duration-300">Mateus</a>
+        </div>
+        <div class="mx-4">
+          <a href="./seraph" class="text-amber-300 hover:text-amber-600 transition duration-300">Seraph</a>
+        </div>
+        <div class="mx-4">
+          <a href="./scanner" class="text-amber-300 hover:text-amber-600 transition duration-300">Scanner</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+    <!-- ── What is this? ── -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+        <span class="w-2 h-8 bg-ffxiv-gold rounded-full"></span>
+        What is the FFXIV Arbitrage Engine?
+      </h2>
+      <div class="bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-zinc-700 text-zinc-300 leading-relaxed space-y-4">
+        <p>
+          This engine scans the <strong class="text-white">Universalis</strong> market board across multiple worlds and datacenters to find underpriced items you can buy low and sell high — what we call <em class="text-ffxiv-gold">flips</em> or <em class="text-ffxiv-gold">arbitrage targets</em>.
+        </p>
+        <p>
+          It works by comparing current listings against recent sales history. If an item is listed well below the average sale price on a high-velocity world, it shows up as a candidate. You buy it, carry or teleport it to the target world, and list it for a profit.
+        </p>
+        <p>
+          The static pages (<strong class="text-white">Balmung</strong>, <strong class="text-white">Malboro</strong>, <strong class="text-white">Mateus</strong>, <strong class="text-white">Seraph</strong>) show pre-computed scan results updated hourly. The <strong class="text-white">Scanner</strong> lets you run a fresh live scan with custom filters and parameters.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── How it works ── -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+        <span class="w-2 h-8 bg-ffxiv-gold rounded-full"></span>
+        How It Works
+      </h2>
+      <div class="bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-zinc-700 text-zinc-300 leading-relaxed space-y-4">
+        <ol class="list-decimal list-inside space-y-3">
+          <li>
+            <strong class="text-white">Fetch marketable items</strong> — We pull the list of items that actually trade on the market board.
+          </li>
+          <li>
+            <strong class="text-white">Batch-fetch listings and history</strong> — For each world, we grab current listings and recent sales data from Universalis.
+          </li>
+          <li>
+            <strong class="text-white">Compute candidates</strong> — For every item, we calculate the gross profit (sell price minus buy price plus fees), velocity (how fast it sells), and confidence (how recently it sold at that price).
+          </li>
+          <li>
+            <strong class="text-white">Score and rank</strong> — Each candidate receives a composite score that balances profit, turnover, and certainty. The highest-scoring items rise to the top.
+          </li>
+          <li>
+            <strong class="text-white">Display results</strong> — Results are organized into tiers (Gillionaire, High, Mid, Low) so you can pick the risk and reward level that fits your playstyle.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── Metrics ── -->
+    <section class="mb-10">
+      <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+        <span class="w-2 h-8 bg-ffxiv-gold rounded-full"></span>
+        Metrics: Velocity &amp; Score
+      </h2>
+      <div class="bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-zinc-700 text-zinc-300 leading-relaxed space-y-6">
+
+        <!-- Velocity -->
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-2">Velocity (Vel/d)</h3>
+          <p class="mb-2">
+            Velocity is the average number of units sold per day on the sell world. It tells you how quickly you can move inventory.
+          </p>
+          <p>
+            Higher velocity means faster gil turnover and less risk of sitting on stock. We use a square-root dampening function so extreme outliers don't completely dominate the score.
+          </p>
+        </div>
+
+        <!-- Score -->
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-2">Score</h3>
+          <p class="mb-3">
+            The score is a single number that balances <strong class="text-white">profit</strong>, <strong class="text-white">velocity</strong>, and <strong class="text-white">confidence</strong> into one comparable metric. The formula is:
+          </p>
+
+          <div class="equation text-sm md:text-base text-zinc-200 mb-4">
+            score = ( gross × vel × conf × supplyFactor ) / 10
+          </div>
+
+          <div class="space-y-3 text-sm">
+            <div>
+              <strong class="text-white">gross</strong> = sqrt( min( profit_per_unit, 1,000,000 ) )<br />
+              <span class="text-zinc-400">Profit per unit is capped at 1M gil and square-rooted to dampen outliers. Without the cap, something like an Earth Shard listed for 999,999,999 gil would break the equation and push every real item off the board.</span>
+            </div>
+            <div>
+              <strong class="text-white">vel</strong> = sqrt( max( 1, daily_sales_velocity ) )<br />
+              <span class="text-zinc-400">Velocity gets the same square-root treatment so a 600/day item doesn't score 10x a 60/day item — the difference matters, but it shouldn't be all-consuming.</span>
+            </div>
+            <div>
+              <strong class="text-white">conf</strong> = max( 0.05, last_sale_price / current_home_price )<br />
+              <span class="text-zinc-400">Confidence is the ratio of the most recent sale price to the current listing price, clamped to a floor of 0.05. If we have no recent sale data, we still give the item a small non-zero score rather than discarding it entirely.</span>
+            </div>
+            <div>
+              <strong class="text-white">supplyFactor</strong> = linear ramp from 1.0 (fewer than 3 listings) down to 0.05 (20 or more listings)<br />
+              <span class="text-zinc-400">When a world is flooded with copies of an item, your chance of selling drops. This factor penalizes oversupplied markets.</span>
+            </div>
+            <div>
+              <strong class="text-white">/ 10</strong> — Brings the final number into a readable range.<br />
+              <span class="text-zinc-400">The raw product of these factors can still span a wide range. Dividing by 10 keeps scores in a human-friendly scale without changing relative rankings.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why this ranking -->
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-2">Why We Rank This Way</h3>
+          <p>
+            Pure profit sorting would surface massive, slow-moving items that tie up capital for weeks. Pure velocity sorting would show cheap consumables that return pennies. The score is designed to find the <em class="text-ffxiv-gold">sweet spot</em>: items that move quickly, have a reasonable margin, and aren't drowning in competitor listings.
+          </p>
+          <p class="mt-3">
+            Every term in the equation exists to push <strong class="text-white">flippable</strong> items to the top — things you can actually buy, list, and sell in a reasonable timeframe at a real profit.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Get Started ── -->
+    <section>
+      <h2 class="text-3xl font-bold text-white mb-4 flex items-center gap-3">
+        <span class="w-2 h-8 bg-ffxiv-gold rounded-full"></span>
+        Get Started
+      </h2>
+      <div class="bg-zinc-800/50 backdrop-blur-sm rounded-xl shadow-lg p-6 border border-zinc-700 text-zinc-300 leading-relaxed space-y-4">
+        <p>
+          Pick a world above to see the latest curated flip candidates, or head to the <strong class="text-white">Scanner</strong> to run a custom live scan with your own parameters.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <a href="./scanner" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-500/90 hover:to-emerald-700 text-white font-bold rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
+            Open Scanner
+          </a>
+          <a href="./balmung" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-400/90 hover:to-yellow-600 text-zinc-900 font-bold rounded-lg shadow-lg transform hover:scale-[1.02] transition-all">
+            View Balmung
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-zinc-700 py-4 text-center text-sm text-zinc-500">
+    <p>Powered by <a href="https://universalis.app" target="_blank"
+        class="text-ffxiv-gold hover:text-white">Universalis</a> & <a href="https://xivapi.com" target="_blank"
+        class="text-ffxiv-gold hover:text-white">xivapi</a></p>
+  </footer>
+
+</body>
+
+</html>

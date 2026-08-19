@@ -551,7 +551,7 @@ export async function runScan({
     const last = c.last_sale_price || 0;
     c.confidence = target && target > 0 ? Math.min(1.0, last / target) : 0;
 
-    const gross = Math.min(c.gross, 500_000);              // cap extreme outliers
+    const gross = Math.sqrt(Math.min(c.gross, 1_000_000));              // cap extreme outliers
     const vel   = Math.sqrt(Math.max(1, c.world_vel));        // diminishing returns on velocity
     const conf  = Math.max(0.05, c.confidence);            // floor so unknowns don't score 0
 
@@ -559,7 +559,7 @@ export async function runScan({
     const supply = c.home_supply || 0;
     const supplyFactor = supply >= 20 ? 0.05 : supply < 3 ? 1.0 : 1.0 - ((supply - 3) / 17) * 0.95;
 
-    c.score = (gross * vel * conf * supplyFactor) / 100;
+    c.score = (gross * vel * conf * supplyFactor) / 10;
   }
 
   // ── Item-name enrichment ──────────────────────────────────────────────────
